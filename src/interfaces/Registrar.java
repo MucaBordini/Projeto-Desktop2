@@ -10,7 +10,6 @@ import controle.CriarSenha;
 import java.awt.FontFormatException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
