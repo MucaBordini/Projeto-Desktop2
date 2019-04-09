@@ -6,7 +6,11 @@
 package controle;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,21 +22,24 @@ public class ArquivoTexto {
      *
      * @throws IOException
      */
-    public void criaArquivo() throws IOException{
-        File diretorio = new File("c:\\AvaliacaoJogos");
-        diretorio.mkdir();
-        File arquivoUsu = new File(diretorio, "Usuarios.txt");
-        File arquivoJogo = new File(diretorio, "Jogos.txt");
-        File arquivoAval = new File(diretorio, "Avaliacoes.txt");
-        if (!arquivoUsu.exists()) {
-            arquivoUsu.createNewFile();
-        }
-        if (!arquivoJogo.exists()) {
-            arquivoJogo.createNewFile();
-        }
-        if (!arquivoAval.exists()) {
-            arquivoAval.createNewFile();
-        }
-    }
-    
+    public void criaArquivo(String nome, String sobrenome, String email, String value, String favorito){
+        PrintWriter arq;
+        try {
+            arq = new PrintWriter("./usuarios/"+email+".txt");
+            arq.println(nome);
+            arq.println(sobrenome);
+            
+            /*
+            arq.println(textEmail.getText());
+            arq.println(textSenha.getPassword());
+            arq.println(textCSenha.getPassword());
+            */
+
+            arq.println(favorito);
+            arq.println(value);
+            arq.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
+        }               
+    } 
 }

@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import controle.ArquivoTexto;
 import controle.CriarSenha;
 import java.awt.FontFormatException;
 import java.io.FileNotFoundException;
@@ -316,7 +317,7 @@ public class Registrar extends javax.swing.JFrame {
 
     private void buttonCadastrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario1ActionPerformed
         
-        
+        ArquivoTexto reg = new ArquivoTexto();
         if(textSenha.getText().equals(textCSenha.getText())){
             
             
@@ -324,16 +325,18 @@ public class Registrar extends javax.swing.JFrame {
                 String pass = new String (this.textSenha.getPassword());
                 CriarSenha makepass = new CriarSenha();
                 makepass.CriarSenha(textEmail.getText(), pass);
-                PrintWriter arq = new PrintWriter(textEmail.getText()+".txt");
+                String value = ComboBoxGen.getSelectedItem().toString();
+                reg.criaArquivo(textNome1.getText(), textSobrenome1.getText(), textEmail.getText(), value, textJogoFavorito.getText());
+                /*PrintWriter arq = new PrintWriter(textEmail.getText()+".txt");
                 arq.println(textNome1.getText());
                 arq.println(textSobrenome1.getText());
-                /*arq.println(textEmail.getText());
+                arq.println(textEmail.getText());
                 arq.println(textSenha.getPassword());
-                arq.println(textCSenha.getPassword());*/
+                arq.println(textCSenha.getPassword());
                 arq.println(textJogoFavorito.getText());
-                String value = ComboBoxGen.getSelectedItem().toString();
+                
                 arq.println(value);
-                arq.close();
+                arq.close();*/
                 new Login().setVisible(true);
                 dispose();
                 JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso");
@@ -344,7 +347,7 @@ public class Registrar extends javax.swing.JFrame {
                 Logger.getLogger(Registrar.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(jMenu1, "As senhas não conferem");
+            JOptionPane.showMessageDialog(null, "As senhas não conferem");
             textSenha.setText("");
             textCSenha.setText("");
         }    
