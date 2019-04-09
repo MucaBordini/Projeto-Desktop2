@@ -336,7 +336,7 @@ public class Registrar extends javax.swing.JFrame {
                 arq.close();
                 new Login().setVisible(true);
                 dispose();
-                JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso"+pass);
+                JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso");
 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Registrar.class.getName()).log(Level.SEVERE, null, ex);
