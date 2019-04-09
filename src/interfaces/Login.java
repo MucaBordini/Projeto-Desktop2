@@ -133,42 +133,6 @@ public class Login extends javax.swing.JFrame {
         }catch (IOException ex ) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /*try {
-        login.TestLogin(email,pass);
-        new Principal().setVisible(true);
-        dispose();
-        } catch (FileNotFoundException ex) {
-        JOptionPane.showMessageDialog(null, "Email inválido!");
-        } catch (IOException ex) {
-        JOptionPane.showMessageDialog(null, "Senha inválida!");
-        }*/
-        /*try {
-        login.TestLogin(email,pass);
-        new Principal().setVisible(true);
-        dispose();
-        } catch (FileNotFoundException ex) {
-        JOptionPane.showMessageDialog(null, "Email inválido!");
-        } catch (IOException ex) {
-        JOptionPane.showMessageDialog(null, "Senha inválida!");
-        }*/ 
-        /*try {
-        login.TestLogin(email,pass);
-        new Principal().setVisible(true);
-        dispose();
-        } catch (FileNotFoundException ex) {
-        JOptionPane.showMessageDialog(null, "Email inválido!");
-        } catch (IOException ex) {
-        JOptionPane.showMessageDialog(null, "Senha inválida!");
-        }*/ 
-        /*try {
-            login.TestLogin(email,pass);
-            new Principal().setVisible(true);
-            dispose();
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Email inválido!");
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Senha inválida!");
-        }*/
     }//GEN-LAST:event_ButtonEntrarActionPerformed
 
     private void ButtonEntrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEntrar1ActionPerformed

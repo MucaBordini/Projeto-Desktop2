@@ -124,7 +124,8 @@ public class Registrar extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setText("Jogo Favorito:");
 
-        buttonCadastrarUsuario1.setText("Cadastrar");
+        buttonCadastrarUsuario1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
+        buttonCadastrarUsuario1.setToolTipText("Cadastrar");
         buttonCadastrarUsuario1.setAutoscrolls(true);
         buttonCadastrarUsuario1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,33 +146,34 @@ public class Registrar extends javax.swing.JFrame {
         PanelCadUsuLayout.setHorizontalGroup(
             PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCadUsuLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
                 .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel9)
-                    .addComponent(LabelCadUsu)
                     .addGroup(PanelCadUsuLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
                         .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel15))
-                        .addGap(53, 53, 53)
-                        .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textJogoFavorito, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ComboBoxGen, 0, 368, Short.MAX_VALUE)
-                                .addComponent(textCSenha)
-                                .addComponent(textEmail)
-                                .addComponent(textSobrenome1)
-                                .addComponent(textNome1)
-                                .addComponent(textSenha)))))
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel9)
+                            .addComponent(LabelCadUsu)
+                            .addGroup(PanelCadUsuLayout.createSequentialGroup()
+                                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel15))
+                                .addGap(53, 53, 53)
+                                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textJogoFavorito, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(ComboBoxGen, 0, 368, Short.MAX_VALUE)
+                                        .addComponent(textCSenha)
+                                        .addComponent(textEmail)
+                                        .addComponent(textSobrenome1)
+                                        .addComponent(textNome1)
+                                        .addComponent(textSenha))))))
+                    .addGroup(PanelCadUsuLayout.createSequentialGroup()
+                        .addGap(297, 297, 297)
+                        .addComponent(buttonCadastrarUsuario1)))
                 .addContainerGap(138, Short.MAX_VALUE))
-            .addGroup(PanelCadUsuLayout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addComponent(buttonCadastrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         PanelCadUsuLayout.setVerticalGroup(
             PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
