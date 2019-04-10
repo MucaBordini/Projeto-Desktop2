@@ -10,13 +10,13 @@ package modelo;
  * @author samue
  */
 public class Jogo {
-    private int jId;
     private String jNome;
+    private String jProdutora;
+    private String jPublisher;
+    private String jDataLancamento;
+    private String jGenero;
 
-    public int getjId() {
-        return jId;
-    }
-
+    
     public String getjNome() {
         return jNome;
     }
@@ -37,10 +37,7 @@ public class Jogo {
         return jGenero;
     }
 
-    public void setjId(int jId) {
-        this.jId = jId;
-    }
-
+    
     public void setjNome(String jNome) {
         this.jNome = jNome;
     }
@@ -60,8 +57,5 @@ public class Jogo {
     public void setjGenero(String jGenero) {
         this.jGenero = jGenero;
     }
-    private String jProdutora;
-    private String jPublisher;
-    private String jDataLancamento;
-    private String jGenero;
+    
 }

@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import controle.ArquivoTexto;
+import controle.CriarSenha;
 import java.awt.CardLayout;
 import java.awt.FontFormatException;
 import java.io.FileNotFoundException;
@@ -60,16 +62,16 @@ public class Principal extends javax.swing.JFrame {
         PanelCadJogo = new javax.swing.JPanel();
         LabelCadUsu1 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        textNome2 = new javax.swing.JTextField();
+        textNomeJogo = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        textSobrenome2 = new javax.swing.JTextField();
+        textDesenvolvedora = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        textEmail1 = new javax.swing.JTextField();
+        textProdutora = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         buttonCadastrarUsuario2 = new javax.swing.JButton();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        comboGeneroJogo = new javax.swing.JComboBox<>();
+        dateLancamento = new javax.swing.JFormattedTextField();
         PanelAvaJogo = new javax.swing.JPanel();
         LabelCadUsu2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -78,15 +80,15 @@ public class Principal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textComentario = new javax.swing.JTextArea();
         buttonCadastrarUsuario = new javax.swing.JButton();
-        jComboBoxAudio = new javax.swing.JComboBox<>();
-        jComboBoxJogabilidade = new javax.swing.JComboBox<>();
-        jComboBoxGraficos = new javax.swing.JComboBox<>();
-        jComboBoxEnredo = new javax.swing.JComboBox<>();
+        comboAudio = new javax.swing.JComboBox<>();
+        comboJogabilidade = new javax.swing.JComboBox<>();
+        comboGrafico = new javax.swing.JComboBox<>();
+        comboEnredo = new javax.swing.JComboBox<>();
         buttonCadastrarUsuario3 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        jComboBoxAudio1 = new javax.swing.JComboBox<>();
+        comboConteudo = new javax.swing.JComboBox<>();
         PanelEditJogo = new javax.swing.JPanel();
         LabelCadUsu3 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -284,17 +286,17 @@ public class Principal extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("Nome:");
 
-        textNome2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        textNomeJogo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel17.setText("Desenvolvedora:");
 
-        textSobrenome2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        textDesenvolvedora.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel18.setText("Produtora:");
 
-        textEmail1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        textProdutora.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel19.setText("Data de lançamento:");
@@ -310,11 +312,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
-        jComboBox5.setPreferredSize(new java.awt.Dimension(98, 25));
+        comboGeneroJogo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
+        comboGeneroJogo.setPreferredSize(new java.awt.Dimension(98, 25));
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        jFormattedTextField1.setPreferredSize(new java.awt.Dimension(6, 25));
+        dateLancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        dateLancamento.setPreferredSize(new java.awt.Dimension(6, 25));
 
         javax.swing.GroupLayout PanelCadJogoLayout = new javax.swing.GroupLayout(PanelCadJogo);
         PanelCadJogo.setLayout(PanelCadJogoLayout);
@@ -335,12 +337,12 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(jLabel20))
                                 .addGap(44, 44, 44)
                                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textSobrenome2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textProdutora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jComboBox5, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(comboGeneroJogo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dateLancamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(PanelCadJogoLayout.createSequentialGroup()
                         .addGap(272, 272, 272)
                         .addComponent(buttonCadastrarUsuario2)))
@@ -354,23 +356,23 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textSobrenome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textProdutora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboGeneroJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(buttonCadastrarUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90))
@@ -398,9 +400,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Comentários:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textComentario.setColumns(20);
+        textComentario.setRows(5);
+        jScrollPane1.setViewportView(textComentario);
 
         buttonCadastrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
         buttonCadastrarUsuario.setAutoscrolls(true);
@@ -410,21 +412,21 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxAudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        jComboBoxAudio.setSelectedIndex(-1);
-        jComboBoxAudio.setPreferredSize(new java.awt.Dimension(72, 25));
+        comboAudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboAudio.setSelectedIndex(-1);
+        comboAudio.setPreferredSize(new java.awt.Dimension(72, 25));
 
-        jComboBoxJogabilidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        jComboBoxJogabilidade.setSelectedIndex(-1);
-        jComboBoxJogabilidade.setPreferredSize(new java.awt.Dimension(72, 25));
+        comboJogabilidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboJogabilidade.setSelectedIndex(-1);
+        comboJogabilidade.setPreferredSize(new java.awt.Dimension(72, 25));
 
-        jComboBoxGraficos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        jComboBoxGraficos.setSelectedIndex(-1);
-        jComboBoxGraficos.setPreferredSize(new java.awt.Dimension(72, 25));
+        comboGrafico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboGrafico.setSelectedIndex(-1);
+        comboGrafico.setPreferredSize(new java.awt.Dimension(72, 25));
 
-        jComboBoxEnredo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        jComboBoxEnredo.setSelectedIndex(-1);
-        jComboBoxEnredo.setPreferredSize(new java.awt.Dimension(72, 25));
+        comboEnredo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboEnredo.setSelectedIndex(-1);
+        comboEnredo.setPreferredSize(new java.awt.Dimension(72, 25));
 
         buttonCadastrarUsuario3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_402-512 (2).png"))); // NOI18N
         buttonCadastrarUsuario3.setAutoscrolls(true);
@@ -437,9 +439,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel21.setText("Conteúdo:");
 
-        jComboBoxAudio1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        jComboBoxAudio1.setSelectedIndex(-1);
-        jComboBoxAudio1.setPreferredSize(new java.awt.Dimension(72, 25));
+        comboConteudo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboConteudo.setSelectedIndex(-1);
+        comboConteudo.setPreferredSize(new java.awt.Dimension(72, 25));
 
         javax.swing.GroupLayout PanelAvaJogoLayout = new javax.swing.GroupLayout(PanelAvaJogo);
         PanelAvaJogo.setLayout(PanelAvaJogoLayout);
@@ -460,11 +462,11 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(79, 79, 79)
                         .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxEnredo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxAudio, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxJogabilidade, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxAudio1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboEnredo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboAudio, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboJogabilidade, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboConteudo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PanelAvaJogoLayout.createSequentialGroup()
                                 .addGap(33, 33, 33)
                                 .addComponent(buttonCadastrarUsuario3)
@@ -480,24 +482,24 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(LabelCadUsu2)
                 .addGap(18, 18, 18)
                 .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxEnredo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboEnredo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxJogabilidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboJogabilidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxAudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboAudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxAudio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboConteudo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -752,7 +754,32 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuItemNewJogoActionPerformed
 
     private void buttonCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuarioActionPerformed
-        // TODO add your handling code here:
+       ArquivoTexto reg = new ArquivoTexto();
+        
+            
+            
+       String value = comboGeneroJogo.getSelectedItem().toString();
+       String enredo = comboEnredo.getSelectedItem().toString();
+       String grafico = comboGrafico.getSelectedItem().toString();
+       String jogabilidade = comboJogabilidade.getSelectedItem().toString();
+       String audio = comboAudio.getSelectedItem().toString();
+       String conteudo = comboConteudo.getSelectedItem().toString();
+       reg.criaArquivo(textNomeJogo.getText(), textDesenvolvedora.getText(), textProdutora.getText(),dateLancamento.getText(), value, enredo, grafico, jogabilidade, audio, conteudo, textComentario.getText());
+       /*PrintWriter arq = new PrintWriter(textEmail.getText()+".txt");
+       arq.println(textNome1.getText());
+       arq.println(textSobrenome1.getText());
+       arq.println(textEmail.getText());
+       arq.println(textSenha.getPassword());
+       arq.println(textCSenha.getPassword());
+       arq.println(textJogoFavorito.getText());
+       
+       arq.println(value);
+       arq.close();*/
+       JOptionPane.showMessageDialog(null, "Jogo salvo com sucesso");
+       
+       /*} catch (FileNotFoundException ex) {
+       Logger.getLogger(Registrar.class.getName()).log(Level.SEVERE, null, ex);*/
+        
     }//GEN-LAST:event_buttonCadastrarUsuarioActionPerformed
 
     private void textNome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNome1ActionPerformed
@@ -776,7 +803,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCadastrarUsuario1ActionPerformed
 
     private void buttonCadastrarUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario2ActionPerformed
-        // TODO add your handling code here:
+        jTabbedCadJogo.setSelectedIndex(1);
     }//GEN-LAST:event_buttonCadastrarUsuario2ActionPerformed
 
     private void ComboBoxGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxGenActionPerformed
@@ -804,7 +831,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditUsuActionPerformed
 
     private void buttonCadastrarUsuario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario3ActionPerformed
-        // TODO add your handling code here:
+        jTabbedCadJogo.setSelectedIndex(0);
     }//GEN-LAST:event_buttonCadastrarUsuario3ActionPerformed
 
     private void buttonCadastrarUsuario5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario5ActionPerformed
@@ -871,18 +898,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton buttonCadastrarUsuario2;
     private javax.swing.JButton buttonCadastrarUsuario3;
     private javax.swing.JButton buttonCadastrarUsuario5;
+    private javax.swing.JComboBox<String> comboAudio;
+    private javax.swing.JComboBox<String> comboConteudo;
+    private javax.swing.JComboBox<String> comboEnredo;
+    private javax.swing.JComboBox<String> comboGeneroJogo;
+    private javax.swing.JComboBox<String> comboGrafico;
+    private javax.swing.JComboBox<String> comboJogabilidade;
+    private javax.swing.JFormattedTextField dateLancamento;
     private javax.swing.JButton jButtonCadJogo;
     private javax.swing.JButton jButtonEditJogo;
     private javax.swing.JButton jButtonEditUsu;
     private javax.swing.JButton jButtonLogoff;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBoxAudio;
-    private javax.swing.JComboBox<String> jComboBoxAudio1;
-    private javax.swing.JComboBox<String> jComboBoxEnredo;
-    private javax.swing.JComboBox<String> jComboBoxGraficos;
-    private javax.swing.JComboBox<String> jComboBoxJogabilidade;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -913,18 +940,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedCadJogo;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPasswordField textCSenha;
+    private javax.swing.JTextArea textComentario;
+    private javax.swing.JTextField textDesenvolvedora;
     private javax.swing.JTextField textEmail;
-    private javax.swing.JTextField textEmail1;
     private javax.swing.JTextField textEmail2;
     private javax.swing.JTextField textJogoFavorito;
     private javax.swing.JTextField textNome1;
-    private javax.swing.JTextField textNome2;
     private javax.swing.JTextField textNome3;
+    private javax.swing.JTextField textNomeJogo;
+    private javax.swing.JTextField textProdutora;
     private javax.swing.JPasswordField textSenha;
     private javax.swing.JTextField textSobrenome1;
-    private javax.swing.JTextField textSobrenome2;
     private javax.swing.JTextField textSobrenome3;
     // End of variables declaration//GEN-END:variables
 }

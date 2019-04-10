@@ -417,12 +417,12 @@
                                           </Group>
                                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="textEmail1" min="-2" pref="368" max="-2" attributes="0"/>
-                                              <Component id="textSobrenome2" min="-2" pref="368" max="-2" attributes="0"/>
-                                              <Component id="textNome2" min="-2" pref="368" max="-2" attributes="0"/>
+                                              <Component id="textProdutora" min="-2" pref="368" max="-2" attributes="0"/>
+                                              <Component id="textDesenvolvedora" min="-2" pref="368" max="-2" attributes="0"/>
+                                              <Component id="textNomeJogo" min="-2" pref="368" max="-2" attributes="0"/>
                                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="jComboBox5" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jFormattedTextField1" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                                                  <Component id="comboGeneroJogo" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="dateLancamento" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -445,27 +445,27 @@
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel16" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="textNome2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textNomeJogo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel17" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="textSobrenome2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textDesenvolvedora" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel18" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="textEmail1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textProdutora" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel19" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="jFormattedTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="dateLancamento" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel20" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="jComboBox5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboGeneroJogo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="113" max="32767" attributes="0"/>
                           <Component id="buttonCadastrarUsuario2" min="-2" pref="40" max="-2" attributes="0"/>
@@ -491,7 +491,7 @@
                     <Property name="text" type="java.lang.String" value="Nome:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="textNome2">
+                <Component class="javax.swing.JTextField" name="textNomeJogo">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto" size="14" style="0"/>
@@ -506,7 +506,7 @@
                     <Property name="text" type="java.lang.String" value="Desenvolvedora:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="textSobrenome2">
+                <Component class="javax.swing.JTextField" name="textDesenvolvedora">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto" size="14" style="0"/>
@@ -521,7 +521,7 @@
                     <Property name="text" type="java.lang.String" value="Produtora:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="textEmail1">
+                <Component class="javax.swing.JTextField" name="textProdutora">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Roboto" size="14" style="0"/>
@@ -555,7 +555,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCadastrarUsuario2ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox5">
+                <Component class="javax.swing.JComboBox" name="comboGeneroJogo">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="8">
@@ -577,7 +577,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+                <Component class="javax.swing.JFormattedTextField" name="dateLancamento">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                       <Format subtype="0" type="1"/>
@@ -622,11 +622,11 @@
                                   <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jScrollPane1" min="-2" pref="368" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxEnredo" min="-2" pref="191" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxAudio" min="-2" pref="191" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxGraficos" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxJogabilidade" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxAudio1" min="-2" pref="191" max="-2" attributes="0"/>
+                                      <Component id="comboEnredo" min="-2" pref="191" max="-2" attributes="0"/>
+                                      <Component id="comboAudio" min="-2" pref="191" max="-2" attributes="0"/>
+                                      <Component id="comboGrafico" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                                      <Component id="comboJogabilidade" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                                      <Component id="comboConteudo" min="-2" pref="191" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                           <Component id="buttonCadastrarUsuario3" min="-2" max="-2" attributes="0"/>
@@ -648,28 +648,28 @@
                           <Component id="LabelCadUsu2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jComboBoxEnredo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboEnredo" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jComboBoxGraficos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboGrafico" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jComboBoxJogabilidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboJogabilidade" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jComboBoxAudio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboAudio" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel21" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="jComboBoxAudio1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboConteudo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -742,7 +742,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea1">
+                    <Component class="javax.swing.JTextArea" name="textComentario">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -761,7 +761,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCadastrarUsuarioActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBoxAudio">
+                <Component class="javax.swing.JComboBox" name="comboAudio">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
@@ -781,7 +781,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBoxJogabilidade">
+                <Component class="javax.swing.JComboBox" name="comboJogabilidade">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
@@ -801,7 +801,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBoxGraficos">
+                <Component class="javax.swing.JComboBox" name="comboGrafico">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
@@ -821,7 +821,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBoxEnredo">
+                <Component class="javax.swing.JComboBox" name="comboEnredo">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
@@ -860,7 +860,7 @@
                     <Property name="text" type="java.lang.String" value="Conte&#xfa;do:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBoxAudio1">
+                <Component class="javax.swing.JComboBox" name="comboConteudo">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
