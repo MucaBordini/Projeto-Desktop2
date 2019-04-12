@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.Usuario;
 
 /**
  *
@@ -119,12 +120,13 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEntrarActionPerformed
-        String email = TextFieldLogin.getText();
-        String pass = new String (this.PasswordFieldSenha.getPassword());
+        Usuario u = new Usuario();
+        u.setEmail(TextFieldLogin.getText());
         
+        String pass = new String (this.PasswordFieldSenha.getPassword());
         TestLogin login = new TestLogin();
         try {
-            if(login.TestLogin(email,pass) == false){
+            if(login.TestLogin(u.getEmail(),pass) == false){
                 JOptionPane.showMessageDialog(null, "Email e/ou senha inválido!");
             } else {
                 new Principal().setVisible(true);

@@ -10,69 +10,49 @@ package modelo;
  * @author samue
  */
 public class Usuario {
-    private int uId;
-    private String uNome;
-    private String uSobrenome;
-    private String uEmail;
-    private String uSenha;
-    private String uGeneroFavorito;
-    private String uJogoFavorito;
+    private static String email;
+    private static String nome;
+    private static String sobrenome;
+    private static String genero;
+    private static String favorito;
 
-    // <editor-fold defaultstate="collapsed" desc=" GETTERS & SETTERS ">
-    public void setuId(int uId) {
-        this.uId = uId;
+    public static String getEmail() {
+        return email;
     }
 
-    public void setuNome(String uNome) {
-        this.uNome = uNome;
+    public static void setEmail(String email) {
+        Usuario.email = email;
     }
 
-    public void setuSobrenome(String uSobrenome) {
-        this.uSobrenome = uSobrenome;
+    public static String getNome() {
+        return nome;
     }
 
-    public void setuEmail(String uEmail) {
-        this.uEmail = uEmail;
+    public static void setNome(String nome) {
+        Usuario.nome = nome;
     }
 
-    public void setuSenha(String uSenha) {
-        this.uSenha = uSenha;
+    public static String getSobrenome() {
+        return sobrenome;
     }
 
-    public void setuGeneroFavorito(String uGeneroFavorito) {
-        this.uGeneroFavorito = uGeneroFavorito;
+    public static void setSobrenome(String sobrenome) {
+        Usuario.sobrenome = sobrenome;
     }
 
-    public void setuJogoFavorito(String uJogoFavorito) {
-        this.uJogoFavorito = uJogoFavorito;
+    public static String getGenero() {
+        return genero;
     }
 
-    public int getuId() {
-        return uId;
+    public static void setGenero(String genero) {
+        Usuario.genero = genero;
     }
 
-    public String getuNome() {
-        return uNome;
+    public static String getFavorito() {
+        return favorito;
     }
 
-    public String getuSobrenome() {
-        return uSobrenome;
+    public static void setFavorito(String favorito) {
+        Usuario.favorito = favorito;
     }
-
-    public String getuEmail() {
-        return uEmail;
-    }
-
-    public String getuSenha() {
-        return uSenha;
-    }
-
-    public String getuGeneroFavorito() {
-        return uGeneroFavorito;
-    }
-
-    public String getuJogoFavorito() {
-        return uJogoFavorito;
-    }
-    
 }

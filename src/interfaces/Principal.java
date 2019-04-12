@@ -9,6 +9,7 @@ import controle.ArquivoTexto;
 import controle.CriarSenha;
 import java.awt.CardLayout;
 import java.awt.FontFormatException;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.Usuario;
 
 /**
  *
@@ -26,7 +28,7 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
- 
+    Usuario u = new Usuario();
     public Principal() {
         setResizable(false);
         initComponents(); 
@@ -44,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
         PanelRoot = new javax.swing.JPanel();
         PanelInicial = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        PanelCadUsu = new javax.swing.JPanel();
+        PanelEditUsu = new javax.swing.JPanel();
         LabelEditUsu = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         textEditNomeUsu = new javax.swing.JTextField();
@@ -59,8 +61,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         textEditJogoFavorito = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        buttonCadastrarUsuario1 = new javax.swing.JButton();
-        ComboEditBoxGen = new javax.swing.JComboBox<String>();
+        buttonEditUser = new javax.swing.JButton();
+        ComboEditBoxGen = new javax.swing.JComboBox<>();
+        buttonDeleteUser = new javax.swing.JButton();
         jTabbedCadJogo = new javax.swing.JTabbedPane();
         PanelCadJogo = new javax.swing.JPanel();
         LabelCadUsu1 = new javax.swing.JLabel();
@@ -73,7 +76,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         buttonCadastrarUsuario2 = new javax.swing.JButton();
-        comboGeneroJogo = new javax.swing.JComboBox<String>();
+        comboGeneroJogo = new javax.swing.JComboBox<>();
         dateLancamento = new javax.swing.JFormattedTextField();
         PanelAvaJogo = new javax.swing.JPanel();
         LabelCadUsu2 = new javax.swing.JLabel();
@@ -85,13 +88,13 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         textComentario = new javax.swing.JTextArea();
         buttonCadastrarUsuario = new javax.swing.JButton();
-        comboAudio = new javax.swing.JComboBox<String>();
-        comboJogabilidade = new javax.swing.JComboBox<String>();
-        comboGraficos = new javax.swing.JComboBox<String>();
-        comboEnredo = new javax.swing.JComboBox<String>();
+        comboAudio = new javax.swing.JComboBox<>();
+        comboJogabilidade = new javax.swing.JComboBox<>();
+        comboGraficos = new javax.swing.JComboBox<>();
+        comboEnredo = new javax.swing.JComboBox<>();
         buttonCadastrarUsuario3 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        comboConteudo = new javax.swing.JComboBox<String>();
+        comboConteudo = new javax.swing.JComboBox<>();
         PanelEditJogo = new javax.swing.JPanel();
         LabelCadUsu3 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -102,7 +105,7 @@ public class Principal extends javax.swing.JFrame {
         textEditProdutora = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        comboEditGenero = new javax.swing.JComboBox<String>();
+        comboEditGenero = new javax.swing.JComboBox<>();
         dateEditLancamento = new javax.swing.JFormattedTextField();
         botaoEditarJogo = new javax.swing.JButton();
         botaoPesquisar = new javax.swing.JButton();
@@ -152,7 +155,7 @@ public class Principal extends javax.swing.JFrame {
 
         PanelRoot.add(PanelInicial, "PanelInicial");
 
-        PanelCadUsu.setBackground(new java.awt.Color(236, 239, 249));
+        PanelEditUsu.setBackground(new java.awt.Color(236, 239, 249));
 
         LabelEditUsu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         LabelEditUsu.setText("EDITAR USUÁRIO");
@@ -208,16 +211,16 @@ public class Principal extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setText("Jogo Favorito:");
 
-        buttonCadastrarUsuario1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
-        buttonCadastrarUsuario1.setToolTipText("Salvar");
-        buttonCadastrarUsuario1.setAutoscrolls(true);
-        buttonCadastrarUsuario1.addActionListener(new java.awt.event.ActionListener() {
+        buttonEditUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
+        buttonEditUser.setToolTipText("Salvar");
+        buttonEditUser.setAutoscrolls(true);
+        buttonEditUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCadastrarUsuario1ActionPerformed(evt);
+                buttonEditUserActionPerformed(evt);
             }
         });
 
-        ComboEditBoxGen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
+        ComboEditBoxGen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
         ComboEditBoxGen.setPreferredSize(new java.awt.Dimension(74, 25));
         ComboEditBoxGen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,15 +228,24 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout PanelCadUsuLayout = new javax.swing.GroupLayout(PanelCadUsu);
-        PanelCadUsu.setLayout(PanelCadUsuLayout);
-        PanelCadUsuLayout.setHorizontalGroup(
-            PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelCadUsuLayout.createSequentialGroup()
+        buttonDeleteUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/256-256-c020ce89b5c951e08148e0.png"))); // NOI18N
+        buttonDeleteUser.setToolTipText("Salvar");
+        buttonDeleteUser.setAutoscrolls(true);
+        buttonDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDeleteUserActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelEditUsuLayout = new javax.swing.GroupLayout(PanelEditUsu);
+        PanelEditUsu.setLayout(PanelEditUsuLayout);
+        PanelEditUsuLayout.setHorizontalGroup(
+            PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelEditUsuLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelCadUsuLayout.createSequentialGroup()
-                        .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelEditUsuLayout.createSequentialGroup()
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addComponent(jLabel12)
                             .addComponent(jLabel11)
@@ -241,19 +253,19 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(LabelEditUsu))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCadUsuLayout.createSequentialGroup()
-                        .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PanelCadUsuLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEditUsuLayout.createSequentialGroup()
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelEditUsuLayout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                                 .addComponent(textEditJogoFavorito, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelCadUsuLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelEditUsuLayout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addGap(53, 53, 53)
-                                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textEditCSenha)
-                                    .addGroup(PanelCadUsuLayout.createSequentialGroup()
-                                        .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(PanelEditUsuLayout.createSequentialGroup()
+                                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(textEditEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                                             .addComponent(textEditSobrenome, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                                             .addComponent(textEditNomeUsu, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
@@ -261,50 +273,55 @@ public class Principal extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(ComboEditBoxGen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(38, 38, 38))))
-            .addGroup(PanelCadUsuLayout.createSequentialGroup()
+            .addGroup(PanelEditUsuLayout.createSequentialGroup()
                 .addGap(276, 276, 276)
-                .addComponent(buttonCadastrarUsuario1)
+                .addComponent(buttonEditUser)
+                .addGap(55, 55, 55)
+                .addComponent(buttonDeleteUser)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        PanelCadUsuLayout.setVerticalGroup(
-            PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelCadUsuLayout.createSequentialGroup()
+        PanelEditUsuLayout.setVerticalGroup(
+            PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelEditUsuLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(LabelEditUsu)
-                .addGap(18, 18, 18)
-                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditCSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboEditBoxGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditJogoFavorito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addComponent(buttonCadastrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelEditUsuLayout.createSequentialGroup()
+                        .addComponent(LabelEditUsu)
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEditNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEditSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEditEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEditSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEditCSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComboEditBoxGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEditJogoFavorito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addComponent(buttonEditUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
-        PanelRoot.add(PanelCadUsu, "PanelEditUsu");
+        PanelRoot.add(PanelEditUsu, "PanelEditUsu");
 
         PanelCadJogo.setBackground(new java.awt.Color(236, 239, 249));
 
@@ -340,7 +357,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        comboGeneroJogo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
+        comboGeneroJogo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
         comboGeneroJogo.setPreferredSize(new java.awt.Dimension(98, 25));
 
         dateLancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
@@ -440,19 +457,19 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        comboAudio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboAudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
         comboAudio.setSelectedIndex(-1);
         comboAudio.setPreferredSize(new java.awt.Dimension(72, 25));
 
-        comboJogabilidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboJogabilidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
         comboJogabilidade.setSelectedIndex(-1);
         comboJogabilidade.setPreferredSize(new java.awt.Dimension(72, 25));
 
-        comboGraficos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboGraficos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
         comboGraficos.setSelectedIndex(-1);
         comboGraficos.setPreferredSize(new java.awt.Dimension(72, 25));
 
-        comboEnredo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboEnredo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
         comboEnredo.setSelectedIndex(-1);
         comboEnredo.setPreferredSize(new java.awt.Dimension(72, 25));
 
@@ -467,7 +484,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel21.setText("Conteúdo:");
 
-        comboConteudo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboConteudo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
         comboConteudo.setSelectedIndex(-1);
         comboConteudo.setPreferredSize(new java.awt.Dimension(72, 25));
 
@@ -569,7 +586,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setText("Gênero:");
 
-        comboEditGenero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
+        comboEditGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
         comboEditGenero.setPreferredSize(new java.awt.Dimension(98, 25));
 
         dateEditLancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
@@ -881,10 +898,12 @@ public class Principal extends javax.swing.JFrame {
     private void jButtonEditUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditUsuActionPerformed
         CardLayout card = (CardLayout) PanelRoot.getLayout();
         card.show(PanelRoot, "PanelEditUsu");
+        Usuario u = new Usuario();
+        
         ArquivoTexto txt = new ArquivoTexto();
         String email = "san@g.com";
         ArrayList<String> aux = new ArrayList();  
-        aux = txt.openTxt(email,"usuarios");
+        aux = txt.openTxt(u.getEmail(),"usuarios");
         textEditNomeUsu.setText(aux.get(0));
         textEditSobrenome.setText(aux.get(1));
         textEditEmail.setText(aux.get(2));
@@ -920,9 +939,52 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboEditBoxGenActionPerformed
 
-    private void buttonCadastrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario1ActionPerformed
+    private void buttonEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditUserActionPerformed
+        ArrayList<String> usu = new ArrayList();
+        ArquivoTexto reg = new ArquivoTexto();
+        if(textEditSenha.getText().equals(textEditCSenha.getText())){
+            
+            
+            try {
+                String pass = new String (this.textEditSenha.getPassword());
+                CriarSenha makepass = new CriarSenha();
+                makepass.CriarSenha(textEditEmail.getText(), pass);
+                String value = ComboEditBoxGen.getModel().getSelectedItem().toString();
+                String senha = textEditSenha.getText().toString();
+                String csenha = textEditCSenha.getText().toString();
+                usu.add(textEditNomeUsu.getText());
+                usu.add(textEditSobrenome.getText());
+                usu.add(textEditEmail.getText());
+                usu.add(senha);
+                usu.add(csenha);
+                usu.add(value);
+                usu.add(textEditJogoFavorito.getText());
+                reg.criaArquivo(usu,"usuarios");
+                
+                //reg.criaArquivo(textNome1.getText(), textSobrenome1.getText(), textEmail.getText(), value, textJogoFavorito.getText());
+                /*PrintWriter arq = new PrintWriter(textEmail.getText()+".txt");
+                arq.println(textNome1.getText());
+                arq.println(textSobrenome1.getText());
+                arq.println(textEmail.getText());
+                arq.println(textSenha.getPassword());
+                arq.println(textCSenha.getPassword());
+                arq.println(textJogoFavorito.getText());
+                
+                arq.println(value);
+                arq.close();*/
+                
+                JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso");
 
-    }//GEN-LAST:event_buttonCadastrarUsuario1ActionPerformed
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Registrar.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Registrar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "As senhas não conferem");
+
+        }    
+    }//GEN-LAST:event_buttonEditUserActionPerformed
 
     private void textEditJogoFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEditJogoFavoritoActionPerformed
         // TODO add your handling code here:
@@ -960,6 +1022,10 @@ public class Principal extends javax.swing.JFrame {
         dispose();
         JOptionPane.showMessageDialog(null, "Jogo deletado com sucesso");
     }//GEN-LAST:event_botaoDeletarJogoActionPerformed
+
+    private void buttonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteUserActionPerformed
+
+    }//GEN-LAST:event_buttonDeleteUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1012,8 +1078,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuItemNewUsu;
     private javax.swing.JPanel PanelAvaJogo;
     private javax.swing.JPanel PanelCadJogo;
-    private javax.swing.JPanel PanelCadUsu;
     private javax.swing.JPanel PanelEditJogo;
+    private javax.swing.JPanel PanelEditUsu;
     private javax.swing.JPanel PanelInicial;
     private javax.swing.JPanel PanelLateral;
     private javax.swing.JPanel PanelRoot;
@@ -1021,9 +1087,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton botaoEditarJogo;
     private javax.swing.JButton botaoPesquisar;
     private javax.swing.JButton buttonCadastrarUsuario;
-    private javax.swing.JButton buttonCadastrarUsuario1;
     private javax.swing.JButton buttonCadastrarUsuario2;
     private javax.swing.JButton buttonCadastrarUsuario3;
+    private javax.swing.JButton buttonDeleteUser;
+    private javax.swing.JButton buttonEditUser;
     private javax.swing.JComboBox<String> comboAudio;
     private javax.swing.JComboBox<String> comboConteudo;
     private javax.swing.JComboBox<String> comboEditGenero;
