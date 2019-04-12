@@ -337,7 +337,7 @@ public class Registrar extends javax.swing.JFrame {
                 usu.add(csenha);
                 usu.add(value);
                 usu.add(textJogoFavorito.getText());
-                reg.criaArquivo(usu);
+                reg.criaArquivo(usu,"usuarios");
                 
                 //reg.criaArquivo(textNome1.getText(), textSobrenome1.getText(), textEmail.getText(), value, textJogoFavorito.getText());
                 /*PrintWriter arq = new PrintWriter(textEmail.getText()+".txt");

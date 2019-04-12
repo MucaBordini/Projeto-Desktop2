@@ -6,6 +6,7 @@
 package controle;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Jogo;
 
 /**
@@ -25,13 +27,23 @@ public class ArquivoTexto {
      *
      * @throws IOException
      */
-    public void criaArquivo(ArrayList<String> usu){
+    public void criaArquivo(ArrayList<String> lista, String tipo){
         PrintWriter arq;
+        int aux;
         try {
-            arq = new PrintWriter("./usuarios/"+usu.get(2)+".txt");
-            int n = usu.size();
-            for(int i = 0; i < n; i++){
-                arq.println(usu.get(i));
+            if (tipo == "usuarios"){
+                arq = new PrintWriter("./"+tipo+"/"+lista.get(2)+".txt");
+                aux = 0;
+            } else if (tipo == "jogo"){
+                arq = new PrintWriter("./"+tipo+"/"+lista.get(0)+".txt");
+                aux = 0;
+            } else {
+                arq = new PrintWriter("./"+tipo+"/"+lista.get(0)+"Avaliacao.txt");
+                aux = 1;
+            }
+            int n = lista.size();
+            for(int i = aux; i < n; i++){
+                arq.println(lista.get(i));
             }
             arq.close();
         } catch (FileNotFoundException ex) {
@@ -39,40 +51,17 @@ public class ArquivoTexto {
         }               
     } 
     
-    public void criaArquivo(String jNome, String jDesenvolvedora, String jProdutora, String jData, String jGenero, String enredo, String grafico, String jogabilidade, String audio, String conteudo, String comentario){
-        PrintWriter arq;
-        try {
-            
-            arq = new PrintWriter("./jogo/"+jNome+".txt");
-            arq.println(jNome);
-            arq.println(jDesenvolvedora);
-            arq.println(jProdutora);
-            arq.println(jData);
-            arq.println(jGenero);
-            arq.println(enredo);
-            arq.println(grafico);
-            arq.println(jogabilidade);
-            arq.println(audio);
-            arq.println(conteudo);
-            arq.println(comentario);
-            arq.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
-        }               
-    } 
-    
-    public ArrayList<String> openTxt(String email){
+    public ArrayList<String> openTxt(String nomeArq, String tipo){
         FileReader arq;
-        ArrayList<String> usu = new ArrayList();
+        ArrayList<String> list = new ArrayList();
         try {
-            arq = new FileReader("./usuarios/"+email+".txt");
+            arq = new FileReader("./"+tipo+"/"+nomeArq+".txt");
             BufferedReader lerArq = new BufferedReader(arq);
-            int i;
             String str;
             while((str = lerArq.readLine()) != null){
-                usu.add(str);
+                list.add(str);
             }
-            return usu;
+            return list;
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,5 +69,12 @@ public class ArquivoTexto {
             Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    public void deleteTxt(String nomeArq, String tipo){
+        File arquivo = new File("./"+tipo+"/"+nomeArq+".txt");
+        if(arquivo.exists()){
+            arquivo.delete();
+        } else
+        JOptionPane.showMessageDialog(null, "CAGOU");
     }
 }

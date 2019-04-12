@@ -60,7 +60,7 @@ public class Principal extends javax.swing.JFrame {
         textEditJogoFavorito = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         buttonCadastrarUsuario1 = new javax.swing.JButton();
-        ComboEditBoxGen = new javax.swing.JComboBox<>();
+        ComboEditBoxGen = new javax.swing.JComboBox<String>();
         jTabbedCadJogo = new javax.swing.JTabbedPane();
         PanelCadJogo = new javax.swing.JPanel();
         LabelCadUsu1 = new javax.swing.JLabel();
@@ -73,7 +73,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         buttonCadastrarUsuario2 = new javax.swing.JButton();
-        comboGeneroJogo = new javax.swing.JComboBox<>();
+        comboGeneroJogo = new javax.swing.JComboBox<String>();
         dateLancamento = new javax.swing.JFormattedTextField();
         PanelAvaJogo = new javax.swing.JPanel();
         LabelCadUsu2 = new javax.swing.JLabel();
@@ -85,26 +85,28 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         textComentario = new javax.swing.JTextArea();
         buttonCadastrarUsuario = new javax.swing.JButton();
-        comboAudio = new javax.swing.JComboBox<>();
-        comboJogabilidade = new javax.swing.JComboBox<>();
-        comboGrafico = new javax.swing.JComboBox<>();
-        comboEnredo = new javax.swing.JComboBox<>();
+        comboAudio = new javax.swing.JComboBox<String>();
+        comboJogabilidade = new javax.swing.JComboBox<String>();
+        comboGraficos = new javax.swing.JComboBox<String>();
+        comboEnredo = new javax.swing.JComboBox<String>();
         buttonCadastrarUsuario3 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        comboConteudo = new javax.swing.JComboBox<>();
+        comboConteudo = new javax.swing.JComboBox<String>();
         PanelEditJogo = new javax.swing.JPanel();
         LabelCadUsu3 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        textNome3 = new javax.swing.JTextField();
+        textEditNomeJogo = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        textSobrenome3 = new javax.swing.JTextField();
+        textEditDesenvolvedora = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        textEmail2 = new javax.swing.JTextField();
+        textEditProdutora = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        buttonCadastrarUsuario5 = new javax.swing.JButton();
+        comboEditGenero = new javax.swing.JComboBox<String>();
+        dateEditLancamento = new javax.swing.JFormattedTextField();
+        botaoEditarJogo = new javax.swing.JButton();
+        botaoPesquisar = new javax.swing.JButton();
+        botaoDeletarJogo = new javax.swing.JButton();
         PanelLateral = new javax.swing.JPanel();
         jButtonEditUsu = new javax.swing.JButton();
         jButtonLogoff = new javax.swing.JButton();
@@ -215,7 +217,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        ComboEditBoxGen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
+        ComboEditBoxGen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
         ComboEditBoxGen.setPreferredSize(new java.awt.Dimension(74, 25));
         ComboEditBoxGen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,7 +340,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        comboGeneroJogo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
+        comboGeneroJogo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
         comboGeneroJogo.setPreferredSize(new java.awt.Dimension(98, 25));
 
         dateLancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
@@ -438,19 +440,19 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        comboAudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboAudio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
         comboAudio.setSelectedIndex(-1);
         comboAudio.setPreferredSize(new java.awt.Dimension(72, 25));
 
-        comboJogabilidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboJogabilidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
         comboJogabilidade.setSelectedIndex(-1);
         comboJogabilidade.setPreferredSize(new java.awt.Dimension(72, 25));
 
-        comboGrafico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboGrafico.setSelectedIndex(-1);
-        comboGrafico.setPreferredSize(new java.awt.Dimension(72, 25));
+        comboGraficos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboGraficos.setSelectedIndex(-1);
+        comboGraficos.setPreferredSize(new java.awt.Dimension(72, 25));
 
-        comboEnredo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboEnredo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
         comboEnredo.setSelectedIndex(-1);
         comboEnredo.setPreferredSize(new java.awt.Dimension(72, 25));
 
@@ -465,7 +467,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel21.setText("Conteúdo:");
 
-        comboConteudo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
+        comboConteudo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
         comboConteudo.setSelectedIndex(-1);
         comboConteudo.setPreferredSize(new java.awt.Dimension(72, 25));
 
@@ -490,7 +492,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboEnredo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboAudio, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboJogabilidade, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboConteudo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PanelAvaJogoLayout.createSequentialGroup()
@@ -512,7 +514,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -549,17 +551,17 @@ public class Principal extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel22.setText("Nome:");
 
-        textNome3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        textEditNomeJogo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setText("Desenvolvedora:");
 
-        textSobrenome3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        textEditDesenvolvedora.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel24.setText("Produtora:");
 
-        textEmail2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        textEditProdutora.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel25.setText("Data de lançamento:");
@@ -567,17 +569,31 @@ public class Principal extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setText("Gênero:");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
-        jComboBox6.setPreferredSize(new java.awt.Dimension(98, 25));
+        comboEditGenero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
+        comboEditGenero.setPreferredSize(new java.awt.Dimension(98, 25));
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        jFormattedTextField2.setPreferredSize(new java.awt.Dimension(6, 25));
+        dateEditLancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        dateEditLancamento.setPreferredSize(new java.awt.Dimension(6, 25));
 
-        buttonCadastrarUsuario5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
-        buttonCadastrarUsuario5.setAutoscrolls(true);
-        buttonCadastrarUsuario5.addActionListener(new java.awt.event.ActionListener() {
+        botaoEditarJogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
+        botaoEditarJogo.setAutoscrolls(true);
+        botaoEditarJogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCadastrarUsuario5ActionPerformed(evt);
+                botaoEditarJogoActionPerformed(evt);
+            }
+        });
+
+        botaoPesquisar.setText("Pesquisar");
+        botaoPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPesquisarActionPerformed(evt);
+            }
+        });
+
+        botaoDeletarJogo.setText("Deletar");
+        botaoDeletarJogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDeletarJogoActionPerformed(evt);
             }
         });
 
@@ -599,45 +615,55 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(jLabel24)
                                     .addComponent(jLabel26))
                                 .addGap(44, 44, 44)
-                                .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textSobrenome3, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textNome3, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jComboBox6, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textEditProdutora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textEditDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textEditNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(PanelEditJogoLayout.createSequentialGroup()
+                                        .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(comboEditGenero, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(dateEditLancamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(botaoDeletarJogo))))))
                     .addGroup(PanelEditJogoLayout.createSequentialGroup()
                         .addGap(277, 277, 277)
-                        .addComponent(buttonCadastrarUsuario5)))
+                        .addComponent(botaoEditarJogo)))
                 .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEditJogoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(botaoPesquisar)
+                .addGap(19, 19, 19))
         );
         PanelEditJogoLayout.setVerticalGroup(
             PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEditJogoLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(LabelCadUsu3)
-                .addGap(49, 49, 49)
+                .addGap(20, 20, 20)
+                .addComponent(botaoPesquisar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textEditNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textSobrenome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textEditDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textEditProdutora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateEditLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboEditGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoDeletarJogo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                .addComponent(buttonCadastrarUsuario5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoEditarJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92))
         );
 
@@ -781,12 +807,35 @@ public class Principal extends javax.swing.JFrame {
 
     private void buttonCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuarioActionPerformed
        ArquivoTexto reg = new ArquivoTexto();
-        
-            
-            
-       String value = comboGeneroJogo.getSelectedItem().toString();
+       ArrayList<String> jogo = new ArrayList();
+       ArrayList<String> aval = new ArrayList();
+     
+       String generoJogo = comboGeneroJogo.getModel().getSelectedItem().toString();
+       String enredo = comboEnredo.getModel().getSelectedItem().toString();
+       String graficos = comboGraficos.getModel().getSelectedItem().toString();
+       String jogabilidade = comboJogabilidade.getModel().getSelectedItem().toString();
+       String audio = comboAudio.getModel().getSelectedItem().toString();
+       String conteudo = comboConteudo.getModel().getSelectedItem().toString();
+       
+       jogo.add(textNomeJogo.getText());
+       jogo.add(textDesenvolvedora.getText());
+       jogo.add(textProdutora.getText());
+       jogo.add(dateLancamento.getText());
+       jogo.add(generoJogo);
+       aval.add(textNomeJogo.getText());
+       aval.add(enredo);
+       aval.add(graficos);
+       aval.add(jogabilidade);
+       aval.add(audio);
+       aval.add(conteudo);
+       aval.add(textComentario.getText());
+       
+       reg.criaArquivo(jogo, "jogo");
+       reg.criaArquivo(aval, "avaliacao");
+       
+       /*String value = comboGeneroJogo.getSelectedItem().toString();
        String enredo = comboEnredo.getSelectedItem().toString();
-       String grafico = comboGrafico.getSelectedItem().toString();
+       String grafico = comboGraficos.getSelectedItem().toString();
        String jogabilidade = comboJogabilidade.getSelectedItem().toString();
        String audio = comboAudio.getSelectedItem().toString();
        String conteudo = comboConteudo.getSelectedItem().toString();
@@ -801,6 +850,8 @@ public class Principal extends javax.swing.JFrame {
        
        arq.println(value);
        arq.close();*/
+       new Principal().setVisible(true);
+       dispose();
        JOptionPane.showMessageDialog(null, "Jogo salvo com sucesso");
        
        /*} catch (FileNotFoundException ex) {
@@ -833,7 +884,7 @@ public class Principal extends javax.swing.JFrame {
         ArquivoTexto txt = new ArquivoTexto();
         String email = "san@g.com";
         ArrayList<String> aux = new ArrayList();  
-        aux = txt.openTxt(email);
+        aux = txt.openTxt(email,"usuarios");
         textEditNomeUsu.setText(aux.get(0));
         textEditSobrenome.setText(aux.get(1));
         textEditEmail.setText(aux.get(2));
@@ -849,9 +900,21 @@ public class Principal extends javax.swing.JFrame {
         jTabbedCadJogo.setSelectedIndex(0);
     }//GEN-LAST:event_buttonCadastrarUsuario3ActionPerformed
 
-    private void buttonCadastrarUsuario5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonCadastrarUsuario5ActionPerformed
+    private void botaoEditarJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarJogoActionPerformed
+        ArquivoTexto reg = new ArquivoTexto();
+        ArrayList<String> jogo = new ArrayList();
+        String generoJogo = comboGeneroJogo.getModel().getSelectedItem().toString();
+        jogo.add(textEditNomeJogo.getText());
+        jogo.add(textEditDesenvolvedora.getText());
+        jogo.add(textEditProdutora.getText());
+        jogo.add(dateEditLancamento.getText());
+        jogo.add(generoJogo);
+        reg.deleteTxt(textEditNomeJogo.getText(), "jogo");
+        reg.criaArquivo(jogo, "jogo");
+        new Principal().setVisible(true);
+        dispose();
+        JOptionPane.showMessageDialog(null, "Jogo alterado com sucesso");
+    }//GEN-LAST:event_botaoEditarJogoActionPerformed
 
     private void ComboEditBoxGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboEditBoxGenActionPerformed
         // TODO add your handling code here:
@@ -876,6 +939,27 @@ public class Principal extends javax.swing.JFrame {
     private void textEditNomeUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEditNomeUsuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textEditNomeUsuActionPerformed
+
+    private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
+        ArquivoTexto reg = new ArquivoTexto();
+        ArrayList<String> aux = new ArrayList();
+        String nomeArquivo = textEditNomeJogo.getText();
+        textEditNomeJogo.setEditable(false);
+        aux = reg.openTxt(nomeArquivo, "jogo");
+        textEditNomeJogo.setText(aux.get(0));
+        textEditDesenvolvedora.setText(aux.get(1));
+        textEditProdutora.setText(aux.get(2));
+        dateEditLancamento.setText(aux.get(3));
+        comboEditGenero.setSelectedItem(aux.get(4));
+    }//GEN-LAST:event_botaoPesquisarActionPerformed
+
+    private void botaoDeletarJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDeletarJogoActionPerformed
+        ArquivoTexto reg = new ArquivoTexto();
+        reg.deleteTxt(textEditNomeJogo.getText(), "jogo");
+        new Principal().setVisible(true);
+        dispose();
+        JOptionPane.showMessageDialog(null, "Jogo deletado com sucesso");
+    }//GEN-LAST:event_botaoDeletarJogoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -933,24 +1017,26 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelInicial;
     private javax.swing.JPanel PanelLateral;
     private javax.swing.JPanel PanelRoot;
+    private javax.swing.JButton botaoDeletarJogo;
+    private javax.swing.JButton botaoEditarJogo;
+    private javax.swing.JButton botaoPesquisar;
     private javax.swing.JButton buttonCadastrarUsuario;
     private javax.swing.JButton buttonCadastrarUsuario1;
     private javax.swing.JButton buttonCadastrarUsuario2;
     private javax.swing.JButton buttonCadastrarUsuario3;
-    private javax.swing.JButton buttonCadastrarUsuario5;
     private javax.swing.JComboBox<String> comboAudio;
     private javax.swing.JComboBox<String> comboConteudo;
+    private javax.swing.JComboBox<String> comboEditGenero;
     private javax.swing.JComboBox<String> comboEnredo;
     private javax.swing.JComboBox<String> comboGeneroJogo;
-    private javax.swing.JComboBox<String> comboGrafico;
+    private javax.swing.JComboBox<String> comboGraficos;
     private javax.swing.JComboBox<String> comboJogabilidade;
+    private javax.swing.JFormattedTextField dateEditLancamento;
     private javax.swing.JFormattedTextField dateLancamento;
     private javax.swing.JButton jButtonCadJogo;
     private javax.swing.JButton jButtonEditJogo;
     private javax.swing.JButton jButtonEditUsu;
     private javax.swing.JButton jButtonLogoff;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -984,15 +1070,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextArea textComentario;
     private javax.swing.JTextField textDesenvolvedora;
     private javax.swing.JPasswordField textEditCSenha;
+    private javax.swing.JTextField textEditDesenvolvedora;
     private javax.swing.JTextField textEditEmail;
     private javax.swing.JTextField textEditJogoFavorito;
+    private javax.swing.JTextField textEditNomeJogo;
     private javax.swing.JTextField textEditNomeUsu;
+    private javax.swing.JTextField textEditProdutora;
     private javax.swing.JPasswordField textEditSenha;
     private javax.swing.JTextField textEditSobrenome;
-    private javax.swing.JTextField textEmail2;
-    private javax.swing.JTextField textNome3;
     private javax.swing.JTextField textNomeJogo;
     private javax.swing.JTextField textProdutora;
-    private javax.swing.JTextField textSobrenome3;
     // End of variables declaration//GEN-END:variables
 }
