@@ -10,6 +10,7 @@ import controle.CriarSenha;
 import java.awt.FontFormatException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -317,7 +318,7 @@ public class Registrar extends javax.swing.JFrame {
     }//GEN-LAST:event_textJogoFavoritoActionPerformed
 
     private void buttonCadastrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario1ActionPerformed
-        
+        ArrayList<String> usu = new ArrayList();
         ArquivoTexto reg = new ArquivoTexto();
         if(textSenha.getText().equals(textCSenha.getText())){
             
@@ -326,8 +327,19 @@ public class Registrar extends javax.swing.JFrame {
                 String pass = new String (this.textSenha.getPassword());
                 CriarSenha makepass = new CriarSenha();
                 makepass.CriarSenha(textEmail.getText(), pass);
-                String value = ComboBoxGen.getSelectedItem().toString();
-                reg.criaArquivo(textNome1.getText(), textSobrenome1.getText(), textEmail.getText(), value, textJogoFavorito.getText());
+                String value = ComboBoxGen.getModel().getSelectedItem().toString();
+                String senha = textSenha.getText().toString();
+                String csenha = textCSenha.getText().toString();
+                usu.add(textNome1.getText());
+                usu.add(textSobrenome1.getText());
+                usu.add(textEmail.getText());
+                usu.add(senha);
+                usu.add(csenha);
+                usu.add(value);
+                usu.add(textJogoFavorito.getText());
+                reg.criaArquivo(usu);
+                
+                //reg.criaArquivo(textNome1.getText(), textSobrenome1.getText(), textEmail.getText(), value, textJogoFavorito.getText());
                 /*PrintWriter arq = new PrintWriter(textEmail.getText()+".txt");
                 arq.println(textNome1.getText());
                 arq.println(textSobrenome1.getText());

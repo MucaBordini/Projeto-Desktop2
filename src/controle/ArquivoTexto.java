@@ -5,12 +5,14 @@
  */
 package controle;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.Avaliacao;
 import modelo.Jogo;
 
 /**
@@ -23,14 +25,14 @@ public class ArquivoTexto {
      *
      * @throws IOException
      */
-    public void criaArquivo(String nome, String sobrenome, String email, String value, String favorito){
+    public void criaArquivo(ArrayList<String> usu){
         PrintWriter arq;
         try {
-            arq = new PrintWriter("./usuarios/"+email+".txt");
-            arq.println(nome);
-            arq.println(sobrenome);
-            arq.println(favorito);
-            arq.println(value);
+            arq = new PrintWriter("./usuarios/"+usu.get(2)+".txt");
+            int n = usu.size();
+            for(int i = 0; i < n; i++){
+                arq.println(usu.get(i));
+            }
             arq.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,4 +61,24 @@ public class ArquivoTexto {
         }               
     } 
     
+    public ArrayList<String> openTxt(String email){
+        FileReader arq;
+        ArrayList<String> usu = new ArrayList();
+        try {
+            arq = new FileReader("./usuarios/"+email+".txt");
+            BufferedReader lerArq = new BufferedReader(arq);
+            int i;
+            String str;
+            while((str = lerArq.readLine()) != null){
+                usu.add(str);
+            }
+            return usu;
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }
