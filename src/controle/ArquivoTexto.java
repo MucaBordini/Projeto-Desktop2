@@ -61,6 +61,7 @@ public class ArquivoTexto {
             while((str = lerArq.readLine()) != null){
                 list.add(str);
             }
+            arq.close();
             return list;
             
         } catch (FileNotFoundException ex) {
