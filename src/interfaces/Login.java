@@ -21,9 +21,12 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    Usuario u = new Usuario();
+    TestLogin login = new TestLogin();
+  
     public Login() {
         initComponents();
-        setResizable(false);
+        setResizable(false);     
     }
 
     /**
@@ -120,17 +123,16 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEntrarActionPerformed
-        Usuario u = new Usuario();
-        u.setEmail(TextFieldLogin.getText());
         
-        String pass = new String (this.PasswordFieldSenha.getPassword());
-        TestLogin login = new TestLogin();
+        u.setEmail(TextFieldLogin.getText());
+        u.setSenha(PasswordFieldSenha.getText().toString());
+
         try {
-            if(login.TestLogin(u.getEmail(),pass) == false){
-                JOptionPane.showMessageDialog(null, "Email e/ou senha inválido!");
-            } else {
+            if(login.TestLogin()){
                 new Principal().setVisible(true);
                 dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Email e/ou senha inválido!");
             }
         }catch (IOException ex ) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

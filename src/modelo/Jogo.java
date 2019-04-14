@@ -10,52 +10,52 @@ package modelo;
  * @author samue
  */
 public class Jogo {
-    private String jNome;
-    private String jProdutora;
-    private String jPublisher;
-    private String jDataLancamento;
-    private String jGenero;
+    private static String nome;
+    private static String desenvolvedora;
+    private static String produtora;
+    private static String genero;
+    private static String data;
 
+    public static String getNome() {
+        return nome;
+    }
+
+    public static void setNome(String nome) {
+        Jogo.nome = nome;
+    }
+
+    public static String getDesenvolvedora() {
+        return desenvolvedora;
+    }
+
+    public static void setDesenvolvedora(String desenvolvedora) {
+        Jogo.desenvolvedora = desenvolvedora;
+    }
+
+    public static String getProdutora() {
+        return produtora;
+    }
+
+    public static void setProdutora(String produtora) {
+        Jogo.produtora = produtora;
+    }
+
+    public static String getGenero() {
+        return genero;
+    }
+
+    public static void setGenero(String genero) {
+        Jogo.genero = genero;
+    }
+
+    public static String getData() {
+        return data;
+    }
+
+    public static void setData(String data) {
+        Jogo.data = data;
+    }
     
-    public String getjNome() {
-        return jNome;
-    }
-
-    public String getjProdutora() {
-        return jProdutora;
-    }
-
-    public String getjPublisher() {
-        return jPublisher;
-    }
-
-    public String getjDataLancamento() {
-        return jDataLancamento;
-    }
-
-    public String getjGenero() {
-        return jGenero;
-    }
-
     
-    public void setjNome(String jNome) {
-        this.jNome = jNome;
-    }
-
-    public void setjProdutora(String jProdutora) {
-        this.jProdutora = jProdutora;
-    }
-
-    public void setjPublisher(String jPublisher) {
-        this.jPublisher = jPublisher;
-    }
-
-    public void setjDataLancamento(String jDataLancamento) {
-        this.jDataLancamento = jDataLancamento;
-    }
-
-    public void setjGenero(String jGenero) {
-        this.jGenero = jGenero;
-    }
     
 }

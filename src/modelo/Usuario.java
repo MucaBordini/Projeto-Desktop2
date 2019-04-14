@@ -13,8 +13,27 @@ public class Usuario {
     private static String email;
     private static String nome;
     private static String sobrenome;
+    private static String senha;
+    private static String cSenha;
     private static String genero;
     private static String favorito;
+
+    public static String getSenha() {
+        return senha;
+    }
+
+    public static void setSenha(String senha) {
+        Usuario.senha = senha;
+    }
+
+    public static String getcSenha() {
+        return cSenha;
+    }
+
+    public static void setcSenha(String cSenha) {
+        Usuario.cSenha = cSenha;
+    }
+    
 
     public static String getEmail() {
         return email;

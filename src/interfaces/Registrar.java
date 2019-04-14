@@ -7,6 +7,7 @@ package interfaces;
 
 import controle.ArquivoTexto;
 import controle.CriarSenha;
+import controle.ValidateFields;
 import java.awt.FontFormatException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.Usuario;
 
 /**
  *
@@ -24,7 +26,11 @@ public class Registrar extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
- 
+    ArrayList<String> usu = new ArrayList();
+    ArquivoTexto reg = new ArquivoTexto();
+    CriarSenha c = new CriarSenha();
+    ValidateFields v = new ValidateFields();
+    Usuario u = new Usuario();
     public Registrar() {
         setResizable(false);
         initComponents(); 
@@ -318,53 +324,32 @@ public class Registrar extends javax.swing.JFrame {
     }//GEN-LAST:event_textJogoFavoritoActionPerformed
 
     private void buttonCadastrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario1ActionPerformed
-        ArrayList<String> usu = new ArrayList();
-        ArquivoTexto reg = new ArquivoTexto();
-        if(textSenha.getText().equals(textCSenha.getText())){
-            
-            
+        
+        u.setNome(textNome1.getText());
+        u.setSobrenome(textSobrenome1.getText());
+        u.setEmail(textEmail.getText());
+        u.setSenha(textSenha.getText().toString());
+        u.setcSenha(textCSenha.getText().toString());
+        u.setGenero(ComboBoxGen.getModel().getSelectedItem().toString());
+        u.setFavorito(textJogoFavorito.getText());
+        if(v.emptyFields(u.getNome(), u.getSobrenome(), u.getEmail(), u.getSenha(), u.getcSenha())){
             try {
-                String pass = new String (this.textSenha.getPassword());
-                CriarSenha makepass = new CriarSenha();
-                makepass.CriarSenha(textEmail.getText(), pass);
-                String value = ComboBoxGen.getModel().getSelectedItem().toString();
-                String senha = textSenha.getText().toString();
-                String csenha = textCSenha.getText().toString();
-                usu.add(textNome1.getText());
-                usu.add(textSobrenome1.getText());
-                usu.add(textEmail.getText());
-                usu.add(senha);
-                usu.add(csenha);
-                usu.add(value);
-                usu.add(textJogoFavorito.getText());
-                reg.criaArquivo(usu,"usuarios");
-                
-                //reg.criaArquivo(textNome1.getText(), textSobrenome1.getText(), textEmail.getText(), value, textJogoFavorito.getText());
-                /*PrintWriter arq = new PrintWriter(textEmail.getText()+".txt");
-                arq.println(textNome1.getText());
-                arq.println(textSobrenome1.getText());
-                arq.println(textEmail.getText());
-                arq.println(textSenha.getPassword());
-                arq.println(textCSenha.getPassword());
-                arq.println(textJogoFavorito.getText());
-                
-                arq.println(value);
-                arq.close();*/
-                new Login().setVisible(true);
-                dispose();
-                JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso");
-
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Registrar.class.getName()).log(Level.SEVERE, null, ex);
+                if(c.CompareSenha()){
+                    
+                    reg.criaArquivo("usuarios");
+                    
+                    new Login().setVisible(true);
+                    dispose();
+                    JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso");
+                } else {
+                    JOptionPane.showMessageDialog(null, "As senhas não conferem");
+                    textSenha.setText("");
+                    textCSenha.setText(""); 
+                }
             } catch (IOException ex) {
                 Logger.getLogger(Registrar.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "As senhas não conferem");
-            textSenha.setText("");
-            textCSenha.setText("");
-        }    
-        
+        }
     }//GEN-LAST:event_buttonCadastrarUsuario1ActionPerformed
 
     private void ComboBoxGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxGenActionPerformed

@@ -5,44 +5,58 @@
  */
 package controle;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import modelo.Jogo;
+import modelo.*;
 
 /**
  *
  * @author samue
  */
 public class ArquivoTexto {
-    public Jogo jogo = new Jogo();
+    
     /**
      *
      * @throws IOException
      */
-    public void criaArquivo(ArrayList<String> lista, String tipo){
-        PrintWriter arq;
-        int aux;
+    PrintWriter arq;
+    ArrayList<String> lista = new ArrayList();
+    Usuario u = new Usuario();
+    Jogo j = new Jogo();
+    int n, i, aux = 0;
+    public void criaArquivo(String tipo){
+
         try {
             if (tipo == "usuarios"){
-                arq = new PrintWriter("./"+tipo+"/"+lista.get(2)+".txt");
-                aux = 0;
+                arq = new PrintWriter("./"+tipo+"/"+u.getEmail()+".txt");
+                lista.clear();
+                lista.add(u.getNome());
+                lista.add(u.getSobrenome());
+                lista.add(u.getEmail());
+                lista.add(u.getSenha());
+                lista.add(u.getcSenha());
+                lista.add(u.getGenero());
+                lista.add(u.getFavorito());
             } else if (tipo == "jogo"){
-                arq = new PrintWriter("./"+tipo+"/"+lista.get(0)+".txt");
-                aux = 0;
+                String name = j.getNome().replace(" ", "_").replace(";", "").toLowerCase();
+                arq = new PrintWriter("./"+tipo+"/"+name+".txt");
+                lista.clear();
+                lista.add(j.getNome());
+                lista.add(j.getDesenvolvedora());
+                lista.add(j.getProdutora());
+                lista.add(j.getData());
+                lista.add(j.getGenero());
             } else {
                 arq = new PrintWriter("./"+tipo+"/"+lista.get(0)+"Avaliacao.txt");
                 aux = 1;
             }
-            int n = lista.size();
-            for(int i = aux; i < n; i++){
+            
+            
+            n = lista.size();
+            for(i = aux; i < n; i++){
                 arq.println(lista.get(i));
             }
             arq.close();
@@ -62,20 +76,34 @@ public class ArquivoTexto {
                 list.add(str);
             }
             arq.close();
+            lerArq.close();
             return list;
             
         } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Arquivo não encontrado\n");
             Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
+    public void deleteTxt(String nomeArq){
+        File arquivo = new File("./usuarios/"+nomeArq+".txt");
+        File senha = new File("./login/"+nomeArq+".txt");
+        if(arquivo.exists() || senha.exists()){
+            arquivo.delete();
+            senha.delete();
+        } 
+    }
+    
     public void deleteTxt(String nomeArq, String tipo){
         File arquivo = new File("./"+tipo+"/"+nomeArq+".txt");
+ 
         if(arquivo.exists()){
             arquivo.delete();
         } else
         JOptionPane.showMessageDialog(null, "CAGOU");
     }
+    
+    
 }
