@@ -1316,6 +1316,14 @@ public class Principal extends javax.swing.JFrame {
         ComboEditBoxGen.setSelectedItem(aux.get(5));
         textEditJogoFavorito.setText(aux.get(6));
         
+        u.setNome(textEditNomeUsu.getText());
+        u.setNome(textEditSobrenome.getText());
+        u.setNome(textEditEmail.getText());
+        u.setNome(textEditSenha.getText().toString());
+        u.setNome(textEditCSenha.getText().toString());
+        u.setNome(ComboEditBoxGen.getModel().getSelectedItem().toString());
+        u.setNome(textEditJogoFavorito.getText());
+        textEditEmail.setEditable(false);
         
     }//GEN-LAST:event_jButtonEditUsuActionPerformed
 
@@ -1344,42 +1352,34 @@ public class Principal extends javax.swing.JFrame {
 
     private void buttonEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditUserActionPerformed
         String emailAntigo = u.getEmail();
-        u.setNome(textEditNomeUsu.getText());
-        u.setSobrenome(textEditSobrenome.getText());
-        u.setEmail(textEditEmail.getText());
-        u.setSenha(textEditSenha.getText().toString());
-        u.setcSenha(textEditCSenha.getText().toString());
-        u.setGenero(ComboEditBoxGen.getModel().getSelectedItem().toString());
-        u.setFavorito(textEditJogoFavorito.getText());
-        if(textEditSenha.getText().equals(textEditCSenha.getText())){            
-            try {
-                if(!emailAntigo.equals(textEditEmail.getText())){
-                    i = JOptionPane.showConfirmDialog(null, "Você modificou o e-mail. O sistema voltará para a tela de Login\n\nDeseja continuar?");
-                    if(i == JOptionPane.YES_OPTION){
-                        reg.deleteTxt(emailAntigo);
-                        u.setNome(textEditNomeUsu.getText());
-                        u.setSobrenome(textEditSobrenome.getText());
-                        u.setEmail(textEditEmail.getText());
-                        u.setSenha(textEditSenha.getText().toString());
-                        u.setcSenha(textEditCSenha.getText().toString());
-                        u.setGenero(ComboEditBoxGen.getModel().getSelectedItem().toString());
-                        u.setFavorito(textEditJogoFavorito.getText());
-                    }
-                }
-                reg.deleteTxt(emailAntigo);
-                reg.criaArquivo("usuarios");
-                c.CriarSenha();
-                if(i == JOptionPane.YES_OPTION){
+        
+      
+            if(textEditSenha.getText().equals(textEditCSenha.getText())){            
+                try {
+            
+                    u.setNome(textEditNomeUsu.getText());
+                    u.setSobrenome(textEditSobrenome.getText());
+                    //u.setEmail(textEditEmail.getText());
+                    u.setSenha(textEditSenha.getText().toString());
+                    u.setcSenha(textEditCSenha.getText().toString());
+                    u.setGenero(ComboEditBoxGen.getModel().getSelectedItem().toString());
+                    u.setFavorito(textEditJogoFavorito.getText());
+                        
+                    
+                   
+                    reg.criaArquivo("usuarios");
+                    c.CriarSenha();
+                 
                     dispose();
-                    new Login().setVisible(true);
+                    new Principal().setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso!");
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso!");
-            } catch (IOException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
+                JOptionPane.showMessageDialog(null, "As senhas não conferem");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "As senhas não conferem");
-        }    
+        
     }//GEN-LAST:event_buttonEditUserActionPerformed
 
     private void textEditJogoFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEditJogoFavoritoActionPerformed
@@ -1508,13 +1508,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void buttonCadJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadJogoActionPerformed
         
-        j.setNome(textNomeJogo.getText()+";");
-        j.setDesenvolvedora(textDesenvolvedora.getText()+";");
-        j.setProdutora(textProdutora.getText()+";");
-        j.setData(dateLancamento.getText()+";");
-        j.setGenero(comboGeneroJogo.getModel().getSelectedItem().toString()+";");
+        j.setNome(textNomeJogo.getText());
+        j.setDesenvolvedora(textDesenvolvedora.getText());
+        j.setProdutora(textProdutora.getText());
+        j.setData(dateLancamento.getText());
+        j.setGenero(comboGeneroJogo.getModel().getSelectedItem().toString());
        
-            if(v.emptyFields(j.getNome(), j.getDesenvolvedora(), j.getProdutora(), j.getData(), j.getGenero())){
+            if(v.emptyFields(textNomeJogo.getText(), textDesenvolvedora.getText(), textProdutora.getText(), dateLancamento.getText(), comboGeneroJogo.getModel().getSelectedItem().toString())){
                 reg.criaArquivo("jogo");
                 
                 new Principal().PanelCadJogo.setVisible(true);

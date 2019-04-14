@@ -44,11 +44,11 @@ public class ArquivoTexto {
                 String name = j.getNome().replace(" ", "_").replace(";", "").toLowerCase();
                 arq = new PrintWriter("./"+tipo+"/"+name+".txt");
                 lista.clear();
-                lista.add(j.getNome());
-                lista.add(j.getDesenvolvedora());
-                lista.add(j.getProdutora());
-                lista.add(j.getData());
-                lista.add(j.getGenero());
+                lista.add(j.getNome()+";");
+                lista.add(j.getDesenvolvedora()+";");
+                lista.add(j.getProdutora()+";");
+                lista.add(j.getData()+";");
+                lista.add(j.getGenero()+";");
             } else {
                 arq = new PrintWriter("./"+tipo+"/"+lista.get(0)+"Avaliacao.txt");
                 aux = 1;
