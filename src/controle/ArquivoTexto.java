@@ -24,8 +24,10 @@ public class ArquivoTexto {
      */
     PrintWriter arq;
     ArrayList<String> lista = new ArrayList();
+   
     Usuario u = new Usuario();
     Jogo j = new Jogo();
+    Avaliacao a = new Avaliacao();
     int n, i, aux = 0;
     public void criaArquivo(String tipo){
 
@@ -50,8 +52,17 @@ public class ArquivoTexto {
                 lista.add(j.getData()+";");
                 lista.add(j.getGenero()+";");
             } else {
-                arq = new PrintWriter("./"+tipo+"/"+lista.get(0)+"Avaliacao.txt");
-                aux = 1;
+                String name = j.getNome().replace(" ", "_").replace(";", "").toLowerCase();
+                arq = new PrintWriter("./"+tipo+"/"+name+".txt");
+                lista.clear();
+                lista.add(j.getNome()+";");
+                lista.add(a.getEnredo()+";");
+                lista.add(a.getGraficos()+";");
+                lista.add(a.getJogabilidade()+";");
+                lista.add(a.getAudio()+";");
+                lista.add(a.getConteudo()+";");
+                lista.add(a.getComentario()+";");
+                lista.add(u.getEmail()+";");
             }
             
             
@@ -81,9 +92,9 @@ public class ArquivoTexto {
             
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Arquivo não encontrado\n");
-            Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

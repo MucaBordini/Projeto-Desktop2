@@ -10,67 +10,69 @@ package modelo;
  * @author samue
  */
 public class Avaliacao {
-    private Usuario usuario;
-    private Jogo jogo;
-    private int aJogabilidade;
-    private int aGraficos;
+    private static String jogabilidade;
+    private static String graficos;
+    private static String enredo;
+    private static String audio;
+    private static String conteudo;
+    private static String comentario;
+    private static String nome;
 
-    public Usuario getUsuario() {
-        return usuario;
+    public static String getNome() {
+        return nome;
     }
 
-    public Jogo getJogo() {
-        return jogo;
+    public static void setNome(String nome) {
+        Avaliacao.nome = nome;
     }
 
-    public int getaJogabilidade() {
-        return aJogabilidade;
+    public static String getConteudo() {
+        return conteudo;
     }
 
-    public int getaGraficos() {
-        return aGraficos;
+    public static void setConteudo(String conteudo) {
+        Avaliacao.conteudo = conteudo;
     }
 
-    public int getaEnredo() {
-        return aEnredo;
+    
+    public static String getJogabilidade() {
+        return jogabilidade;
     }
 
-    public int getaAudio() {
-        return aAudio;
+    public static void setJogabilidade(String jogabilidade) {
+        Avaliacao.jogabilidade = jogabilidade;
     }
 
-    public String getaComentario() {
-        return aComentario;
+    public static String getGraficos() {
+        return graficos;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public static void setGraficos(String graficos) {
+        Avaliacao.graficos = graficos;
     }
 
-    public void setJogo(Jogo jogo) {
-        this.jogo = jogo;
+    public static String getEnredo() {
+        return enredo;
     }
 
-    public void setaJogabilidade(int aJogabilidade) {
-        this.aJogabilidade = aJogabilidade;
+    public static void setEnredo(String enredo) {
+        Avaliacao.enredo = enredo;
     }
 
-    public void setaGraficos(int aGraficos) {
-        this.aGraficos = aGraficos;
+    public static String getAudio() {
+        return audio;
     }
 
-    public void setaEnredo(int aEnredo) {
-        this.aEnredo = aEnredo;
+    public static void setAudio(String audio) {
+        Avaliacao.audio = audio;
     }
 
-    public void setaAudio(int aAudio) {
-        this.aAudio = aAudio;
+    public static String getComentario() {
+        return comentario;
     }
 
-    public void setaComentario(String aComentario) {
-        this.aComentario = aComentario;
+    public static void setComentario(String comentario) {
+        Avaliacao.comentario = comentario;
     }
-    private int aEnredo;
-    private int aAudio;
-    private String aComentario;
+    
 }

@@ -1,0 +1,6 @@
+Bom;
+Ruim;
+Ruim;
+Regular;
+Regular;
+;

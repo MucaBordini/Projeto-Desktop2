@@ -1,0 +1,8 @@
+Jedi;
+Péssimo;
+Regular;
+Ruim;
+Bom;
+Excelente;
+É top demais essa porcaria;
+julio3567;

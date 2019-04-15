@@ -9,7 +9,6 @@ import controle.ArquivoTexto;
 import controle.CriarSenha;
 import controle.ValidateFields;
 import java.awt.FontFormatException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -81,7 +80,7 @@ public class Registrar extends javax.swing.JFrame {
         LabelCadUsu.setText("CADASTRAR USUÁRIO");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel9.setText("Nome:");
+        jLabel9.setText("Nome*:");
 
         textNome1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         textNome1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,20 +90,20 @@ public class Registrar extends javax.swing.JFrame {
         });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel10.setText("Sobrenome:");
+        jLabel10.setText("Sobrenome*:");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel11.setText("Email:");
+        jLabel11.setText("Email*:");
 
         textEmail.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         textSobrenome1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel12.setText("Senha:");
+        jLabel12.setText("Senha*:");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel13.setText("Confirme a senha:");
+        jLabel13.setText("Confirme a senha*:");
 
         textCSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
