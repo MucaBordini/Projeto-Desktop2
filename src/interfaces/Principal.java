@@ -147,21 +147,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         comboConteudo1 = new javax.swing.JComboBox<>();
         buttonDeleteAvaJogo = new javax.swing.JButton();
-        PanelEditJogo = new javax.swing.JPanel();
-        LabelCadUsu3 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        textEditNomeJogo = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        textEditDesenvolvedora = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        textEditProdutora = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        comboEditGenero = new javax.swing.JComboBox<>();
-        dateEditLancamento = new javax.swing.JFormattedTextField();
-        botaoEditarJogo = new javax.swing.JButton();
-        botaoPesquisar = new javax.swing.JButton();
-        botaoDeletarJogo = new javax.swing.JButton();
         PanelListGame = new javax.swing.JPanel();
         LabelListGame = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -236,6 +221,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel11.setText("Email:");
 
         textEditEmail.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        textEditEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textEditEmailActionPerformed(evt);
+            }
+        });
 
         textEditSobrenome.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
@@ -759,12 +749,12 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(93, 93, 93))
         );
 
-        jTabbedEditJogo.addTab("Cadastrar jogo", PanelCadJogo1);
+        jTabbedEditJogo.addTab("Editar jogo", PanelCadJogo1);
 
         PanelAvaJogo1.setBackground(new java.awt.Color(236, 239, 249));
 
         LabelEditAvaJogo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        LabelEditAvaJogo.setText("EDITAR JOGO");
+        LabelEditAvaJogo.setText("EDITAR AVALIAÇÃO");
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel32.setText("Enredo:");
@@ -899,135 +889,9 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(92, Short.MAX_VALUE))
         );
 
-        jTabbedEditJogo.addTab("Avaliar jogo", PanelAvaJogo1);
+        jTabbedEditJogo.addTab("Editar avaliação", PanelAvaJogo1);
 
         PanelRoot.add(jTabbedEditJogo, "jTabbedEditGame");
-
-        PanelEditJogo.setBackground(new java.awt.Color(236, 239, 249));
-
-        LabelCadUsu3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        LabelCadUsu3.setText("EDITAR JOGO");
-
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel22.setText("Nome:");
-
-        textEditNomeJogo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel23.setText("Desenvolvedora:");
-
-        textEditDesenvolvedora.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel24.setText("Produtora:");
-
-        textEditProdutora.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel25.setText("Data de lançamento:");
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel26.setText("Gênero:");
-
-        comboEditGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
-        comboEditGenero.setPreferredSize(new java.awt.Dimension(98, 25));
-
-        dateEditLancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        dateEditLancamento.setPreferredSize(new java.awt.Dimension(6, 25));
-
-        botaoEditarJogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
-        botaoEditarJogo.setAutoscrolls(true);
-        botaoEditarJogo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEditarJogoActionPerformed(evt);
-            }
-        });
-
-        botaoPesquisar.setText("Pesquisar");
-        botaoPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoPesquisarActionPerformed(evt);
-            }
-        });
-
-        botaoDeletarJogo.setText("Deletar");
-        botaoDeletarJogo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoDeletarJogoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout PanelEditJogoLayout = new javax.swing.GroupLayout(PanelEditJogo);
-        PanelEditJogo.setLayout(PanelEditJogoLayout);
-        PanelEditJogoLayout.setHorizontalGroup(
-            PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelEditJogoLayout.createSequentialGroup()
-                .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelEditJogoLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelCadUsu3)
-                            .addGroup(PanelEditJogoLayout.createSequentialGroup()
-                                .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel23)
-                                    .addComponent(jLabel24)
-                                    .addComponent(jLabel26))
-                                .addGap(44, 44, 44)
-                                .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(textEditProdutora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textEditDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textEditNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(PanelEditJogoLayout.createSequentialGroup()
-                                        .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(comboEditGenero, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(dateEditLancamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(botaoDeletarJogo))))))
-                    .addGroup(PanelEditJogoLayout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(botaoEditarJogo)))
-                .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEditJogoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botaoPesquisar)
-                .addGap(19, 19, 19))
-        );
-        PanelEditJogoLayout.setVerticalGroup(
-            PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEditJogoLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(LabelCadUsu3)
-                .addGap(20, 20, 20)
-                .addComponent(botaoPesquisar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditProdutora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateEditLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelEditJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboEditGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoDeletarJogo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-                .addComponent(botaoEditarJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
-        );
-
-        PanelRoot.add(PanelEditJogo, "PanelEditJogo");
 
         PanelListGame.setBackground(new java.awt.Color(236, 239, 249));
         PanelListGame.setPreferredSize(new java.awt.Dimension(606, 560));
@@ -1331,21 +1195,6 @@ public class Principal extends javax.swing.JFrame {
         jTabbedCadJogo.setSelectedIndex(0);
     }//GEN-LAST:event_buttonCadastrarUsuario3ActionPerformed
 
-    private void botaoEditarJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarJogoActionPerformed
-       
-        String generoJogo = comboGeneroJogo.getModel().getSelectedItem().toString();
-        jogo.add(textEditNomeJogo.getText());
-        jogo.add(textEditDesenvolvedora.getText());
-        jogo.add(textEditProdutora.getText());
-        jogo.add(dateEditLancamento.getText());
-        jogo.add(generoJogo);
-        reg.deleteTxt(textEditNomeJogo.getText(), "jogo");
-        //reg.criaArquivo(jogo, "jogo");
-        new Principal().setVisible(true);
-        dispose();
-        JOptionPane.showMessageDialog(null, "Jogo alterado com sucesso");
-    }//GEN-LAST:event_botaoEditarJogoActionPerformed
-
     private void ComboEditBoxGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboEditBoxGenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboEditBoxGenActionPerformed
@@ -1397,24 +1246,6 @@ public class Principal extends javax.swing.JFrame {
     private void textEditNomeUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEditNomeUsuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textEditNomeUsuActionPerformed
-
-    private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
-        String nomeArquivo = textEditNomeJogo.getText();
-        textEditNomeJogo.setEditable(false);
-        aux = reg.openTxt(nomeArquivo, "jogo");
-        textEditNomeJogo.setText(aux.get(0));
-        textEditDesenvolvedora.setText(aux.get(1));
-        textEditProdutora.setText(aux.get(2));
-        dateEditLancamento.setText(aux.get(3));
-        comboEditGenero.setSelectedItem(aux.get(4));
-    }//GEN-LAST:event_botaoPesquisarActionPerformed
-
-    private void botaoDeletarJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDeletarJogoActionPerformed
-        reg.deleteTxt(textEditNomeJogo.getText(), "jogo");
-        new Principal().setVisible(true);
-        dispose();
-        JOptionPane.showMessageDialog(null, "Jogo deletado com sucesso\n");
-    }//GEN-LAST:event_botaoDeletarJogoActionPerformed
 
     private void buttonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteUserActionPerformed
         reg.deleteTxt(u.getEmail());
@@ -1487,7 +1318,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       
-        
+        editNomeJogo.setEditable(false);
         String name = jTextFieldSearch.getText().replace(" ", "_").replace(";", "").toLowerCase();
         aux = reg.openTxt(name,"jogo");
         editNomeJogo.setText(aux.get(0).replace(";", ""));
@@ -1538,6 +1369,10 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Jogo deletado com sucesso\n");
     }//GEN-LAST:event_buttonDeleteEditJogoActionPerformed
 
+    private void textEditEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEditEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textEditEmailActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1578,7 +1413,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboEditBoxGen;
     private javax.swing.JLabel LabelCadUsu1;
     private javax.swing.JLabel LabelCadUsu2;
-    private javax.swing.JLabel LabelCadUsu3;
     private javax.swing.JLabel LabelEditAvaJogo;
     private javax.swing.JLabel LabelEditJogo;
     private javax.swing.JLabel LabelEditUsu;
@@ -1595,15 +1429,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelAvaJogo1;
     private javax.swing.JPanel PanelCadJogo;
     private javax.swing.JPanel PanelCadJogo1;
-    private javax.swing.JPanel PanelEditJogo;
     private javax.swing.JPanel PanelEditUsu;
     private javax.swing.JPanel PanelInicial;
     private javax.swing.JPanel PanelLateral;
     private javax.swing.JPanel PanelListGame;
     private javax.swing.JPanel PanelRoot;
-    private javax.swing.JButton botaoDeletarJogo;
-    private javax.swing.JButton botaoEditarJogo;
-    private javax.swing.JButton botaoPesquisar;
     private javax.swing.JButton buttonAvancarEditJogo;
     private javax.swing.JButton buttonCadJogo;
     private javax.swing.JButton buttonCadastrarUsuario;
@@ -1620,7 +1450,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboAudio1;
     private javax.swing.JComboBox<String> comboConteudo;
     private javax.swing.JComboBox<String> comboConteudo1;
-    private javax.swing.JComboBox<String> comboEditGenero;
     private javax.swing.JComboBox<String> comboEnredo;
     private javax.swing.JComboBox<String> comboEnredo1;
     private javax.swing.JComboBox<String> comboGeneroJogo;
@@ -1628,7 +1457,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboGraficos1;
     private javax.swing.JComboBox<String> comboJogabilidade;
     private javax.swing.JComboBox<String> comboJogabilidade1;
-    private javax.swing.JFormattedTextField dateEditLancamento;
     private javax.swing.JFormattedTextField dateLancamento;
     private javax.swing.JFormattedTextField editData;
     private javax.swing.JTextField editDesenvolvedora;
@@ -1654,11 +1482,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -1690,12 +1513,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextArea textComentario1;
     private javax.swing.JTextField textDesenvolvedora;
     private javax.swing.JPasswordField textEditCSenha;
-    private javax.swing.JTextField textEditDesenvolvedora;
     private javax.swing.JTextField textEditEmail;
     private javax.swing.JTextField textEditJogoFavorito;
-    private javax.swing.JTextField textEditNomeJogo;
     private javax.swing.JTextField textEditNomeUsu;
-    private javax.swing.JTextField textEditProdutora;
     private javax.swing.JPasswordField textEditSenha;
     private javax.swing.JTextField textEditSobrenome;
     private javax.swing.JTextField textNomeJogo;
