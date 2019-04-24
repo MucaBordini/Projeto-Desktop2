@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import controle.ArquivoBinario;
 import controle.ArquivoTexto;
 import controle.CriarSenha;
 import controle.ValidateFields;
@@ -36,6 +37,7 @@ public class Principal extends javax.swing.JFrame {
     Jogo j = new Jogo();
     Avaliacao a = new Avaliacao();
     ValidateFields v = new ValidateFields();
+    ArquivoBinario bin = new ArquivoBinario();
     ArquivoTexto reg = new ArquivoTexto();
     ArrayList<String> aux = new ArrayList();
     ArrayList<String> jogo = new ArrayList();
@@ -1066,14 +1068,16 @@ public class Principal extends javax.swing.JFrame {
             j.setProdutora(textProdutora.getText());
             j.setData(dateLancamento.getText());
             j.setGenero(comboGeneroJogo.getModel().getSelectedItem().toString());
-            reg.criaArquivo("jogo");
+            bin.criaArquivoBin("jogo");
+            //reg.criaArquivo("jogo");
             a.setEnredo(comboEnredo.getModel().getSelectedItem().toString());
             a.setGraficos(comboGraficos.getModel().getSelectedItem().toString());
             a.setJogabilidade(comboJogabilidade.getModel().getSelectedItem().toString());
             a.setAudio(comboAudio.getModel().getSelectedItem().toString());
             a.setConteudo(comboConteudo.getModel().getSelectedItem().toString());
             a.setComentario(textComentario.getText());
-            reg.criaArquivo("avaliacao");
+            bin.criaArquivoBin("avaliacao");
+            //reg.criaArquivo("avaliacao");
 
             new Principal().setVisible(true);
             dispose();
@@ -1134,25 +1138,30 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLogoffActionPerformed
 
     private void jButtonEditUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditUsuActionPerformed
-        CardLayout card = (CardLayout) PanelRoot.getLayout();
-        card.show(PanelRoot, "PanelEditUsu");
-        aux = reg.openTxt(u.getEmail(),"usuarios");
-        textEditNomeUsu.setText(aux.get(0));
-        textEditSobrenome.setText(aux.get(1));
-        textEditEmail.setText(aux.get(2));
-        textEditSenha.setText(aux.get(3));
-        textEditCSenha.setText(aux.get(4));
-        ComboEditBoxGen.setSelectedItem(aux.get(5));
-        textEditJogoFavorito.setText(aux.get(6));
-        
-        u.setNome(textEditNomeUsu.getText());
-        u.setNome(textEditSobrenome.getText());
-        u.setNome(textEditEmail.getText());
-        u.setNome(textEditSenha.getText().toString());
-        u.setNome(textEditCSenha.getText().toString());
-        u.setNome(ComboEditBoxGen.getModel().getSelectedItem().toString());
-        u.setNome(textEditJogoFavorito.getText());
-        textEditEmail.setEditable(false);
+        try {
+            CardLayout card = (CardLayout) PanelRoot.getLayout();
+            card.show(PanelRoot, "PanelEditUsu");
+            //aux = reg.openTxt(u.getEmail(),"usuarios");
+            aux = bin.lerArquivoBin(u.getEmail(), "usuarios");
+            textEditNomeUsu.setText(aux.get(0));
+            textEditSobrenome.setText(aux.get(1));
+            textEditEmail.setText(aux.get(2));
+            textEditSenha.setText(aux.get(3));
+            textEditCSenha.setText(aux.get(4));
+            ComboEditBoxGen.setSelectedItem(aux.get(5));
+            textEditJogoFavorito.setText(aux.get(6));
+            
+            u.setNome(textEditNomeUsu.getText());
+            u.setNome(textEditSobrenome.getText());
+            u.setNome(textEditEmail.getText());
+            u.setNome(textEditSenha.getText().toString());
+            u.setNome(textEditCSenha.getText().toString());
+            u.setNome(ComboEditBoxGen.getModel().getSelectedItem().toString());
+            u.setNome(textEditJogoFavorito.getText());
+            textEditEmail.setEditable(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButtonEditUsuActionPerformed
 
@@ -1291,39 +1300,44 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
-        editNomeJogo.setEditable(false);
-        String name = jTextFieldSearch.getText().replace(" ", "_").replace(";", "").toLowerCase();
-        aux = reg.openTxt(name,"jogo");
-        if(aux != null){
-            
-            editNomeJogo.setText(aux.get(0).replace(";", ""));
-            editDesenvolvedora.setText(aux.get(1).replace(";", ""));
-            editProdutora.setText(aux.get(2).replace(";", ""));
-            editData.setText(aux.get(3).replace(";", ""));
-            editGenero.setSelectedItem(aux.get(4).replace(";", ""));
-            j.setNome(editNomeJogo.getText());
-            j.setDesenvolvedora(editDesenvolvedora.getText());
-            j.setProdutora(editProdutora.getText());
-            j.setData(editData.getText());
-            j.setGenero(editGenero.getModel().getSelectedItem().toString());
-            //aux.clear();
-            aux = reg.openTxt(name,"avaliacao");
+        try {
+            editNomeJogo.setEditable(false);
+            String name = jTextFieldSearch.getText().replace(" ", "_").replace(";", "").toLowerCase();
+            //aux = reg.openTxt(name,"jogo");
+            aux = bin.lerArquivoBin(name, "jogo");
             if(aux != null){
-                comboEnredo1.setSelectedItem(aux.get(1).replace(";", ""));
-                comboGraficos1.setSelectedItem(aux.get(2).replace(";", ""));
-                comboJogabilidade1.setSelectedItem(aux.get(3).replace(";", ""));
-                comboAudio1.setSelectedItem(aux.get(4).replace(";", ""));
-                comboConteudo1.setSelectedItem(aux.get(5).replace(";", ""));
-                textComentario1.setText(aux.get(6).replace(";", ""));
-                a.setEnredo(comboEnredo1.getModel().getSelectedItem().toString());
-                a.setGraficos(comboGraficos1.getModel().getSelectedItem().toString());
-                a.setJogabilidade(comboJogabilidade1.getModel().getSelectedItem().toString());
-                a.setAudio(comboAudio1.getModel().getSelectedItem().toString());
-                a.setConteudo(comboConteudo1.getModel().getSelectedItem().toString());
-                a.setComentario(textComentario1.getText());
+                
+                editNomeJogo.setText(aux.get(0).replace(";", ""));
+                editDesenvolvedora.setText(aux.get(1).replace(";", ""));
+                editProdutora.setText(aux.get(2).replace(";", ""));
+                editData.setText(aux.get(3).replace(";", ""));
+                editGenero.setSelectedItem(aux.get(4).replace(";", ""));
+                j.setNome(editNomeJogo.getText());
+                j.setDesenvolvedora(editDesenvolvedora.getText());
+                j.setProdutora(editProdutora.getText());
+                j.setData(editData.getText());
+                j.setGenero(editGenero.getModel().getSelectedItem().toString());
+                //aux.clear();
+                aux = bin.lerArquivoBin(name, "avaliacao");
+                if(aux != null){
+                    comboEnredo1.setSelectedItem(aux.get(1).replace(";", ""));
+                    comboGraficos1.setSelectedItem(aux.get(2).replace(";", ""));
+                    comboJogabilidade1.setSelectedItem(aux.get(3).replace(";", ""));
+                    comboAudio1.setSelectedItem(aux.get(4).replace(";", ""));
+                    comboConteudo1.setSelectedItem(aux.get(5).replace(";", ""));
+                    textComentario1.setText(aux.get(6).replace(";", ""));
+                    a.setEnredo(comboEnredo1.getModel().getSelectedItem().toString());
+                    a.setGraficos(comboGraficos1.getModel().getSelectedItem().toString());
+                    a.setJogabilidade(comboJogabilidade1.getModel().getSelectedItem().toString());
+                    a.setAudio(comboAudio1.getModel().getSelectedItem().toString());
+                    a.setConteudo(comboConteudo1.getModel().getSelectedItem().toString());
+                    a.setComentario(textComentario1.getText());
+                }
+                CardLayout card = (CardLayout) PanelRoot.getLayout();
+                card.show(PanelRoot, "jTabbedEditGame");
             }
-            CardLayout card = (CardLayout) PanelRoot.getLayout();
-            card.show(PanelRoot, "jTabbedEditGame");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

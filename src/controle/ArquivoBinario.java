@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Avaliacao;
 import modelo.Jogo;
 import modelo.Usuario;
@@ -20,6 +21,7 @@ import modelo.Usuario;
 public class ArquivoBinario {
     
     ObjectOutputStream o;
+    String name;
     FileOutputStream fo;
     Jogo j = new Jogo();
     Avaliacao a = new Avaliacao();
@@ -52,7 +54,7 @@ public class ArquivoBinario {
        
        try {
             if (tipo == "usuarios"){
-                fo = new FileOutputStream("./"+tipo+"/"+u.getEmail()+".dat");
+                fo = new FileOutputStream("./"+tipo+"/"+u.getEmail()+".bin");
                 o = new ObjectOutputStream(fo);
                 lista.clear();
                 lista.add(u.getNome());
@@ -64,9 +66,9 @@ public class ArquivoBinario {
                 lista.add(u.getFavorito());
                 
             } else if (tipo == "jogo"){
-                String name = j.getNome().replace(" ", "_").replace(";", "").toLowerCase();
-                FileOutputStream fo = new FileOutputStream("./"+tipo+"/"+name+".dat");
-                ObjectOutputStream o = new ObjectOutputStream(fo);
+                name = j.getNome().replace(" ", "_").replace(";", "").toLowerCase();
+                fo = new FileOutputStream("./"+tipo+"/"+name+".bin");
+                o = new ObjectOutputStream(fo);
                 lista.clear();
                 lista.add(j.getNome()+";");
                 lista.add(j.getDesenvolvedora()+";");
@@ -74,9 +76,9 @@ public class ArquivoBinario {
                 lista.add(j.getData()+";");
                 lista.add(j.getGenero()+";");
             } else {
-                String name = j.getNome().replace(" ", "_").replace(";", "").toLowerCase();
-                FileOutputStream fo = new FileOutputStream("./"+tipo+"/"+name+".dat");
-                ObjectOutputStream o = new ObjectOutputStream(fo);
+                name = j.getNome().replace(" ", "_").replace(";", "").toLowerCase();
+                fo = new FileOutputStream("./"+tipo+"/"+name+".bin");
+                o = new ObjectOutputStream(fo);
                 lista.clear();
                 lista.add(j.getNome()+";");
                 lista.add(a.getEnredo()+";");
@@ -99,12 +101,12 @@ public class ArquivoBinario {
         }
     }
     
-    public ArrayList<String> lerArquivoBin(String nomeBin, String tipo){
+    public ArrayList<String> lerArquivoBin(String nomeBin, String tipo) throws ClassNotFoundException{
         try{
-        FileInputStream fo = new FileInputStream("./"+tipo+"/"+nomeBin+".dat");
+        FileInputStream fo = new FileInputStream("./"+tipo+"/"+nomeBin+".bin");
         ObjectInputStream o = new ObjectInputStream(fo);
         String str;
-            while((o.readObject()) != null){
+            while((str = (String) o.readObject()) != null){
                 lista.add(str);
             }
         o.close();

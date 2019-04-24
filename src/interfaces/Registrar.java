@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import controle.ArquivoBinario;
 import controle.ArquivoTexto;
 import controle.CriarSenha;
 import controle.ValidateFields;
@@ -27,6 +28,7 @@ public class Registrar extends javax.swing.JFrame {
      */
     ArrayList<String> usu = new ArrayList();
     ArquivoTexto reg = new ArquivoTexto();
+    ArquivoBinario bin = new ArquivoBinario();
     CriarSenha c = new CriarSenha();
     ValidateFields v = new ValidateFields();
     Usuario u = new Usuario();
@@ -335,8 +337,8 @@ public class Registrar extends javax.swing.JFrame {
             try {
                 if(c.CompareSenha()){
                     
-                    reg.criaArquivo("usuarios");
-                    
+                    //reg.criaArquivo("usuarios");
+                    bin.criaArquivoBin("usuarios");
                     new Login().setVisible(true);
                     dispose();
                     JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso");
