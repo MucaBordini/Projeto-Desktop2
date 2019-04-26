@@ -1242,14 +1242,16 @@ public class Principal extends javax.swing.JFrame {
             j.setProdutora(editProdutora.getText());
             j.setData(editData.getText());
             j.setGenero(editGenero.getModel().getSelectedItem().toString());
-            reg.criaArquivo("jogo");
+            bin.criaArquivoBin("jogo");
+            //reg.criaArquivo("jogo");
         a.setEnredo(comboEnredo1.getModel().getSelectedItem().toString());
         a.setGraficos(comboGraficos1.getModel().getSelectedItem().toString());
         a.setJogabilidade(comboJogabilidade1.getModel().getSelectedItem().toString());
         a.setAudio(comboAudio1.getModel().getSelectedItem().toString());
         a.setConteudo(comboConteudo1.getModel().getSelectedItem().toString());
         a.setComentario(textComentario1.getText());
-        reg.criaArquivo("avaliacao");
+        bin.criaArquivoBin("avaliacao");
+        //reg.criaArquivo("avaliacao");
 
         /*new Principal().setVisible(true);
         dispose();*/
@@ -1264,32 +1266,49 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonVoltarEditJogoActionPerformed
 
     private void jButtonListGamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListGamesActionPerformed
-        CardLayout card = (CardLayout) PanelRoot.getLayout();
-        card.show(PanelRoot, "PanelListGame");
-        
-        int i ;
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-                    model.setRowCount(0);
-        File pasta = new File("./jogo/");
-        File[] listarTxt = pasta.listFiles();
-        
-        for(i = 0; i < listarTxt.length; i ++){
-            File file = listarTxt[i];
-            if (file.isFile() && file.getName().endsWith(".txt")) {
-                try {
-                    String content = new String (Files.readAllBytes(file.toPath()));
-                    content = content.replace("\n", "").replace("\r", "");
-                
-                    
-                
+        try {
+            CardLayout card = (CardLayout) PanelRoot.getLayout();
+            card.show(PanelRoot, "PanelListGame");
+            String content = "";
+            String content2 = "";
+            String texto = "";
+            int i ;
+            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+            model.setRowCount(0);
+            File pasta = new File("./jogo/");
+            File[] listarTxt = pasta.listFiles();
             
+            for(i = 0; i < listarTxt.length; i ++){
+                File file = listarTxt[i];
+                if (file.isFile() && file.getName().endsWith(".bin")) {
+                    content2 = file.getName();
+                    content2 = content2.replace(".bin", "");
+                    aux = bin.lerArquivoBin(content2, "jogo");
+                    int n = aux.size();
+                    for(int j = 0; j < n; j++){
+                        content += aux.get(j);
+                        
+                    }
+                    
+                    
+                    //String content = new String (Files.readAllBytes(file.toPath()));
+                    content = content.replace("\n", "").replace("\r", "");
                     String[] dataRow = content.split(";");
                     model.addRow(dataRow);
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                }else if (file.getName().endsWith(".txt")) {
+                    
+                    texto = new String (Files.readAllBytes(file.toPath()));
+                    texto = texto.replace("\n", "").replace("\r", "");
+                    String[] dataRow = texto.split(";");
+                    model.addRow(dataRow);
+                    
                 }
-  
-            } 
+            }
+        } catch (ClassNotFoundException ex) { 
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jButtonListGamesActionPerformed
@@ -1299,11 +1318,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldSearchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+        aux.clear();
         try {
             editNomeJogo.setEditable(false);
             String name = jTextFieldSearch.getText().replace(" ", "_").replace(";", "").toLowerCase();
             //aux = reg.openTxt(name,"jogo");
+            
             aux = bin.lerArquivoBin(name, "jogo");
             if(aux != null){
                 
@@ -1317,7 +1337,7 @@ public class Principal extends javax.swing.JFrame {
                 j.setProdutora(editProdutora.getText());
                 j.setData(editData.getText());
                 j.setGenero(editGenero.getModel().getSelectedItem().toString());
-                //aux.clear();
+                aux.clear();
                 aux = bin.lerArquivoBin(name, "avaliacao");
                 if(aux != null){
                     comboEnredo1.setSelectedItem(aux.get(1).replace(";", ""));
@@ -1383,8 +1403,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void buttonDeleteAvaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAvaJogoActionPerformed
         String name = editNomeJogo.getText().replace(" ", "_").replace(";", "").toLowerCase();
-        reg.deleteTxt(name, "jogo");
-        reg.deleteTxt(name, "avaliacao");
+        
+        bin.deleteBin(name, "jogo");
+        bin.deleteBin(name, "avaliacao");
+        //reg.deleteTxt(name, "jogo");
+        //reg.deleteTxt(name, "avaliacao");
         new Principal().setVisible(true);
         dispose();
         JOptionPane.showMessageDialog(null, "Jogo deletado com sucesso\n");

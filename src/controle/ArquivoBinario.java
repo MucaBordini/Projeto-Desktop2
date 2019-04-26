@@ -96,6 +96,7 @@ public class ArquivoBinario {
                 o.writeObject(lista.get(i));
             }
             o.close();
+            fo.close();
         } catch (IOException ex) {
             Logger.getLogger(ArquivoTexto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -110,10 +111,20 @@ public class ArquivoBinario {
                 lista.add(str);
             }
         o.close();
+        fo.close();
         }  catch (IOException e){
             
         }  
         
         return lista;
+    }
+    
+    public void deleteBin(String nomeArq, String tipo){
+        File arquivo = new File("./"+tipo+"/"+nomeArq+".bin");
+ 
+        if(arquivo.exists()){
+            arquivo.delete();
+        } else
+        JOptionPane.showMessageDialog(null, "CAGOU");
     }
 }
