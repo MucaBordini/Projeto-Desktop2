@@ -9,15 +9,22 @@ import controle.ArquivoBinario;
 import controle.ArquivoTexto;
 import controle.CriarSenha;
 import controle.ValidateFields;
+import controle.ControleBD;
 import java.awt.CardLayout;
 import java.awt.FontFormatException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Avaliacao;
 import modelo.Jogo;
@@ -39,6 +46,7 @@ public class Principal extends javax.swing.JFrame {
     ValidateFields v = new ValidateFields();
     ArquivoBinario bin = new ArquivoBinario();
     ArquivoTexto reg = new ArquivoTexto();
+    ControleBD controlBD = new ControleBD();
     ArrayList<String> aux = new ArrayList();
     ArrayList<String> jogo = new ArrayList();
     ArrayList<String> aval = new ArrayList();
@@ -89,13 +97,9 @@ public class Principal extends javax.swing.JFrame {
         textNomeJogo = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         textDesenvolvedora = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        textProdutora = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         buttonCadastrarUsuario2 = new javax.swing.JButton();
         comboGeneroJogo = new javax.swing.JComboBox<>();
-        dateLancamento = new javax.swing.JFormattedTextField();
         PanelAvaJogo = new javax.swing.JPanel();
         LabelCadUsu2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -120,13 +124,9 @@ public class Principal extends javax.swing.JFrame {
         editNomeJogo = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         editDesenvolvedora = new javax.swing.JTextField();
-        jLabel29 = new javax.swing.JLabel();
-        editProdutora = new javax.swing.JTextField();
-        jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         buttonAvancarEditJogo = new javax.swing.JButton();
         editGenero = new javax.swing.JComboBox<>();
-        editData = new javax.swing.JFormattedTextField();
         PanelAvaJogo1 = new javax.swing.JPanel();
         LabelEditAvaJogo = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
@@ -147,10 +147,10 @@ public class Principal extends javax.swing.JFrame {
         buttonDeleteAvaJogo = new javax.swing.JButton();
         PanelListGame = new javax.swing.JPanel();
         LabelListGame = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jTextFieldSearch = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tabela = new javax.swing.JTable();
         PanelListAva = new javax.swing.JPanel();
         LabelListGame1 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -378,14 +378,6 @@ public class Principal extends javax.swing.JFrame {
 
         textDesenvolvedora.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel18.setText("Produtora:");
-
-        textProdutora.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel19.setText("Data de lançamento:");
-
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setText("Gênero:");
 
@@ -401,10 +393,6 @@ public class Principal extends javax.swing.JFrame {
         comboGeneroJogo.setSelectedIndex(-1);
         comboGeneroJogo.setPreferredSize(new java.awt.Dimension(98, 25));
 
-        dateLancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        dateLancamento.setToolTipText("");
-        dateLancamento.setPreferredSize(new java.awt.Dimension(6, 25));
-
         javax.swing.GroupLayout PanelCadJogoLayout = new javax.swing.GroupLayout(PanelCadJogo);
         PanelCadJogo.setLayout(PanelCadJogoLayout);
         PanelCadJogoLayout.setHorizontalGroup(
@@ -417,19 +405,16 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(LabelCadUsu1)
                             .addGroup(PanelCadJogoLayout.createSequentialGroup()
                                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19)
                                     .addComponent(jLabel16)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel18)
                                     .addComponent(jLabel20))
-                                .addGap(44, 44, 44)
+                                .addGap(117, 117, 117)
                                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textProdutora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(comboGeneroJogo, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(dateLancamento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(comboGeneroJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelCadJogoLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addGap(66, 66, 66)
+                                .addComponent(textDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(PanelCadJogoLayout.createSequentialGroup()
                         .addGap(272, 272, 272)
                         .addComponent(buttonCadastrarUsuario2)))
@@ -444,19 +429,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(36, 36, 36)
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textProdutora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(43, 43, 43)
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboGeneroJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -622,14 +599,6 @@ public class Principal extends javax.swing.JFrame {
 
         editDesenvolvedora.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
-        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel29.setText("Produtora:");
-
-        editProdutora.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-
-        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel30.setText("Data de lançamento:");
-
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel31.setText("Gênero:");
 
@@ -644,9 +613,6 @@ public class Principal extends javax.swing.JFrame {
         editGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
         editGenero.setPreferredSize(new java.awt.Dimension(98, 25));
 
-        editData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        editData.setPreferredSize(new java.awt.Dimension(6, 25));
-
         javax.swing.GroupLayout PanelCadJogo1Layout = new javax.swing.GroupLayout(PanelCadJogo1);
         PanelCadJogo1.setLayout(PanelCadJogo1Layout);
         PanelCadJogo1Layout.setHorizontalGroup(
@@ -659,19 +625,16 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(LabelEditJogo)
                             .addGroup(PanelCadJogo1Layout.createSequentialGroup()
                                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel30)
                                     .addComponent(jLabel27)
-                                    .addComponent(jLabel28)
-                                    .addComponent(jLabel29)
                                     .addComponent(jLabel31))
-                                .addGap(44, 44, 44)
+                                .addGap(117, 117, 117)
                                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(editProdutora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(editDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(editNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(editGenero, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(editData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(editGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelCadJogo1Layout.createSequentialGroup()
+                                .addComponent(jLabel28)
+                                .addGap(66, 66, 66)
+                                .addComponent(editDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(PanelCadJogo1Layout.createSequentialGroup()
                         .addGap(262, 262, 262)
                         .addComponent(buttonAvancarEditJogo)))
@@ -686,23 +649,15 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(37, 37, 37)
                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editProdutora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(42, 42, 42)
                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(buttonAvancarEditJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94))
         );
@@ -849,7 +804,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(buttonDeleteAvaJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonSaveEditAvaJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonVoltarEditJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jTabbedEditJogo.addTab("Editar avaliação", PanelAvaJogo1);
@@ -861,24 +816,6 @@ public class Principal extends javax.swing.JFrame {
 
         LabelListGame.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         LabelListGame.setText("BUSCAR JOGOS");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nome", "Desenvolvedora", "Produtora", "Lançamento", "Gênero"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(jTable1);
 
         jTextFieldSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldSearch.setToolTipText("Infome o nome do jogo");
@@ -896,6 +833,16 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane5.setViewportView(tabela);
+
         javax.swing.GroupLayout PanelListGameLayout = new javax.swing.GroupLayout(PanelListGame);
         PanelListGame.setLayout(PanelListGameLayout);
         PanelListGameLayout.setHorizontalGroup(
@@ -903,17 +850,20 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(PanelListGameLayout.createSequentialGroup()
                 .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelListGameLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelListGameLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(LabelListGame))
+                            .addGroup(PanelListGameLayout.createSequentialGroup()
+                                .addGap(116, 116, 116)
+                                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 161, Short.MAX_VALUE))
                     .addGroup(PanelListGameLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(LabelListGame))
-                    .addGroup(PanelListGameLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane5)))
+                .addContainerGap())
         );
         PanelListGameLayout.setVerticalGroup(
             PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -925,8 +875,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                .addGap(70, 70, 70))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
         );
 
         PanelRoot.add(PanelListGame, "PanelListGame");
@@ -1065,8 +1014,7 @@ public class Principal extends javax.swing.JFrame {
         if(textNomeJogo.getText() != ""){
             j.setNome(textNomeJogo.getText());
             j.setDesenvolvedora(textDesenvolvedora.getText());
-            j.setProdutora(textProdutora.getText());
-            j.setData(dateLancamento.getText());
+            
             j.setGenero(comboGeneroJogo.getModel().getSelectedItem().toString());
             bin.criaArquivoBin("jogo");
             //reg.criaArquivo("jogo");
@@ -1124,7 +1072,29 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCadastrarUsuarioActionPerformed
 
     private void buttonCadastrarUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario2ActionPerformed
-        jTabbedCadJogo.setSelectedIndex(1);
+        StringBuilder inserir = new StringBuilder();
+        inserir.append("'").append(textNomeJogo.getText()).append("' , '").append(textDesenvolvedora.getText()).append("' , '").append(comboGeneroJogo.getModel().getSelectedItem().toString()).append("'");
+        
+        
+        if(controlBD.AcessaBD()){
+            System.out.println("Banco conectado!!");
+        } else {
+            System.out.println("Conexão falhou!");
+        }
+        
+        if(controlBD.ExecutaInsert("jogo", inserir)){
+            System.out.println("Deu");
+        } else {
+            System.out.println("Nao deu");
+        }
+        
+        if(JOptionPane.showConfirmDialog(null , "Deseja salvar?") == 0){
+            controlBD.commitNoBanco();
+        } else {
+            controlBD.rollbackBanco();
+        }
+        
+        controlBD.Sair();
     }//GEN-LAST:event_buttonCadastrarUsuario2ActionPerformed
 
     private void jButtonCadJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadJogoActionPerformed
@@ -1222,14 +1192,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_textEditNomeUsuActionPerformed
 
     private void buttonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteUserActionPerformed
-        reg.deleteTxt(u.getEmail());
-        new Login().setVisible(true);
-        dispose();
-        JOptionPane.showMessageDialog(null, "Usuário deletado com sucesso\n");
+        //TODO DELETE USUARIO
     }//GEN-LAST:event_buttonDeleteUserActionPerformed
 
     private void buttonAvancarEditJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAvancarEditJogoActionPerformed
-        jTabbedEditJogo.setSelectedIndex(1);
+         String alteracao = null;
+         alteracao = "jogo_nome = ?, jogo_dev = ?, jogo_gen = ? WHERE jogo_nome = ?";
+        //jTabbedEditJogo.setSelectedIndex(1);
     }//GEN-LAST:event_buttonAvancarEditJogoActionPerformed
 
     private void buttonSaveEditAvaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveEditAvaJogoActionPerformed
@@ -1239,8 +1208,6 @@ public class Principal extends javax.swing.JFrame {
         } else {*/
             j.setNome(editNomeJogo.getText());
             j.setDesenvolvedora(editDesenvolvedora.getText());
-            j.setProdutora(editProdutora.getText());
-            j.setData(editData.getText());
             j.setGenero(editGenero.getModel().getSelectedItem().toString());
             bin.criaArquivoBin("jogo");
             //reg.criaArquivo("jogo");
@@ -1266,50 +1233,41 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonVoltarEditJogoActionPerformed
 
     private void jButtonListGamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListGamesActionPerformed
+        CardLayout card = (CardLayout) PanelRoot.getLayout();
+        card.show(PanelRoot, "PanelListGame");
+        if(controlBD.AcessaBD()){
+            System.out.println("Banco conectado!!");
+        } else {
+            System.out.println("Conexão falhou!");
+        }
+        StringBuilder campos = new StringBuilder();
+        campos.append("*");
+        controlBD.ExecutaQuery("jogo", campos);
+        ResultSet rs = controlBD.retornaConsulta();
+        
+        String[] colunasNomes = {"Nome", "Desenvolvedor", "Genero"};
+        DefaultTableModel model = (DefaultTableModel)tabela.getModel();
+        model.getDataVector().removeAllElements();
+        model.setColumnIdentifiers(colunasNomes);
+        ResultSetMetaData rsmd;
         try {
-            CardLayout card = (CardLayout) PanelRoot.getLayout();
-            card.show(PanelRoot, "PanelListGame");
-            String content = "";
-            String content2 = "";
-            String texto = "";
-            int i ;
-            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-            model.setRowCount(0);
-            File pasta = new File("./jogo/");
-            File[] listarTxt = pasta.listFiles();
-            
-            for(i = 0; i < listarTxt.length; i ++){
-                File file = listarTxt[i];
-                if (file.isFile() && file.getName().endsWith(".bin")) {
-                    content2 = file.getName();
-                    content2 = content2.replace(".bin", "");
-                    aux = bin.lerArquivoBin(content2, "jogo");
-                    int n = aux.size();
-                    for(int j = 0; j < n; j++){
-                        content += aux.get(j);
-                        
-                    }
-                    
-                    
-                    //String content = new String (Files.readAllBytes(file.toPath()));
-                    content = content.replace("\n", "").replace("\r", "");
-                    String[] dataRow = content.split(";");
-                    model.addRow(dataRow);
-                    
-                }else if (file.getName().endsWith(".txt")) {
-                    
-                    texto = new String (Files.readAllBytes(file.toPath()));
-                    texto = texto.replace("\n", "").replace("\r", "");
-                    String[] dataRow = texto.split(";");
-                    model.addRow(dataRow);
-                    
-                }
+            rsmd = rs.getMetaData();
+            int colNum = rsmd.getColumnCount();
+        while(rs.next()){
+            Object[] objects = new Object[colNum];
+            for(int i = 0; i < colNum; i++){
+                objects[i] = rs.getObject(i+1);
             }
-        } catch (ClassNotFoundException ex) { 
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+            model.addRow(objects);
+        }
+        
+        tabela.setModel(model);
+        } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        controlBD.Sair();
+        
 
     }//GEN-LAST:event_jButtonListGamesActionPerformed
 
@@ -1318,52 +1276,36 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldSearchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        aux.clear();
-        try {
-            editNomeJogo.setEditable(false);
-            String name = jTextFieldSearch.getText().replace(" ", "_").replace(";", "").toLowerCase();
-            //aux = reg.openTxt(name,"jogo");
-            
-            aux = bin.lerArquivoBin(name, "jogo");
-            if(aux != null){
-                
-                editNomeJogo.setText(aux.get(0).replace(";", ""));
-                editDesenvolvedora.setText(aux.get(1).replace(";", ""));
-                editProdutora.setText(aux.get(2).replace(";", ""));
-                editData.setText(aux.get(3).replace(";", ""));
-                editGenero.setSelectedItem(aux.get(4).replace(";", ""));
-                j.setNome(editNomeJogo.getText());
-                j.setDesenvolvedora(editDesenvolvedora.getText());
-                j.setProdutora(editProdutora.getText());
-                j.setData(editData.getText());
-                j.setGenero(editGenero.getModel().getSelectedItem().toString());
-                aux.clear();
-                aux = bin.lerArquivoBin(name, "avaliacao");
-                if(aux != null){
-                    comboEnredo1.setSelectedItem(aux.get(1).replace(";", ""));
-                    comboGraficos1.setSelectedItem(aux.get(2).replace(";", ""));
-                    comboJogabilidade1.setSelectedItem(aux.get(3).replace(";", ""));
-                    comboAudio1.setSelectedItem(aux.get(4).replace(";", ""));
-                    comboConteudo1.setSelectedItem(aux.get(5).replace(";", ""));
-                    textComentario1.setText(aux.get(6).replace(";", ""));
-                    a.setEnredo(comboEnredo1.getModel().getSelectedItem().toString());
-                    a.setGraficos(comboGraficos1.getModel().getSelectedItem().toString());
-                    a.setJogabilidade(comboJogabilidade1.getModel().getSelectedItem().toString());
-                    a.setAudio(comboAudio1.getModel().getSelectedItem().toString());
-                    a.setConteudo(comboConteudo1.getModel().getSelectedItem().toString());
-                    a.setComentario(textComentario1.getText());
-                }
-                CardLayout card = (CardLayout) PanelRoot.getLayout();
-                card.show(PanelRoot, "jTabbedEditGame");
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        
+        if(controlBD.AcessaBD()){
+            System.out.println("Banco conectado!!");
+        } else {
+            System.out.println("Conexão falhou!");
         }
+        
+        //campos = jTextFieldSearch.getText();
+        //controlBD.ExecutaQuery("jogo", "jogo_nome",campos);
+        ResultSet rs = controlBD.retornaConsulta();
+        
+        try {
+            rs.next();
+            //faz a leitura do registro corrento do ResutSet e atribui os valores lidos aos objetos visuais (Textfields)
+            editNomeJogo.setText(rs.getString("jogo_nome"));
+            editDesenvolvedora.setText(rs.getString("jogo_dev"));
+            editGenero.setSelectedItem(rs.getString("jogo_gen"));
+        } catch (Exception erro) {
+            System.out.println(erro);
+        }
+        editNomeJogo.setEditable(false);
+        
+        CardLayout card = (CardLayout) PanelRoot.getLayout();
+        card.show(PanelRoot, "jTabbedEditGame");
+            
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void editNomeJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editNomeJogoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_editNomeJogoActionPerformed
 
     private void textEditEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEditEmailActionPerformed
@@ -1374,43 +1316,11 @@ public class Principal extends javax.swing.JFrame {
         CardLayout card = (CardLayout) PanelRoot.getLayout();
         card.show(PanelRoot, "PanelListAva");
         
-        int i ;
-        DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
-        
-        model.setRowCount(0);
-        File pasta = new File("./avaliacao/");
-        File[] listarTxt = pasta.listFiles();
-        jTable2.setAutoResizeMode(jTable2.AUTO_RESIZE_OFF);
-        for(i = 0; i < listarTxt.length; i ++){
-            File file = listarTxt[i];
-            if (file.isFile() && file.getName().endsWith(".txt")) {
-                try {
-                    String content = new String (Files.readAllBytes(file.toPath()));
-                    content = content.replace("\n", "").replace("\r", "");
-                    
-                    
-                
-            
-                    String[] dataRow = content.split(";");
-                    model.addRow(dataRow);
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-  
-            } 
-        }
+        //TODO LISTAR AVALIAÇAO
     }//GEN-LAST:event_jButtonListAvaActionPerformed
 
     private void buttonDeleteAvaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAvaJogoActionPerformed
-        String name = editNomeJogo.getText().replace(" ", "_").replace(";", "").toLowerCase();
-        
-        bin.deleteBin(name, "jogo");
-        bin.deleteBin(name, "avaliacao");
-        //reg.deleteTxt(name, "jogo");
-        //reg.deleteTxt(name, "avaliacao");
-        new Principal().setVisible(true);
-        dispose();
-        JOptionPane.showMessageDialog(null, "Jogo deletado com sucesso\n");
+       //TODO BOTAO DELETAR
     }//GEN-LAST:event_buttonDeleteAvaJogoActionPerformed
 
     /**
@@ -1489,12 +1399,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboGraficos1;
     private javax.swing.JComboBox<String> comboJogabilidade;
     private javax.swing.JComboBox<String> comboJogabilidade1;
-    private javax.swing.JFormattedTextField dateLancamento;
-    private javax.swing.JFormattedTextField editData;
     private javax.swing.JTextField editDesenvolvedora;
     private javax.swing.JComboBox<String> editGenero;
     private javax.swing.JTextField editNomeJogo;
-    private javax.swing.JTextField editProdutora;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCadJogo;
     private javax.swing.JButton jButtonEditUsu;
@@ -1509,15 +1416,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -1533,13 +1436,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedCadJogo;
     private javax.swing.JTabbedPane jTabbedEditJogo;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextFieldSearch;
+    private javax.swing.JScrollPane scroller;
+    private javax.swing.JTable tabela;
     private javax.swing.JTextArea textComentario;
     private javax.swing.JTextArea textComentario1;
     private javax.swing.JTextField textDesenvolvedora;
@@ -1550,6 +1454,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPasswordField textEditSenha;
     private javax.swing.JTextField textEditSobrenome;
     private javax.swing.JTextField textNomeJogo;
-    private javax.swing.JTextField textProdutora;
     // End of variables declaration//GEN-END:variables
 }
