@@ -7,6 +7,7 @@ package controle;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -26,19 +27,30 @@ public class ControleBD {
     private Statement stdados = null;
     private ResultSet rsdados = null;
     
-    public void Sair() {
+    public Connection Sair(Connection connection, PreparedStatement stmt) { 
         try {
-            if (rsdados != null) {
-                rsdados.close();
-                stdados.close();
-                connection.close();
-            }
+            stmt.close();
+            connection.close();
+            
         } catch (SQLException erro) {
             System.out.println("Nao foi possivel a desconexao." + erro);
+            return null;
         }
+        return connection;
     }
     
-    public boolean AcessaBD() {
+    public Connection Sair(Connection connection) {
+        try {
+            connection.close();
+        } catch (SQLException error) {
+            String msgErro = "Erro Close: " + error;
+            JOptionPane.showMessageDialog(null, msgErro);
+            return null;
+        }
+        return connection;
+    }
+    
+    public Connection AcessaBD() {
         
         try {
             String usuario = "postgres";
@@ -52,15 +64,15 @@ public class ControleBD {
 
         } catch (ClassNotFoundException erro) {
             System.out.println("Falha ao carregar o driver JDBC/ODBC." + erro);
-            return false;
+            return null;
         } catch (SQLException erro) {
             System.out.println("Falha na conexao, comando sql = " + erro);
-            return false;
+            return null;
         }
-        return true;
+        return connection;
     }
     
-    public boolean ExecutaInsert(String tabela, StringBuilder inserts) {
+    /*public boolean ExecutaInsert(String tabela, StringBuilder inserts) {
         try {
             String querydados = "INSERT INTO "+tabela+" VALUES ("+inserts+");";
             int tipo = ResultSet.TYPE_SCROLL_SENSITIVE;//(c)
@@ -115,24 +127,29 @@ public class ControleBD {
         }
         return true;
     }
-    
-    public void commitNoBanco(){
+    */
+    public Connection commitNoBanco(){
         try {
             connection.commit();
         } catch (SQLException erro) {
             System.out.println("Erro commit = " + erro);
+            return null;
         }
+        return connection;
     }
     
-    public void rollbackBanco(){
+    public Connection rollbackBanco(){
         try {
             connection.rollback();
         } catch (SQLException erro) {
             System.out.println("Erro Roolback = " + erro);
+            return null;
         }
+        return connection;
     }   
     
-    public void ExecutaQuery(String tabela, StringBuilder campos) {
+    public void ExecutaQuery(Connection connection, String tabela, StringBuilder campos) {
+        connection = AcessaBD();
         try {
             String querydados = "SELECT "+campos+" FROM "+tabela+";";
             
@@ -154,8 +171,10 @@ public class ControleBD {
         }
     }
     
-    public void ExecutaQuery(String tabela, String campos, String whereUpdate) {
+    public void ExecutaQuery(Connection connection, String tabela, String campos, String whereUpdate) {
+        connection = AcessaBD();
         try {
+            
             String querydados = "SELECT * FROM "+tabela+" WHERE "+campos+" = '"+whereUpdate+"' ;";
             
             int tipo = ResultSet.TYPE_SCROLL_SENSITIVE;

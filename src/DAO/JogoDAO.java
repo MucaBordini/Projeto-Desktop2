@@ -5,10 +5,79 @@
  */
 package DAO;
 
+import java.sql.PreparedStatement;
+import modelo.Jogo;
+import controle.ControleBD;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author samue
  */
 public class JogoDAO {
     
+    protected static boolean insert(Jogo jogo){
+        boolean retorno = false;
+        PreparedStatement pstdados = null;
+        ControleBD bd = new ControleBD();
+        Connection connection = null;
+        String sqldml = "INSERT INTO jogo (jogo_nome, jogo_dev, jogo_gen)"
+                + "VALUES (?,?,?);";
+        try {
+            int tipo = ResultSet.TYPE_SCROLL_SENSITIVE;
+            int concorrencia = ResultSet.CONCUR_UPDATABLE;
+            connection = bd.AcessaBD();
+            pstdados = connection.prepareStatement(sqldml, tipo, concorrencia);
+            
+            pstdados.setString(1, jogo.getNome());
+            pstdados.setString(2, jogo.getDesenvolvedora());
+            pstdados.setString(3, jogo.getGenero());
+            pstdados.executeUpdate();
+            
+            connection = bd.commitNoBanco();
+            retorno = true;
+        } catch (SQLException error){
+            JOptionPane.showMessageDialog(null, "ERRO NO BANCO DE DADOS! "+ error);
+            connection = bd.rollbackBanco();
+        } finally {
+            connection = bd.Sair(connection, pstdados);
+        }
+        return retorno;
+    }
+    
+    protected static boolean update(Jogo jogo){
+        boolean retorno = false;
+        PreparedStatement pstdados;
+        ControleBD bd = new ControleBD();
+        Connection connection = null;
+        String sqldml = "UPDATE jogo SET jogo_nome = ? ,"
+                + "jogo_dev = ? ,"
+                + "jogo_gen = ? "
+                + "WHERE jogo_nome = ?";
+        try {
+            int tipo = ResultSet.TYPE_SCROLL_SENSITIVE;
+            int concorrencia = ResultSet.CONCUR_UPDATABLE;
+            connection = bd.AcessaBD();
+            pstdados = connection.prepareStatement(sqldml, tipo, concorrencia);
+            
+            pstdados.setString(1, jogo.getNome());
+            pstdados.setString(2, jogo.getDesenvolvedora());
+            pstdados.setString(3, jogo.getGenero());
+            
+            connection = bd.commitNoBanco();
+            
+            retorno = true;
+        } catch (SQLException error){
+            JOptionPane.showMessageDialog(null, "ERRO : "+ error);
+            //Dá Roolback
+            connection = bd.rollbackBanco();
+        } finally {
+            connection = bd.Sair(connection);
+        }
+        return retorno;
+    }
+
 }

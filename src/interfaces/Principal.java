@@ -10,11 +10,14 @@ import controle.ArquivoTexto;
 import controle.CriarSenha;
 import controle.ValidateFields;
 import controle.ControleBD;
+import controle.JogoRecursoController;
 import java.awt.CardLayout;
 import java.awt.FontFormatException;
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -52,6 +55,7 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<String> aval = new ArrayList();
     ArrayList<String> usu = new ArrayList();
     CriarSenha c = new CriarSenha();
+    JogoRecursoController controlJogo = new JogoRecursoController();
     int i = -1;
 
 
@@ -1072,29 +1076,27 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCadastrarUsuarioActionPerformed
 
     private void buttonCadastrarUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario2ActionPerformed
-        StringBuilder inserir = new StringBuilder();
-        inserir.append("'").append(textNomeJogo.getText()).append("' , '").append(textDesenvolvedora.getText()).append("' , '").append(comboGeneroJogo.getModel().getSelectedItem().toString()).append("'");
-        
-        
-        if(controlBD.AcessaBD()){
-            System.out.println("Banco conectado!!");
-        } else {
-            System.out.println("Conexão falhou!");
+
+        ArrayList novaLista = new ArrayList();
+
+        try {
+            //Capturando informações e adicionando a uma lista
+            novaLista.add(textNomeJogo.getText());
+            novaLista.add(textDesenvolvedora.getText());
+            novaLista.add(comboGeneroJogo.getSelectedItem());
+            
+            
+            //Mandando para o Contoller
+            if (controlJogo.criarJogo(novaLista)) {
+                JOptionPane.showMessageDialog(this, "O jogo foi salva com sucesso!");
+                CardLayout card = (CardLayout) PanelRoot.getLayout();
+                card.show(PanelRoot, "cadastrarJogo");
+            }
+        } catch (HeadlessException error) {
+            String msgErro = "Erro: " + error;
+            JOptionPane.showMessageDialog(this, msgErro);
         }
-        
-        if(controlBD.ExecutaInsert("jogo", inserir)){
-            System.out.println("Deu");
-        } else {
-            System.out.println("Nao deu");
-        }
-        
-        if(JOptionPane.showConfirmDialog(null , "Deseja salvar?") == 0){
-            controlBD.commitNoBanco();
-        } else {
-            controlBD.rollbackBanco();
-        }
-        
-        controlBD.Sair();
+    
     }//GEN-LAST:event_buttonCadastrarUsuario2ActionPerformed
 
     private void jButtonCadJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadJogoActionPerformed
@@ -1196,8 +1198,26 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDeleteUserActionPerformed
 
     private void buttonAvancarEditJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAvancarEditJogoActionPerformed
-         String alteracao = null;
-         alteracao = "jogo_nome = ?, jogo_dev = ?, jogo_gen = ? WHERE jogo_nome = ?";
+        try {
+            String editNome = editNomeJogo.getText();
+            String editDev = editDesenvolvedora.getText();
+            String editGeneroJogo = editGenero.getModel().getSelectedItem().toString();
+            
+            System.out.println("ESSE " + editDev);
+            
+            ArrayList novaLista = new ArrayList();
+            novaLista.add(editNome);
+            novaLista.add(editDev);
+            novaLista.add(editGeneroJogo);
+
+            if (controlJogo.editarJogo(novaLista)) {
+                JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!");
+                CardLayout card = (CardLayout) PanelRoot.getLayout();
+                card.show(PanelRoot, "editarJogo");
+            } 
+        } catch (HeadlessException error) {
+            System.err.println("Erro: " + error);
+        }
         //jTabbedEditJogo.setSelectedIndex(1);
     }//GEN-LAST:event_buttonAvancarEditJogoActionPerformed
 
@@ -1235,14 +1255,10 @@ public class Principal extends javax.swing.JFrame {
     private void jButtonListGamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListGamesActionPerformed
         CardLayout card = (CardLayout) PanelRoot.getLayout();
         card.show(PanelRoot, "PanelListGame");
-        if(controlBD.AcessaBD()){
-            System.out.println("Banco conectado!!");
-        } else {
-            System.out.println("Conexão falhou!");
-        }
+        Connection connection = null;
         StringBuilder campos = new StringBuilder();
         campos.append("*");
-        controlBD.ExecutaQuery("jogo", campos);
+        controlBD.ExecutaQuery(connection, "jogo", campos);
         ResultSet rs = controlBD.retornaConsulta();
         
         String[] colunasNomes = {"Nome", "Desenvolvedor", "Genero"};
@@ -1266,7 +1282,7 @@ public class Principal extends javax.swing.JFrame {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        controlBD.Sair();
+        //controlBD.Sair();
         
 
     }//GEN-LAST:event_jButtonListGamesActionPerformed
@@ -1277,14 +1293,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        if(controlBD.AcessaBD()){
-            System.out.println("Banco conectado!!");
-        } else {
-            System.out.println("Conexão falhou!");
-        }
-        
-        //campos = jTextFieldSearch.getText();
-        //controlBD.ExecutaQuery("jogo", "jogo_nome",campos);
+        Connection connection = null;
+        String campos;
+        campos = jTextFieldSearch.getText();
+        controlBD.ExecutaQuery(connection, "jogo", "jogo_nome",campos);
         ResultSet rs = controlBD.retornaConsulta();
         
         try {

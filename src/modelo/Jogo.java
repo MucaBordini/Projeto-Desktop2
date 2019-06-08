@@ -5,57 +5,59 @@
  */
 package modelo;
 
+
+import DAO.JogoDAO;
 /**
  *
  * @author samue
  */
-public class Jogo {
+public final class Jogo extends JogoDAO {
     private static String nome;
     private static String desenvolvedora;
-    private static String produtora;
     private static String genero;
-    private static String data;
+    
+    public Jogo(String nome, String desenvolvedora, String genero){
+        this.nome = nome;
+        this.desenvolvedora = desenvolvedora;
+        this.genero = genero;
+    }
+    
+    public Jogo(){
+        
+    }
 
-    public static String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public static void setNome(String nome) {
+    public void setNome(String nome) {
         Jogo.nome = nome;
     }
 
-    public static String getDesenvolvedora() {
+    public String getDesenvolvedora() {
         return desenvolvedora;
     }
 
-    public static void setDesenvolvedora(String desenvolvedora) {
+    public void setDesenvolvedora(String desenvolvedora) {
         Jogo.desenvolvedora = desenvolvedora;
     }
 
-    public static String getProdutora() {
-        return produtora;
-    }
-
-    public static void setProdutora(String produtora) {
-        Jogo.produtora = produtora;
-    }
-
-    public static String getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public static void setGenero(String genero) {
+    public void setGenero(String genero) {
         Jogo.genero = genero;
     }
 
-    public static String getData() {
-        return data;
-    }
-
-    public static void setData(String data) {
-        Jogo.data = data;
+    public boolean insert(){
+        return JogoDAO.insert(this);
     }
     
+    public boolean update() {
+        return JogoDAO.update(this);
+    }
+
     
     
 }
