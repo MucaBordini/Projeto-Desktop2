@@ -66,7 +66,8 @@ public class JogoDAO {
             pstdados.setString(1, jogo.getNome());
             pstdados.setString(2, jogo.getDesenvolvedora());
             pstdados.setString(3, jogo.getGenero());
-            
+            pstdados.setString(4, jogo.getNome());
+            pstdados.executeUpdate();
             connection = bd.commitNoBanco();
             
             retorno = true;
@@ -79,5 +80,36 @@ public class JogoDAO {
         }
         return retorno;
     }
+    
+    protected static boolean delete(String nome_jogo) {
+        boolean retorno = false;
+        PreparedStatement pstdados;
+        ControleBD bd = new ControleBD();
+        Connection connection = null;
 
+        try {
+            String sqldml = "delete from jogo where jogo_nome = ?";
+
+            int tipo = ResultSet.TYPE_SCROLL_SENSITIVE;
+            int concorrencia = ResultSet.CONCUR_UPDATABLE;
+            connection = bd.AcessaBD();
+            pstdados = connection.prepareStatement(sqldml, tipo, concorrencia);
+            pstdados.setString(1, nome_jogo);
+            pstdados.executeUpdate();
+            //Chama o Commit
+            connection = bd.commitNoBanco();
+            //Ocorreu tudo bem e o objeto está salvo
+            retorno = true;
+        } catch (SQLException error) {
+            String msgErro = "Erro com o banco de dados: " + error;
+            JOptionPane.showMessageDialog(null, msgErro);
+            //Dá Roolback
+            connection = bd.rollbackBanco();
+        } finally {
+            //Termina connecção
+            connection = bd.Sair(connection);
+        }
+        return retorno;
+    }
+    
 }

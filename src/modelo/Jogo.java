@@ -22,6 +22,10 @@ public final class Jogo extends JogoDAO {
         this.genero = genero;
     }
     
+    public Jogo(String nome){
+        this.nome = nome;
+    }
+    
     public Jogo(){
         
     }
@@ -57,7 +61,10 @@ public final class Jogo extends JogoDAO {
     public boolean update() {
         return JogoDAO.update(this);
     }
-
+    
+    public boolean delete() {
+        return JogoDAO.delete(this.getNome());
+    }
     
     
 }

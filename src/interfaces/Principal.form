@@ -870,9 +870,9 @@
                                               <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel31" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                                          <EmptySpace min="117" pref="117" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="editNomeJogo" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                                              <Component id="editNomeJogo" min="-2" pref="368" max="-2" attributes="0"/>
                                               <Component id="editGenero" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -886,6 +886,8 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
                                   <Component id="buttonAvancarEditJogo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                                  <Component id="deleteJogo" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="30" max="32767" attributes="0"/>
@@ -908,12 +910,15 @@
                               <Component id="editDesenvolvedora" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel31" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="editGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel31" min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="editGenero" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="125" max="32767" attributes="0"/>
-                          <Component id="buttonAvancarEditJogo" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="buttonAvancarEditJogo" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="deleteJogo" min="-2" pref="40" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1001,6 +1006,18 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="deleteJogo">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/img/256-256-c020ce89b5c951e08148e0.png"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Salvar"/>
+                    <Property name="autoscrolls" type="boolean" value="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteJogoActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

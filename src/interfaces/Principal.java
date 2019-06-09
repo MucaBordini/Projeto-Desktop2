@@ -131,6 +131,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         buttonAvancarEditJogo = new javax.swing.JButton();
         editGenero = new javax.swing.JComboBox<>();
+        deleteJogo = new javax.swing.JButton();
         PanelAvaJogo1 = new javax.swing.JPanel();
         LabelEditAvaJogo = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
@@ -617,6 +618,15 @@ public class Principal extends javax.swing.JFrame {
         editGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
         editGenero.setPreferredSize(new java.awt.Dimension(98, 25));
 
+        deleteJogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/256-256-c020ce89b5c951e08148e0.png"))); // NOI18N
+        deleteJogo.setToolTipText("Salvar");
+        deleteJogo.setAutoscrolls(true);
+        deleteJogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteJogoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelCadJogo1Layout = new javax.swing.GroupLayout(PanelCadJogo1);
         PanelCadJogo1.setLayout(PanelCadJogo1Layout);
         PanelCadJogo1Layout.setHorizontalGroup(
@@ -641,7 +651,9 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(editDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(PanelCadJogo1Layout.createSequentialGroup()
                         .addGap(262, 262, 262)
-                        .addComponent(buttonAvancarEditJogo)))
+                        .addComponent(buttonAvancarEditJogo)
+                        .addGap(74, 74, 74)
+                        .addComponent(deleteJogo)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         PanelCadJogo1Layout.setVerticalGroup(
@@ -658,11 +670,13 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
-                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(buttonAvancarEditJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonAvancarEditJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(94, 94, 94))
         );
 
@@ -1335,6 +1349,19 @@ public class Principal extends javax.swing.JFrame {
        //TODO BOTAO DELETAR
     }//GEN-LAST:event_buttonDeleteAvaJogoActionPerformed
 
+    private void deleteJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteJogoActionPerformed
+        if(JOptionPane.showConfirmDialog(null, "Deseja excluir o jogo?") == 0){
+            controlJogo.excluirJogo(editNomeJogo.getText());
+            JOptionPane.showMessageDialog(null, "Deletado com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao deletar");
+        }
+        
+        CardLayout card = (CardLayout) PanelRoot.getLayout();
+        card.show(PanelRoot, "PanelInicial");
+        
+    }//GEN-LAST:event_deleteJogoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1411,6 +1438,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboGraficos1;
     private javax.swing.JComboBox<String> comboJogabilidade;
     private javax.swing.JComboBox<String> comboJogabilidade1;
+    private javax.swing.JButton deleteJogo;
     private javax.swing.JTextField editDesenvolvedora;
     private javax.swing.JComboBox<String> editGenero;
     private javax.swing.JTextField editNomeJogo;
@@ -1454,7 +1482,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedEditJogo;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextFieldSearch;
-    private javax.swing.JScrollPane scroller;
     private javax.swing.JTable tabela;
     private javax.swing.JTextArea textComentario;
     private javax.swing.JTextArea textComentario1;

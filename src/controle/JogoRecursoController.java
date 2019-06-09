@@ -27,9 +27,6 @@ public class JogoRecursoController {
                     (String) iterator.next()
                     
             );
-            System.out.println("NOME "+novoJogo.getNome());
-            System.out.println("DEV "+novoJogo.getDesenvolvedora());
-            System.out.println("GEN "+novoJogo.getGenero());
             retorno = novoJogo.insert();
         }
         return retorno;
@@ -52,6 +49,15 @@ public class JogoRecursoController {
             retorno = alteracaoJogo.update();
         }
         return retorno;
+    }
+    
+    public boolean excluirJogo(String nome) {
+        if (nome.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Erro na exclusão.\n");
+            return false;
+        }
+        Jogo excluirJogo = new Jogo(nome);
+        return excluirJogo.delete();
     }
     
     private boolean validarDados(ArrayList<String> lista) {
