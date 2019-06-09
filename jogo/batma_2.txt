@@ -1,5 +1,0 @@
-batma 2;
-SANDRO;
-erftt;
-12/03/1999;
-Luta;

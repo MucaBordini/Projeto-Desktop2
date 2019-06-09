@@ -10,68 +10,43 @@ package modelo;
  * @author samue
  */
 public class Usuario {
-    private static String email;
-    private static String nome;
-    private static String sobrenome;
-    private static String senha;
-    private static String cSenha;
-    private static String genero;
-    private static String favorito;
-
-    public static String getSenha() {
-        return senha;
-    }
-
-    public static void setSenha(String senha) {
-        Usuario.senha = senha;
-    }
-
-    public static String getcSenha() {
-        return cSenha;
-    }
-
-    public static void setcSenha(String cSenha) {
-        Usuario.cSenha = cSenha;
-    }
+    private String email;
+    private String nome;
+    private String senha;
+    private String cSenha;
     
-
-    public static String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public static void setEmail(String email) {
-        Usuario.email = email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public static String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public static void setNome(String nome) {
-        Usuario.nome = nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public static String getSobrenome() {
-        return sobrenome;
+
+
+    public String getSenha() {
+        return senha;
     }
 
-    public static void setSobrenome(String sobrenome) {
-        Usuario.sobrenome = sobrenome;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public static String getGenero() {
-        return genero;
+    public String getcSenha() {
+        return cSenha;
     }
 
-    public static void setGenero(String genero) {
-        Usuario.genero = genero;
+    public void setcSenha(String cSenha) {
+        this.cSenha = cSenha;
     }
-
-    public static String getFavorito() {
-        return favorito;
-    }
-
-    public static void setFavorito(String favorito) {
-        Usuario.favorito = favorito;
-    }
+  
 }

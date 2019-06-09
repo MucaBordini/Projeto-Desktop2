@@ -1,8 +1,0 @@
-sasa;
-Regular;
-Ruim;
-Ruim;
-Ruim;
-Ruim;
-12121312312;
-null;

@@ -25,7 +25,7 @@ import javax.swing.JTable;
 public class ControleBD {
     private Connection connection = null;
     private Statement stdados = null;
-    private ResultSet rsdados = null;
+    public ResultSet rsdados = null;
     
     public Connection Sair(Connection connection, PreparedStatement stmt) { 
         try {
@@ -48,6 +48,15 @@ public class ControleBD {
             return null;
         }
         return connection;
+    }
+    // Usado em UsuarioDAO
+    public void Sair() {
+        try {
+            connection.close();
+        } catch (SQLException error) {
+            String msgErro = "Erro Close: " + error;
+            JOptionPane.showMessageDialog(null, msgErro);
+        }
     }
     
     public Connection AcessaBD() {
@@ -164,6 +173,29 @@ public class ControleBD {
             //stdados.execute("SET SEARCH_PATH TO nome_esquema");//necessario para selecionar o esquema no banco de dados Postgre.
             //ou se utiliza o nome do esquema.nomedatabela
             rsdados = stdados.executeQuery(querydados);
+            //stdados.executeQuery = retorna um resultSet
+            
+        } catch (SQLException erro) {
+            System.out.println("Erro Executa Query = " + erro);
+        }
+    }
+    // Usado em UsuarioDAO
+    public void ExecutaQuery(String sql) {
+        connection = AcessaBD();
+        try {
+            
+            
+            int tipo = ResultSet.TYPE_SCROLL_SENSITIVE;
+            //ResultSet.TYPE_FORWARD_ONLY = O conjunto de dados nao � rol�vel, isto �, s� anda para frente uma �nica vez.
+            //ResultSet.TYPE_SCROLL_INSENSITIVE = O conjunto de dados � rol�vel, mas nao � sens�vel �s altera�oes do banco de dados.
+            //ResultSet.TYPE_SCROLL_SENSITIVE = O conjunto de dados � rol�vel e � sens�vel �s altera�oes do banco de dados.
+            int concorrencia = ResultSet.CONCUR_READ_ONLY;
+            //ResultSet.CONCUR_READ_ONLY = O conjunto de resultados nao pode ser usado para atualizar o banco de dados.
+            //ResultSet.CONCUR_UPDATABLE = O conjunto de resultados pode ser usado para atualizar o banco de dados.
+            stdados = connection.createStatement(tipo, concorrencia);
+            //stdados.execute("SET SEARCH_PATH TO nome_esquema");//necessario para selecionar o esquema no banco de dados Postgre.
+            //ou se utiliza o nome do esquema.nomedatabela
+            rsdados = stdados.executeQuery(sql);
             //stdados.executeQuery = retorna um resultSet
             
         } catch (SQLException erro) {

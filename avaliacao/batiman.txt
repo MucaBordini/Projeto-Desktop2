@@ -1,8 +1,0 @@
-Batiman;
-Regular;
-Ruim;
-Regular;
-Bom;
-Ruim;
-O jogo é bom mas é ruim;
-;

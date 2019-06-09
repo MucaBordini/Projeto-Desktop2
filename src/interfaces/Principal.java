@@ -5,29 +5,22 @@
  */
 package interfaces;
 
-import controle.ArquivoBinario;
-import controle.ArquivoTexto;
-import controle.CriarSenha;
-import controle.ValidateFields;
+import DAO.UsuarioDAO;
+import controle.ValidarCampos;
 import controle.ControleBD;
 import controle.JogoRecursoController;
 import java.awt.CardLayout;
 import java.awt.FontFormatException;
 import java.awt.HeadlessException;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Avaliacao;
 import modelo.Jogo;
@@ -44,17 +37,18 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     Usuario u = new Usuario();
+    UsuarioDAO ud= new UsuarioDAO();
+    ValidarCampos vc = new ValidarCampos();
     Jogo j = new Jogo();
     Avaliacao a = new Avaliacao();
-    ValidateFields v = new ValidateFields();
-    ArquivoBinario bin = new ArquivoBinario();
-    ArquivoTexto reg = new ArquivoTexto();
+    ValidarCampos v = new ValidarCampos();
+
     ControleBD controlBD = new ControleBD();
     ArrayList<String> aux = new ArrayList();
     ArrayList<String> jogo = new ArrayList();
     ArrayList<String> aval = new ArrayList();
     ArrayList<String> usu = new ArrayList();
-    CriarSenha c = new CriarSenha();
+    
     JogoRecursoController controlJogo = new JogoRecursoController();
     int i = -1;
 
@@ -80,21 +74,14 @@ public class Principal extends javax.swing.JFrame {
         LabelEditUsu = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         textEditNomeUsu = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         textEditEmail = new javax.swing.JTextField();
-        textEditSobrenome = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         textEditCSenha = new javax.swing.JPasswordField();
         textEditSenha = new javax.swing.JPasswordField();
-        jLabel14 = new javax.swing.JLabel();
-        textEditJogoFavorito = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
         buttonEditUser = new javax.swing.JButton();
-        ComboEditBoxGen = new javax.swing.JComboBox<>();
         buttonDeleteUser = new javax.swing.JButton();
-        jTabbedCadJogo = new javax.swing.JTabbedPane();
         PanelCadJogo = new javax.swing.JPanel();
         LabelCadUsu1 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -104,24 +91,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         buttonCadastrarUsuario2 = new javax.swing.JButton();
         comboGeneroJogo = new javax.swing.JComboBox<>();
-        PanelAvaJogo = new javax.swing.JPanel();
-        LabelCadUsu2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textComentario = new javax.swing.JTextArea();
-        buttonCadastrarUsuario = new javax.swing.JButton();
-        comboAudio = new javax.swing.JComboBox<>();
-        comboJogabilidade = new javax.swing.JComboBox<>();
-        comboGraficos = new javax.swing.JComboBox<>();
-        comboEnredo = new javax.swing.JComboBox<>();
-        buttonCadastrarUsuario3 = new javax.swing.JButton();
-        jLabel21 = new javax.swing.JLabel();
-        comboConteudo = new javax.swing.JComboBox<>();
-        jTabbedEditJogo = new javax.swing.JTabbedPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textAvaJogo = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        textNotaJogo = new javax.swing.JFormattedTextField();
         PanelCadJogo1 = new javax.swing.JPanel();
         LabelEditJogo = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
@@ -132,24 +106,11 @@ public class Principal extends javax.swing.JFrame {
         buttonAvancarEditJogo = new javax.swing.JButton();
         editGenero = new javax.swing.JComboBox<>();
         deleteJogo = new javax.swing.JButton();
-        PanelAvaJogo1 = new javax.swing.JPanel();
-        LabelEditAvaJogo = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        textComentario1 = new javax.swing.JTextArea();
-        buttonSaveEditAvaJogo = new javax.swing.JButton();
-        comboAudio1 = new javax.swing.JComboBox<>();
-        comboJogabilidade1 = new javax.swing.JComboBox<>();
-        comboGraficos1 = new javax.swing.JComboBox<>();
-        comboEnredo1 = new javax.swing.JComboBox<>();
-        buttonVoltarEditJogo = new javax.swing.JButton();
-        jLabel37 = new javax.swing.JLabel();
-        comboConteudo1 = new javax.swing.JComboBox<>();
-        buttonDeleteAvaJogo = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        textEditAvaJogo = new javax.swing.JTextArea();
+        jLabel14 = new javax.swing.JLabel();
+        textEditNotaJogo = new javax.swing.JFormattedTextField();
+        jLabel23 = new javax.swing.JLabel();
         PanelListGame = new javax.swing.JPanel();
         LabelListGame = new javax.swing.JLabel();
         jTextFieldSearch = new javax.swing.JTextField();
@@ -211,9 +172,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel10.setText("Sobrenome:");
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("Email:");
 
@@ -223,8 +181,6 @@ public class Principal extends javax.swing.JFrame {
                 textEditEmailActionPerformed(evt);
             }
         });
-
-        textEditSobrenome.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setText("Senha:");
@@ -244,33 +200,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel14.setText("Genero Favorito:");
-
-        textEditJogoFavorito.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        textEditJogoFavorito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textEditJogoFavoritoActionPerformed(evt);
-            }
-        });
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel15.setText("Jogo Favorito:");
-
         buttonEditUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
         buttonEditUser.setToolTipText("Salvar");
         buttonEditUser.setAutoscrolls(true);
         buttonEditUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditUserActionPerformed(evt);
-            }
-        });
-
-        ComboEditBoxGen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
-        ComboEditBoxGen.setPreferredSize(new java.awt.Dimension(74, 25));
-        ComboEditBoxGen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboEditBoxGenActionPerformed(evt);
             }
         });
 
@@ -288,58 +223,46 @@ public class Principal extends javax.swing.JFrame {
         PanelEditUsuLayout.setHorizontalGroup(
             PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelEditUsuLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelEditUsuLayout.createSequentialGroup()
-                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel9)
-                            .addComponent(LabelEditUsu))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelEditUsuLayout.createSequentialGroup()
-                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PanelEditUsuLayout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                                .addComponent(textEditJogoFavorito, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelEditUsuLayout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(53, 53, 53)
-                                .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textEditCSenha)
-                                    .addGroup(PanelEditUsuLayout.createSequentialGroup()
-                                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(textEditEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
-                                            .addComponent(textEditSobrenome, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
-                                            .addComponent(textEditNomeUsu, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
-                                            .addComponent(textEditSenha))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(ComboEditBoxGen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(38, 38, 38))))
-            .addGroup(PanelEditUsuLayout.createSequentialGroup()
                 .addGap(220, 220, 220)
                 .addComponent(buttonEditUser)
                 .addGap(55, 55, 55)
                 .addComponent(buttonDeleteUser)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(PanelEditUsuLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelEditUsuLayout.createSequentialGroup()
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel9))
+                        .addGap(53, 53, 53)
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textEditCSenha)
+                            .addGroup(PanelEditUsuLayout.createSequentialGroup()
+                                .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textEditNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(textEditEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                                        .addComponent(textEditSenha)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(38, 38, 38))
+                    .addGroup(PanelEditUsuLayout.createSequentialGroup()
+                        .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel11)
+                            .addComponent(LabelEditUsu))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         PanelEditUsuLayout.setVerticalGroup(
             PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelEditUsuLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(LabelEditUsu)
-                .addGap(18, 18, 18)
-                .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(46, 46, 46)
                 .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(textEditNomeUsu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textEditEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -351,19 +274,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textEditCSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboEditBoxGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditJogoFavorito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addGap(161, 161, 161)
                 .addGroup(PanelEditUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(buttonDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonEditUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         PanelRoot.add(PanelEditUsu, "PanelEditUsu");
@@ -386,7 +301,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setText("Gênero:");
 
-        buttonCadastrarUsuario2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_403-512 (1).png"))); // NOI18N
+        buttonCadastrarUsuario2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
         buttonCadastrarUsuario2.setAutoscrolls(true);
         buttonCadastrarUsuario2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,6 +313,24 @@ public class Principal extends javax.swing.JFrame {
         comboGeneroJogo.setSelectedIndex(-1);
         comboGeneroJogo.setPreferredSize(new java.awt.Dimension(98, 25));
 
+        textAvaJogo.setColumns(20);
+        textAvaJogo.setRows(5);
+        jScrollPane3.setViewportView(textAvaJogo);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("Avaliação:");
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel22.setText("Nota:");
+
+        textNotaJogo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        textNotaJogo.setPreferredSize(new java.awt.Dimension(6, 25));
+        textNotaJogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNotaJogoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelCadJogoLayout = new javax.swing.GroupLayout(PanelCadJogo);
         PanelCadJogo.setLayout(PanelCadJogoLayout);
         PanelCadJogoLayout.setHorizontalGroup(
@@ -407,23 +340,29 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(PanelCadJogoLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelCadUsu1)
                             .addGroup(PanelCadJogoLayout.createSequentialGroup()
-                                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel20))
+                                .addComponent(jLabel20)
                                 .addGap(117, 117, 117)
-                                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboGeneroJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(comboGeneroJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LabelCadUsu1)
                             .addGroup(PanelCadJogoLayout.createSequentialGroup()
                                 .addComponent(jLabel17)
                                 .addGap(66, 66, 66)
-                                .addComponent(textDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(textDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelCadJogoLayout.createSequentialGroup()
+                                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel22)
+                                    .addComponent(jLabel10))
+                                .addGap(103, 103, 103)
+                                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textNotaJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(PanelCadJogoLayout.createSequentialGroup()
                         .addGap(272, 272, 272)
                         .addComponent(buttonCadastrarUsuario2)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         PanelCadJogoLayout.setVerticalGroup(
             PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,155 +373,28 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboGeneroJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNotaJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(buttonCadastrarUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92))
         );
 
-        jTabbedCadJogo.addTab("Cadastrar jogo", PanelCadJogo);
-
-        PanelAvaJogo.setBackground(new java.awt.Color(236, 239, 249));
-
-        LabelCadUsu2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        LabelCadUsu2.setText("AVALIAR JOGO");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("Enredo:");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("Gráficos:");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel6.setText("Jogabilidade:");
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel8.setText("Áudio:");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setText("Comentários:");
-
-        textComentario.setColumns(20);
-        textComentario.setRows(5);
-        jScrollPane1.setViewportView(textComentario);
-
-        buttonCadastrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
-        buttonCadastrarUsuario.setAutoscrolls(true);
-        buttonCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCadastrarUsuarioActionPerformed(evt);
-            }
-        });
-
-        comboAudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboAudio.setSelectedIndex(-1);
-        comboAudio.setPreferredSize(new java.awt.Dimension(72, 25));
-
-        comboJogabilidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboJogabilidade.setSelectedIndex(-1);
-        comboJogabilidade.setPreferredSize(new java.awt.Dimension(72, 25));
-
-        comboGraficos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboGraficos.setSelectedIndex(-1);
-        comboGraficos.setPreferredSize(new java.awt.Dimension(72, 25));
-
-        comboEnredo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboEnredo.setSelectedIndex(-1);
-        comboEnredo.setPreferredSize(new java.awt.Dimension(72, 25));
-
-        buttonCadastrarUsuario3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_402-512 (2).png"))); // NOI18N
-        buttonCadastrarUsuario3.setAutoscrolls(true);
-        buttonCadastrarUsuario3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCadastrarUsuario3ActionPerformed(evt);
-            }
-        });
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel21.setText("Conteúdo:");
-
-        comboConteudo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboConteudo.setSelectedIndex(-1);
-        comboConteudo.setPreferredSize(new java.awt.Dimension(72, 25));
-
-        javax.swing.GroupLayout PanelAvaJogoLayout = new javax.swing.GroupLayout(PanelAvaJogo);
-        PanelAvaJogo.setLayout(PanelAvaJogoLayout);
-        PanelAvaJogoLayout.setHorizontalGroup(
-            PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAvaJogoLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelCadUsu2)
-                    .addGroup(PanelAvaJogoLayout.createSequentialGroup()
-                        .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel21))
-                        .addGap(79, 79, 79)
-                        .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboEnredo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboAudio, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboJogabilidade, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboConteudo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(PanelAvaJogoLayout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(buttonCadastrarUsuario3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttonCadastrarUsuario)
-                                .addGap(177, 177, 177)))))
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        PanelAvaJogoLayout.setVerticalGroup(
-            PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAvaJogoLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(LabelCadUsu2)
-                .addGap(18, 18, 18)
-                .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboEnredo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboJogabilidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboAudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboConteudo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(PanelAvaJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonCadastrarUsuario3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
-
-        jTabbedCadJogo.addTab("Avaliar jogo", PanelAvaJogo);
-
-        PanelRoot.add(jTabbedCadJogo, "cadastrarJogo");
+        PanelRoot.add(PanelCadJogo, "cadastrarJogo");
 
         PanelCadJogo1.setBackground(new java.awt.Color(236, 239, 249));
 
@@ -607,7 +419,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel31.setText("Gênero:");
 
-        buttonAvancarEditJogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_403-512 (1).png"))); // NOI18N
+        buttonAvancarEditJogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
         buttonAvancarEditJogo.setAutoscrolls(true);
         buttonAvancarEditJogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -616,7 +428,14 @@ public class Principal extends javax.swing.JFrame {
         });
 
         editGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
+        editGenero.setSelectedIndex(-1);
+        editGenero.setToolTipText("");
         editGenero.setPreferredSize(new java.awt.Dimension(98, 25));
+        editGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editGeneroActionPerformed(evt);
+            }
+        });
 
         deleteJogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/256-256-c020ce89b5c951e08148e0.png"))); // NOI18N
         deleteJogo.setToolTipText("Salvar");
@@ -626,6 +445,24 @@ public class Principal extends javax.swing.JFrame {
                 deleteJogoActionPerformed(evt);
             }
         });
+
+        textEditAvaJogo.setColumns(20);
+        textEditAvaJogo.setRows(5);
+        jScrollPane6.setViewportView(textEditAvaJogo);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel14.setText("Avaliação:");
+
+        textEditNotaJogo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        textEditNotaJogo.setPreferredSize(new java.awt.Dimension(6, 25));
+        textEditNotaJogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textEditNotaJogoActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel23.setText("Nota:");
 
         javax.swing.GroupLayout PanelCadJogo1Layout = new javax.swing.GroupLayout(PanelCadJogo1);
         PanelCadJogo1.setLayout(PanelCadJogo1Layout);
@@ -648,7 +485,15 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(PanelCadJogo1Layout.createSequentialGroup()
                                 .addComponent(jLabel28)
                                 .addGap(66, 66, 66)
-                                .addComponent(editDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(editDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelCadJogo1Layout.createSequentialGroup()
+                                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel23)
+                                    .addComponent(jLabel14))
+                                .addGap(103, 103, 103)
+                                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textEditNotaJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(PanelCadJogo1Layout.createSequentialGroup()
                         .addGap(262, 262, 262)
                         .addComponent(buttonAvancarEditJogo)
@@ -665,169 +510,30 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textEditNotaJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonAvancarEditJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(94, 94, 94))
         );
 
-        jTabbedEditJogo.addTab("Editar jogo", PanelCadJogo1);
-
-        PanelAvaJogo1.setBackground(new java.awt.Color(236, 239, 249));
-
-        LabelEditAvaJogo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        LabelEditAvaJogo.setText("EDITAR AVALIAÇÃO");
-
-        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel32.setText("Enredo:");
-
-        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel33.setText("Gráficos:");
-
-        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel34.setText("Jogabilidade:");
-
-        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel35.setText("Áudio:");
-
-        jLabel36.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel36.setText("Comentários:");
-
-        textComentario1.setColumns(20);
-        textComentario1.setRows(5);
-        jScrollPane2.setViewportView(textComentario1);
-
-        buttonSaveEditAvaJogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
-        buttonSaveEditAvaJogo.setAutoscrolls(true);
-        buttonSaveEditAvaJogo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSaveEditAvaJogoActionPerformed(evt);
-            }
-        });
-
-        comboAudio1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboAudio1.setSelectedIndex(-1);
-        comboAudio1.setPreferredSize(new java.awt.Dimension(72, 25));
-
-        comboJogabilidade1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboJogabilidade1.setSelectedIndex(-1);
-        comboJogabilidade1.setPreferredSize(new java.awt.Dimension(72, 25));
-
-        comboGraficos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboGraficos1.setSelectedIndex(-1);
-        comboGraficos1.setPreferredSize(new java.awt.Dimension(72, 25));
-
-        comboEnredo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboEnredo1.setSelectedIndex(-1);
-        comboEnredo1.setPreferredSize(new java.awt.Dimension(72, 25));
-
-        buttonVoltarEditJogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_402-512 (2).png"))); // NOI18N
-        buttonVoltarEditJogo.setAutoscrolls(true);
-        buttonVoltarEditJogo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonVoltarEditJogoActionPerformed(evt);
-            }
-        });
-
-        jLabel37.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel37.setText("Conteúdo:");
-
-        comboConteudo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Péssimo", "Ruim", "Regular", "Bom", "Excelente" }));
-        comboConteudo1.setSelectedIndex(-1);
-        comboConteudo1.setPreferredSize(new java.awt.Dimension(72, 25));
-
-        buttonDeleteAvaJogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/256-256-c020ce89b5c951e08148e0.png"))); // NOI18N
-        buttonDeleteAvaJogo.setToolTipText("Salvar");
-        buttonDeleteAvaJogo.setAutoscrolls(true);
-        buttonDeleteAvaJogo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDeleteAvaJogoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout PanelAvaJogo1Layout = new javax.swing.GroupLayout(PanelAvaJogo1);
-        PanelAvaJogo1.setLayout(PanelAvaJogo1Layout);
-        PanelAvaJogo1Layout.setHorizontalGroup(
-            PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAvaJogo1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelEditAvaJogo)
-                    .addGroup(PanelAvaJogo1Layout.createSequentialGroup()
-                        .addGroup(PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel32)
-                            .addComponent(jLabel33)
-                            .addComponent(jLabel34)
-                            .addComponent(jLabel35)
-                            .addComponent(jLabel36)
-                            .addComponent(jLabel37))
-                        .addGap(79, 79, 79)
-                        .addGroup(PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboEnredo1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboAudio1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboGraficos1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboJogabilidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboConteudo1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(33, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAvaJogo1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonVoltarEditJogo)
-                .addGap(56, 56, 56)
-                .addComponent(buttonSaveEditAvaJogo)
-                .addGap(51, 51, 51)
-                .addComponent(buttonDeleteAvaJogo)
-                .addGap(160, 160, 160))
-        );
-        PanelAvaJogo1Layout.setVerticalGroup(
-            PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAvaJogo1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(LabelEditAvaJogo)
-                .addGap(18, 18, 18)
-                .addGroup(PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboEnredo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboGraficos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboJogabilidade1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboAudio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboConteudo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(PanelAvaJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(buttonDeleteAvaJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSaveEditAvaJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonVoltarEditJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(108, Short.MAX_VALUE))
-        );
-
-        jTabbedEditJogo.addTab("Editar avaliação", PanelAvaJogo1);
-
-        PanelRoot.add(jTabbedEditJogo, "jTabbedEditGame");
+        PanelRoot.add(PanelCadJogo1, "editGame");
 
         PanelListGame.setBackground(new java.awt.Color(236, 239, 249));
         PanelListGame.setPreferredSize(new java.awt.Dimension(606, 560));
@@ -893,7 +599,8 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         PanelRoot.add(PanelListGame, "PanelListGame");
@@ -942,7 +649,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(LabelListGame1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                 .addGap(70, 70, 70))
         );
 
@@ -1016,78 +723,13 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelRoot, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(PanelRoot, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             .addComponent(PanelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuarioActionPerformed
-       
-       
-        
-
-        if(textNomeJogo.getText() != ""){
-            j.setNome(textNomeJogo.getText());
-            j.setDesenvolvedora(textDesenvolvedora.getText());
-            
-            j.setGenero(comboGeneroJogo.getModel().getSelectedItem().toString());
-            bin.criaArquivoBin("jogo");
-            //reg.criaArquivo("jogo");
-            a.setEnredo(comboEnredo.getModel().getSelectedItem().toString());
-            a.setGraficos(comboGraficos.getModel().getSelectedItem().toString());
-            a.setJogabilidade(comboJogabilidade.getModel().getSelectedItem().toString());
-            a.setAudio(comboAudio.getModel().getSelectedItem().toString());
-            a.setConteudo(comboConteudo.getModel().getSelectedItem().toString());
-            a.setComentario(textComentario.getText());
-            bin.criaArquivoBin("avaliacao");
-            //reg.criaArquivo("avaliacao");
-
-            new Principal().setVisible(true);
-            dispose();
-
-            JOptionPane.showMessageDialog(null, "Avaliação salva com sucesso\n");
-        } else {
-            JOptionPane.showMessageDialog(null, "Preencher o nome do jogo\n");
-        }
-
-        
-       
-        /*
-        String generoJogo = comboGeneroJogo.getModel().getSelectedItem().toString();
-        String enredo = comboEnredo.getModel().getSelectedItem().toString();
-        String graficos = comboGraficos.getModel().getSelectedItem().toString();
-        String jogabilidade = comboJogabilidade.getModel().getSelectedItem().toString();
-        String audio = comboAudio.getModel().getSelectedItem().toString();
-        String conteudo = comboConteudo.getModel().getSelectedItem().toString();
-
-        jogo.add(textNomeJogo.getText());
-        jogo.add(textDesenvolvedora.getText());
-        jogo.add(textProdutora.getText());
-        jogo.add(dateLancamento.getText());
-        jogo.add(generoJogo);
-        aval.add(textNomeJogo.getText());
-        aval.add(enredo);
-        aval.add(graficos);
-        aval.add(jogabilidade);
-        aval.add(audio);
-        aval.add(conteudo);
-        aval.add(textComentario.getText());
-        
-        */
-
-        //reg.criaArquivo(jogo, "jogo");
-        //reg.criaArquivo(aval, "avaliacao");
-
-
-        //new Principal().setVisible(true);
-        //dispose();
-        //JOptionPane.showMessageDialog(null, "Jogo salvo com sucesso");
-       
-        
-    }//GEN-LAST:event_buttonCadastrarUsuarioActionPerformed
 
     private void buttonCadastrarUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario2ActionPerformed
 
@@ -1124,76 +766,32 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLogoffActionPerformed
 
     private void jButtonEditUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditUsuActionPerformed
-        try {
-            CardLayout card = (CardLayout) PanelRoot.getLayout();
-            card.show(PanelRoot, "PanelEditUsu");
-            //aux = reg.openTxt(u.getEmail(),"usuarios");
-            aux = bin.lerArquivoBin(u.getEmail(), "usuarios");
-            textEditNomeUsu.setText(aux.get(0));
-            textEditSobrenome.setText(aux.get(1));
-            textEditEmail.setText(aux.get(2));
-            textEditSenha.setText(aux.get(3));
-            textEditCSenha.setText(aux.get(4));
-            ComboEditBoxGen.setSelectedItem(aux.get(5));
-            textEditJogoFavorito.setText(aux.get(6));
-            
-            u.setNome(textEditNomeUsu.getText());
-            u.setNome(textEditSobrenome.getText());
-            u.setNome(textEditEmail.getText());
-            u.setNome(textEditSenha.getText().toString());
-            u.setNome(textEditCSenha.getText().toString());
-            u.setNome(ComboEditBoxGen.getModel().getSelectedItem().toString());
-            u.setNome(textEditJogoFavorito.getText());
-            textEditEmail.setEditable(false);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CardLayout card = (CardLayout) PanelRoot.getLayout();
+        card.show(PanelRoot, "PanelEditUsu");
+        u.setEmail(Login.TextFieldLogin.getText());
+        Usuario us = ud.select(u);
+        textEditNomeUsu.setText(us.getNome());
+        textEditEmail.setText(us.getEmail());
+        textEditSenha.setText(us.getSenha());
+        textEditCSenha.setText(us.getcSenha());
+        textEditEmail.setEditable(false);
         
     }//GEN-LAST:event_jButtonEditUsuActionPerformed
 
-    private void buttonCadastrarUsuario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario3ActionPerformed
-        jTabbedCadJogo.setSelectedIndex(0);
-    }//GEN-LAST:event_buttonCadastrarUsuario3ActionPerformed
-
-    private void ComboEditBoxGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboEditBoxGenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComboEditBoxGenActionPerformed
-
     private void buttonEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditUserActionPerformed
-        String emailAntigo = u.getEmail();
-        
-      
+        if(vc.camposVazios(textEditNomeUsu.getText(),textEditEmail.getText(),textEditSenha.getText(),textEditCSenha.getText())){
             if(textEditSenha.getText().equals(textEditCSenha.getText())){            
-                try {
-            
-                    u.setNome(textEditNomeUsu.getText());
-                    u.setSobrenome(textEditSobrenome.getText());
-                    //u.setEmail(textEditEmail.getText());
-                    u.setSenha(textEditSenha.getText().toString());
-                    u.setcSenha(textEditCSenha.getText().toString());
-                    u.setGenero(ComboEditBoxGen.getModel().getSelectedItem().toString());
-                    u.setFavorito(textEditJogoFavorito.getText());
-                        
-                    
-                   
-                    reg.criaArquivo("usuarios");
-                    c.CriarSenha();
-                 
-                    dispose();
-                    new Principal().setVisible(true);
-                    JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso!");
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                u.setNome(textEditNomeUsu.getText());
+                u.setEmail(textEditEmail.getText());
+                u.setSenha(textEditSenha.getText());
+                u.setcSenha(textEditCSenha.getText());
+                ud.update(u);            
+                JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso!");
             } else {
                 JOptionPane.showMessageDialog(null, "As senhas não conferem");
             }
-        
+        }   
     }//GEN-LAST:event_buttonEditUserActionPerformed
-
-    private void textEditJogoFavoritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEditJogoFavoritoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textEditJogoFavoritoActionPerformed
 
     private void textEditSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEditSenhaActionPerformed
         // TODO add your handling code here:
@@ -1208,7 +806,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_textEditNomeUsuActionPerformed
 
     private void buttonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteUserActionPerformed
-        //TODO DELETE USUARIO
+        int op = JOptionPane.showConfirmDialog(null, "Deseja excluir usuario?\n(Você será levado a tela de login)");
+        
+        if(op == JOptionPane.YES_OPTION){
+            ud.delete(textEditEmail.getText());
+            new Login().setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_buttonDeleteUserActionPerformed
 
     private void buttonAvancarEditJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAvancarEditJogoActionPerformed
@@ -1234,37 +838,6 @@ public class Principal extends javax.swing.JFrame {
         }
         //jTabbedEditJogo.setSelectedIndex(1);
     }//GEN-LAST:event_buttonAvancarEditJogoActionPerformed
-
-    private void buttonSaveEditAvaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveEditAvaJogoActionPerformed
-        /*if(j.getNome().equals(editNomeJogo) && j.getDesenvolvedora().equals(editDesenvolvedora) && j.getProdutora().equals(editProdutora)&& j.getData().equals(editData)
-                && j.getGenero().equals(editGenero) ){
-            JOptionPane.showMessageDialog(null, "Não houve alteração\n");
-        } else {*/
-            j.setNome(editNomeJogo.getText());
-            j.setDesenvolvedora(editDesenvolvedora.getText());
-            j.setGenero(editGenero.getModel().getSelectedItem().toString());
-            bin.criaArquivoBin("jogo");
-            //reg.criaArquivo("jogo");
-        a.setEnredo(comboEnredo1.getModel().getSelectedItem().toString());
-        a.setGraficos(comboGraficos1.getModel().getSelectedItem().toString());
-        a.setJogabilidade(comboJogabilidade1.getModel().getSelectedItem().toString());
-        a.setAudio(comboAudio1.getModel().getSelectedItem().toString());
-        a.setConteudo(comboConteudo1.getModel().getSelectedItem().toString());
-        a.setComentario(textComentario1.getText());
-        bin.criaArquivoBin("avaliacao");
-        //reg.criaArquivo("avaliacao");
-
-        /*new Principal().setVisible(true);
-        dispose();*/
-
-            JOptionPane.showMessageDialog(null, "Edição salva com sucesso\n");
-        
-        
-    }//GEN-LAST:event_buttonSaveEditAvaJogoActionPerformed
-
-    private void buttonVoltarEditJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarEditJogoActionPerformed
-        jTabbedEditJogo.setSelectedIndex(0);
-    }//GEN-LAST:event_buttonVoltarEditJogoActionPerformed
 
     private void jButtonListGamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListGamesActionPerformed
         CardLayout card = (CardLayout) PanelRoot.getLayout();
@@ -1325,7 +898,7 @@ public class Principal extends javax.swing.JFrame {
         editNomeJogo.setEditable(false);
         
         CardLayout card = (CardLayout) PanelRoot.getLayout();
-        card.show(PanelRoot, "jTabbedEditGame");
+        card.show(PanelRoot, "editGame");
             
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1345,10 +918,6 @@ public class Principal extends javax.swing.JFrame {
         //TODO LISTAR AVALIAÇAO
     }//GEN-LAST:event_jButtonListAvaActionPerformed
 
-    private void buttonDeleteAvaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteAvaJogoActionPerformed
-       //TODO BOTAO DELETAR
-    }//GEN-LAST:event_buttonDeleteAvaJogoActionPerformed
-
     private void deleteJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteJogoActionPerformed
         if(JOptionPane.showConfirmDialog(null, "Deseja excluir o jogo?") == 0){
             controlJogo.excluirJogo(editNomeJogo.getText());
@@ -1361,6 +930,18 @@ public class Principal extends javax.swing.JFrame {
         card.show(PanelRoot, "PanelInicial");
         
     }//GEN-LAST:event_deleteJogoActionPerformed
+
+    private void textNotaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaJogoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNotaJogoActionPerformed
+
+    private void textEditNotaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEditNotaJogoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textEditNotaJogoActionPerformed
+
+    private void editGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editGeneroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editGeneroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1399,17 +980,12 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ComboEditBoxGen;
     private javax.swing.JLabel LabelCadUsu1;
-    private javax.swing.JLabel LabelCadUsu2;
-    private javax.swing.JLabel LabelEditAvaJogo;
     private javax.swing.JLabel LabelEditJogo;
     private javax.swing.JLabel LabelEditUsu;
     private javax.swing.JLabel LabelListGame;
     private javax.swing.JLabel LabelListGame1;
     private javax.swing.JLabel Logo;
-    private javax.swing.JPanel PanelAvaJogo;
-    private javax.swing.JPanel PanelAvaJogo1;
     private javax.swing.JPanel PanelCadJogo;
     private javax.swing.JPanel PanelCadJogo1;
     private javax.swing.JPanel PanelEditUsu;
@@ -1419,25 +995,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelListGame;
     private javax.swing.JPanel PanelRoot;
     private javax.swing.JButton buttonAvancarEditJogo;
-    private javax.swing.JButton buttonCadastrarUsuario;
     private javax.swing.JButton buttonCadastrarUsuario2;
-    private javax.swing.JButton buttonCadastrarUsuario3;
-    private javax.swing.JButton buttonDeleteAvaJogo;
     private javax.swing.JButton buttonDeleteUser;
     private javax.swing.JButton buttonEditUser;
-    private javax.swing.JButton buttonSaveEditAvaJogo;
-    private javax.swing.JButton buttonVoltarEditJogo;
-    private javax.swing.JComboBox<String> comboAudio;
-    private javax.swing.JComboBox<String> comboAudio1;
-    private javax.swing.JComboBox<String> comboConteudo;
-    private javax.swing.JComboBox<String> comboConteudo1;
-    private javax.swing.JComboBox<String> comboEnredo;
-    private javax.swing.JComboBox<String> comboEnredo1;
     private javax.swing.JComboBox<String> comboGeneroJogo;
-    private javax.swing.JComboBox<String> comboGraficos;
-    private javax.swing.JComboBox<String> comboGraficos1;
-    private javax.swing.JComboBox<String> comboJogabilidade;
-    private javax.swing.JComboBox<String> comboJogabilidade1;
     private javax.swing.JButton deleteJogo;
     private javax.swing.JTextField editDesenvolvedora;
     private javax.swing.JComboBox<String> editGenero;
@@ -1453,45 +1014,32 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTabbedPane jTabbedCadJogo;
-    private javax.swing.JTabbedPane jTabbedEditJogo;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextFieldSearch;
     private javax.swing.JTable tabela;
-    private javax.swing.JTextArea textComentario;
-    private javax.swing.JTextArea textComentario1;
+    private javax.swing.JTextArea textAvaJogo;
     private javax.swing.JTextField textDesenvolvedora;
+    private javax.swing.JTextArea textEditAvaJogo;
     private javax.swing.JPasswordField textEditCSenha;
     private javax.swing.JTextField textEditEmail;
-    private javax.swing.JTextField textEditJogoFavorito;
     private javax.swing.JTextField textEditNomeUsu;
+    private javax.swing.JFormattedTextField textEditNotaJogo;
     private javax.swing.JPasswordField textEditSenha;
-    private javax.swing.JTextField textEditSobrenome;
     private javax.swing.JTextField textNomeJogo;
+    private javax.swing.JFormattedTextField textNotaJogo;
     // End of variables declaration//GEN-END:variables
 }

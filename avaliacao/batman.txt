@@ -1,6 +1,0 @@
-Péssimo;
-Ruim;
-Bom;
-Regular;
-Bom;
-;

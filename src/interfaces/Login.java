@@ -5,10 +5,8 @@
  */
 package interfaces;
 
-import controle.TestLogin;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import controle.ControleBD;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
@@ -22,11 +20,13 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     Usuario u = new Usuario();
-    TestLogin login = new TestLogin();
+    ControleBD bd = new ControleBD();
+
   
     public Login() {
         initComponents();
-        setResizable(false);     
+        setResizable(false);
+        bd.AcessaBD();
     }
 
     /**
@@ -56,6 +56,11 @@ public class Login extends javax.swing.JFrame {
 
         TextFieldLogin.setToolTipText("Informe o email");
         TextFieldLogin.setPreferredSize(new java.awt.Dimension(6, 25));
+        TextFieldLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldLoginActionPerformed(evt);
+            }
+        });
 
         PasswordFieldSenha.setToolTipText("Digite a senha");
         PasswordFieldSenha.setPreferredSize(new java.awt.Dimension(6, 25));
@@ -123,26 +128,30 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEntrarActionPerformed
-        
-        u.setEmail(TextFieldLogin.getText());
-        u.setSenha(PasswordFieldSenha.getText().toString());
-
         try {
-            if(login.TestLogin()){
+            bd.ExecutaQuery("SELECT * FROM usuario WHERE usu_email = '"+TextFieldLogin.getText()+"'");
+            bd.rsdados.first();
+                     
+            if(bd.rsdados.getString("usu_pass").equals(PasswordFieldSenha.getText())){
                 new Principal().setVisible(true);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Email e/ou senha inválido!");
             }
-        }catch (IOException ex ) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Email e/ou senha inválido!");;
         }
+        
     }//GEN-LAST:event_ButtonEntrarActionPerformed
 
     private void ButtonEntrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEntrar1ActionPerformed
         new Registrar().setVisible(true);
         dispose();
     }//GEN-LAST:event_ButtonEntrar1ActionPerformed
+
+    private void TextFieldLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,7 +192,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton ButtonEntrar;
     private javax.swing.JButton ButtonEntrar1;
     private javax.swing.JPasswordField PasswordFieldSenha;
-    private javax.swing.JTextField TextFieldLogin;
+    public static javax.swing.JTextField TextFieldLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
