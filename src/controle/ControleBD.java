@@ -179,6 +179,29 @@ public class ControleBD {
             System.out.println("Erro Executa Query = " + erro);
         }
     }
+    
+    public void ExecutaQuery(Connection connection, String tabela, StringBuilder campos, String selecionado) {
+        connection = AcessaBD();
+        try {
+            String querydados = "SELECT "+campos+" FROM "+tabela+" WHERE usu_email_fk = '"+selecionado+"';";
+            
+            int tipo = ResultSet.TYPE_SCROLL_SENSITIVE;
+            //ResultSet.TYPE_FORWARD_ONLY = O conjunto de dados nao � rol�vel, isto �, s� anda para frente uma �nica vez.
+            //ResultSet.TYPE_SCROLL_INSENSITIVE = O conjunto de dados � rol�vel, mas nao � sens�vel �s altera�oes do banco de dados.
+            //ResultSet.TYPE_SCROLL_SENSITIVE = O conjunto de dados � rol�vel e � sens�vel �s altera�oes do banco de dados.
+            int concorrencia = ResultSet.CONCUR_READ_ONLY;
+            //ResultSet.CONCUR_READ_ONLY = O conjunto de resultados nao pode ser usado para atualizar o banco de dados.
+            //ResultSet.CONCUR_UPDATABLE = O conjunto de resultados pode ser usado para atualizar o banco de dados.
+            stdados = connection.createStatement(tipo, concorrencia);
+            //stdados.execute("SET SEARCH_PATH TO nome_esquema");//necessario para selecionar o esquema no banco de dados Postgre.
+            //ou se utiliza o nome do esquema.nomedatabela
+            rsdados = stdados.executeQuery(querydados);
+            //stdados.executeQuery = retorna um resultSet
+            
+        } catch (SQLException erro) {
+            System.out.println("Erro Executa Query = " + erro);
+        }
+    }
     // Usado em UsuarioDAO
     public void ExecutaQuery(String sql) {
         connection = AcessaBD();

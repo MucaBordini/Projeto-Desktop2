@@ -5,74 +5,82 @@
  */
 package modelo;
 
+import DAO.AvaliacaoDAO;
+import DAO.JogoDAO;
+
 /**
  *
  * @author samue
  */
 public class Avaliacao {
-    private static String jogabilidade;
-    private static String graficos;
-    private static String enredo;
-    private static String audio;
-    private static String conteudo;
-    private static String comentario;
-    private static String nome;
-
-    public static String getNome() {
-        return nome;
-    }
-
-    public static void setNome(String nome) {
-        Avaliacao.nome = nome;
-    }
-
-    public static String getConteudo() {
-        return conteudo;
-    }
-
-    public static void setConteudo(String conteudo) {
-        Avaliacao.conteudo = conteudo;
-    }
-
     
-    public static String getJogabilidade() {
-        return jogabilidade;
+    private String comentario;
+    private double nota;
+    private Usuario usuario;
+    private Jogo jogo;
+    
+    public Avaliacao(double nota, String comentario, Usuario usuario, Jogo jogo){
+        this.nota = nota;
+        this.comentario = comentario;
+        this.usuario = usuario;
+        this.jogo = jogo;
+    }
+    
+    public Avaliacao(){
+        
+    }
+    
+    public Avaliacao(Usuario usuario, Jogo jogo){
+        this.usuario = usuario;
+        this.jogo = jogo;
+    }
+    
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public static void setJogabilidade(String jogabilidade) {
-        Avaliacao.jogabilidade = jogabilidade;
+    public Jogo getJogo() {
+        return jogo;
     }
 
-    public static String getGraficos() {
-        return graficos;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public static void setGraficos(String graficos) {
-        Avaliacao.graficos = graficos;
+    public void setJogo(Jogo jogo) {
+        this.jogo = jogo;
+    }
+    
+    
+
+    public double getNota() {
+        return nota;
     }
 
-    public static String getEnredo() {
-        return enredo;
+    public  void setNota(double nota) {
+        this.nota = nota;
     }
 
-    public static void setEnredo(String enredo) {
-        Avaliacao.enredo = enredo;
-    }
+   
 
-    public static String getAudio() {
-        return audio;
-    }
-
-    public static void setAudio(String audio) {
-        Avaliacao.audio = audio;
-    }
-
-    public static String getComentario() {
+    public  String getComentario() {
         return comentario;
     }
 
-    public static void setComentario(String comentario) {
-        Avaliacao.comentario = comentario;
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+    
+    public boolean insert(){
+        return AvaliacaoDAO.insert(this);
+    }
+    
+    public boolean delete(){
+        return AvaliacaoDAO.delete(this.getUsuario().getEmail(), this.getJogo().getNome());
+    }
+    
+    public boolean update(){
+        return AvaliacaoDAO.update(this);
     }
     
 }

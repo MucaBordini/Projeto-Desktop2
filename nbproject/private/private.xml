@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2/src/interfaces/Principal.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2/src/DAO/AvaliacaoDAO.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2/src/controle/ControleBD.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2/src/modelo/Avaliacao.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2/src/interfaces/Login.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2/src/sql/avaliacao_jogos.sql</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2/src/controle/AvaliacaoRecursoController.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2/src/DAO/JogoDAO.java</file>
+        </group>
     </open-files>
 </project-private>

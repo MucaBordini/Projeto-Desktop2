@@ -6,6 +6,7 @@
 package interfaces;
 
 import DAO.UsuarioDAO;
+import controle.AvaliacaoRecursoController;
 import controle.ValidarCampos;
 import controle.ControleBD;
 import controle.JogoRecursoController;
@@ -13,6 +14,7 @@ import java.awt.CardLayout;
 import java.awt.FontFormatException;
 import java.awt.HeadlessException;
 import java.io.IOException;
+import static java.lang.Double.parseDouble;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -50,6 +52,7 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<String> usu = new ArrayList();
     
     JogoRecursoController controlJogo = new JogoRecursoController();
+    AvaliacaoRecursoController controlAval = new AvaliacaoRecursoController();
     int i = -1;
 
 
@@ -91,11 +94,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         buttonCadastrarUsuario2 = new javax.swing.JButton();
         comboGeneroJogo = new javax.swing.JComboBox<>();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        textAvaJogo = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        textNotaJogo = new javax.swing.JFormattedTextField();
         PanelCadJogo1 = new javax.swing.JPanel();
         LabelEditJogo = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
@@ -106,11 +104,7 @@ public class Principal extends javax.swing.JFrame {
         buttonAvancarEditJogo = new javax.swing.JButton();
         editGenero = new javax.swing.JComboBox<>();
         deleteJogo = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        textEditAvaJogo = new javax.swing.JTextArea();
-        jLabel14 = new javax.swing.JLabel();
-        textEditNotaJogo = new javax.swing.JFormattedTextField();
-        jLabel23 = new javax.swing.JLabel();
+        avaliar = new javax.swing.JButton();
         PanelListGame = new javax.swing.JPanel();
         LabelListGame = new javax.swing.JLabel();
         jTextFieldSearch = new javax.swing.JTextField();
@@ -120,7 +114,25 @@ public class Principal extends javax.swing.JFrame {
         PanelListAva = new javax.swing.JPanel();
         LabelListGame1 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaAval = new javax.swing.JTable();
+        editarAval = new javax.swing.JButton();
+        minhasAval1 = new javax.swing.JButton();
+        excluirAval = new javax.swing.JButton();
+        PanelCadAval = new javax.swing.JPanel();
+        LabelCadAval = new javax.swing.JLabel();
+        labelNomeAval = new javax.swing.JLabel();
+        textNomeAval = new javax.swing.JTextField();
+        labelDev = new javax.swing.JLabel();
+        textDevAval = new javax.swing.JTextField();
+        labelGen = new javax.swing.JLabel();
+        comboGenAval = new javax.swing.JComboBox<>();
+        labelNota = new javax.swing.JLabel();
+        textNota = new javax.swing.JFormattedTextField();
+        labelAval = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        textAval = new javax.swing.JTextArea();
+        salvarAval = new javax.swing.JButton();
+        editarAvaliacao = new javax.swing.JButton();
         PanelLateral = new javax.swing.JPanel();
         jButtonEditUsu = new javax.swing.JButton();
         jButtonLogoff = new javax.swing.JButton();
@@ -313,24 +325,6 @@ public class Principal extends javax.swing.JFrame {
         comboGeneroJogo.setSelectedIndex(-1);
         comboGeneroJogo.setPreferredSize(new java.awt.Dimension(98, 25));
 
-        textAvaJogo.setColumns(20);
-        textAvaJogo.setRows(5);
-        jScrollPane3.setViewportView(textAvaJogo);
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel10.setText("Avaliação:");
-
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel22.setText("Nota:");
-
-        textNotaJogo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
-        textNotaJogo.setPreferredSize(new java.awt.Dimension(6, 25));
-        textNotaJogo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textNotaJogoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout PanelCadJogoLayout = new javax.swing.GroupLayout(PanelCadJogo);
         PanelCadJogo.setLayout(PanelCadJogoLayout);
         PanelCadJogoLayout.setHorizontalGroup(
@@ -350,15 +344,9 @@ public class Principal extends javax.swing.JFrame {
                                 .addGap(66, 66, 66)
                                 .addComponent(textDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(PanelCadJogoLayout.createSequentialGroup()
-                                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel10))
-                                .addGap(103, 103, 103)
-                                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textNotaJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel16)
+                                .addGap(126, 126, 126)
+                                .addComponent(textNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(PanelCadJogoLayout.createSequentialGroup()
                         .addGap(272, 272, 272)
                         .addComponent(buttonCadastrarUsuario2)))
@@ -381,15 +369,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboGeneroJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNotaJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelCadJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
                 .addComponent(buttonCadastrarUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92))
         );
@@ -446,23 +426,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        textEditAvaJogo.setColumns(20);
-        textEditAvaJogo.setRows(5);
-        jScrollPane6.setViewportView(textEditAvaJogo);
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel14.setText("Avaliação:");
-
-        textEditNotaJogo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
-        textEditNotaJogo.setPreferredSize(new java.awt.Dimension(6, 25));
-        textEditNotaJogo.addActionListener(new java.awt.event.ActionListener() {
+        avaliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
+        avaliar.setText("Avaliar");
+        avaliar.setAutoscrolls(true);
+        avaliar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textEditNotaJogoActionPerformed(evt);
+                avaliarActionPerformed(evt);
             }
         });
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel23.setText("Nota:");
 
         javax.swing.GroupLayout PanelCadJogo1Layout = new javax.swing.GroupLayout(PanelCadJogo1);
         PanelCadJogo1.setLayout(PanelCadJogo1Layout);
@@ -485,21 +456,15 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(PanelCadJogo1Layout.createSequentialGroup()
                                 .addComponent(jLabel28)
                                 .addGap(66, 66, 66)
-                                .addComponent(editDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelCadJogo1Layout.createSequentialGroup()
-                                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel23)
-                                    .addComponent(jLabel14))
-                                .addGap(103, 103, 103)
-                                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textEditNotaJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(editDesenvolvedora, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(PanelCadJogo1Layout.createSequentialGroup()
-                        .addGap(262, 262, 262)
+                        .addGap(140, 140, 140)
+                        .addComponent(avaliar)
+                        .addGap(55, 55, 55)
                         .addComponent(buttonAvancarEditJogo)
-                        .addGap(74, 74, 74)
+                        .addGap(57, 57, 57)
                         .addComponent(deleteJogo)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         PanelCadJogo1Layout.setVerticalGroup(
             PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,18 +483,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEditNotaJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                 .addGroup(PanelCadJogo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonAvancarEditJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deleteJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(avaliar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(94, 94, 94))
         );
 
@@ -600,7 +558,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         PanelRoot.add(PanelListGame, "PanelListGame");
@@ -611,49 +569,225 @@ public class Principal extends javax.swing.JFrame {
         LabelListGame1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         LabelListGame1.setText("LISTAR AVALIAÇÕES");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaAval.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Enredo", "Gráficos", "Jogabilidade", "Áudio", "Conteúdo", "Comentário", "Autor"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            }
+        ));
+        jScrollPane4.setViewportView(tabelaAval);
+
+        editarAval.setText("Editar");
+        editarAval.setAutoscrolls(true);
+        editarAval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarAvalActionPerformed(evt);
             }
         });
-        jScrollPane4.setViewportView(jTable2);
+
+        minhasAval1.setText("Minhas avaliações");
+        minhasAval1.setAutoscrolls(true);
+        minhasAval1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minhasAval1ActionPerformed(evt);
+            }
+        });
+
+        excluirAval.setText("Excluir");
+        excluirAval.setAutoscrolls(true);
+        excluirAval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirAvalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelListAvaLayout = new javax.swing.GroupLayout(PanelListAva);
         PanelListAva.setLayout(PanelListAvaLayout);
         PanelListAvaLayout.setHorizontalGroup(
             PanelListAvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelListAvaLayout.createSequentialGroup()
-                .addGroup(PanelListAvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelListAvaLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PanelListAvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PanelListAvaLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(LabelListGame1)))
+                        .addComponent(LabelListGame1)
+                        .addGap(161, 161, 161)
+                        .addComponent(minhasAval1))
+                    .addGroup(PanelListAvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(PanelListAvaLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(excluirAval)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(editarAval)
+                            .addGap(8, 8, 8))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelListAvaLayout.createSequentialGroup()
+                            .addGap(19, 19, 19)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         PanelListAvaLayout.setVerticalGroup(
             PanelListAvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelListAvaLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(LabelListGame1)
+                .addGap(35, 35, 35)
+                .addGroup(PanelListAvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LabelListGame1)
+                    .addComponent(minhasAval1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
-                .addGap(70, 70, 70))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGroup(PanelListAvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(excluirAval, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarAval, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
         PanelRoot.add(PanelListAva, "PanelListAva");
+
+        LabelCadAval.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        LabelCadAval.setText("CADASTRAR AVALIAÇÃO");
+
+        labelNomeAval.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelNomeAval.setText("Nome:");
+        labelNomeAval.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                labelNomeAvalKeyTyped(evt);
+            }
+        });
+
+        textNomeAval.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        textNomeAval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNomeAvalActionPerformed(evt);
+            }
+        });
+
+        labelDev.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelDev.setText("Desenvolvedora:");
+
+        textDevAval.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+
+        labelGen.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelGen.setText("Gênero:");
+
+        comboGenAval.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
+        comboGenAval.setSelectedIndex(-1);
+        comboGenAval.setToolTipText("");
+        comboGenAval.setPreferredSize(new java.awt.Dimension(98, 25));
+        comboGenAval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboGenAvalActionPerformed(evt);
+            }
+        });
+
+        labelNota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelNota.setText("Nota:");
+
+        textNota.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        textNota.setPreferredSize(new java.awt.Dimension(6, 25));
+        textNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNotaActionPerformed(evt);
+            }
+        });
+
+        labelAval.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelAval.setText("Avaliação:");
+
+        textAval.setColumns(20);
+        textAval.setRows(5);
+        jScrollPane7.setViewportView(textAval);
+
+        salvarAval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
+        salvarAval.setAutoscrolls(true);
+        salvarAval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarAvalActionPerformed(evt);
+            }
+        });
+
+        editarAvaliacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
+        editarAvaliacao.setAutoscrolls(true);
+        editarAvaliacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarAvaliacaoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelCadAvalLayout = new javax.swing.GroupLayout(PanelCadAval);
+        PanelCadAval.setLayout(PanelCadAvalLayout);
+        PanelCadAvalLayout.setHorizontalGroup(
+            PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCadAvalLayout.createSequentialGroup()
+                .addContainerGap(309, Short.MAX_VALUE)
+                .addComponent(editarAvaliacao)
+                .addGap(244, 244, 244))
+            .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelCadAvalLayout.createSequentialGroup()
+                    .addGap(38, 38, 38)
+                    .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(LabelCadAval)
+                        .addGroup(PanelCadAvalLayout.createSequentialGroup()
+                            .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelNomeAval)
+                                .addComponent(labelGen))
+                            .addGap(117, 117, 117)
+                            .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(textNomeAval, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboGenAval, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(PanelCadAvalLayout.createSequentialGroup()
+                            .addComponent(labelDev)
+                            .addGap(66, 66, 66)
+                            .addComponent(textDevAval, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(PanelCadAvalLayout.createSequentialGroup()
+                            .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelNota)
+                                .addComponent(labelAval))
+                            .addGap(103, 103, 103)
+                            .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textNota, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(PanelCadAvalLayout.createSequentialGroup()
+                            .addGap(220, 220, 220)
+                            .addComponent(salvarAval)))
+                    .addContainerGap(39, Short.MAX_VALUE)))
+        );
+        PanelCadAvalLayout.setVerticalGroup(
+            PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCadAvalLayout.createSequentialGroup()
+                .addContainerGap(471, Short.MAX_VALUE)
+                .addComponent(editarAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
+            .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelCadAvalLayout.createSequentialGroup()
+                    .addGap(70, 70, 70)
+                    .addComponent(LabelCadAval)
+                    .addGap(49, 49, 49)
+                    .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelNomeAval, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textNomeAval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelDev, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textDevAval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(labelGen, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboGenAval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelNota, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(PanelCadAvalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(labelAval, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                    .addComponent(salvarAval, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(70, 70, 70)))
+        );
+
+        PanelRoot.add(PanelCadAval, "avaliacaoJogo");
 
         PanelLateral.setBackground(new java.awt.Color(43, 64, 136));
         PanelLateral.setPreferredSize(new java.awt.Dimension(200, 579));
@@ -723,7 +857,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelRoot, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(PanelRoot, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(PanelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
         );
 
@@ -746,7 +880,7 @@ public class Principal extends javax.swing.JFrame {
             if (controlJogo.criarJogo(novaLista)) {
                 JOptionPane.showMessageDialog(this, "O jogo foi salva com sucesso!");
                 CardLayout card = (CardLayout) PanelRoot.getLayout();
-                card.show(PanelRoot, "cadastrarJogo");
+                card.show(PanelRoot, "PanelInicial");
             }
         } catch (HeadlessException error) {
             String msgErro = "Erro: " + error;
@@ -892,6 +1026,9 @@ public class Principal extends javax.swing.JFrame {
             editNomeJogo.setText(rs.getString("jogo_nome"));
             editDesenvolvedora.setText(rs.getString("jogo_dev"));
             editGenero.setSelectedItem(rs.getString("jogo_gen"));
+            textNomeAval.setText(editNomeJogo.getText());
+            textDevAval.setText(editDesenvolvedora.getText());
+            comboGenAval.setSelectedItem(editGenero.getSelectedItem());
         } catch (Exception erro) {
             System.out.println(erro);
         }
@@ -914,6 +1051,35 @@ public class Principal extends javax.swing.JFrame {
     private void jButtonListAvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListAvaActionPerformed
         CardLayout card = (CardLayout) PanelRoot.getLayout();
         card.show(PanelRoot, "PanelListAva");
+        excluirAval.setVisible(false);
+        editarAval.setVisible(false);
+        Connection connection = null;
+        StringBuilder campos = new StringBuilder();
+        campos.append("*");
+        controlBD.ExecutaQuery(connection, "avaliacao", campos);
+        ResultSet rs = controlBD.retornaConsulta();
+        
+        String[] colunasNomes = {"Nota", "Comentario", "Email", "Jogo"};
+        DefaultTableModel modelAval = (DefaultTableModel)tabelaAval.getModel();
+        modelAval.getDataVector().removeAllElements();
+        modelAval.setColumnIdentifiers(colunasNomes);
+        ResultSetMetaData rsmd;
+        try {
+            rsmd = rs.getMetaData();
+            int colNum = rsmd.getColumnCount();
+        while(rs.next()){
+            Object[] objects = new Object[colNum];
+            for(int i = 0; i < colNum; i++){
+                objects[i] = rs.getObject(i+1);
+            }
+            modelAval.addRow(objects);
+        }
+        
+        tabelaAval.setModel(modelAval);
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         //TODO LISTAR AVALIAÇAO
     }//GEN-LAST:event_jButtonListAvaActionPerformed
@@ -931,17 +1097,198 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_deleteJogoActionPerformed
 
-    private void textNotaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaJogoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textNotaJogoActionPerformed
-
-    private void textEditNotaJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEditNotaJogoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textEditNotaJogoActionPerformed
-
     private void editGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editGeneroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editGeneroActionPerformed
+
+    private void textNomeAvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomeAvalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNomeAvalActionPerformed
+
+    private void comboGenAvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGenAvalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboGenAvalActionPerformed
+
+    private void textNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNotaActionPerformed
+
+    private void salvarAvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarAvalActionPerformed
+        try {
+            u.setEmail(Login.TextFieldLogin.getText());
+            String editNota = textNota.getText();
+            String editAval = textAval.getText();
+            String editJogoAval = textNomeAval.getText();
+            String editNotaC = editNota.replace(',','.');
+            
+            j.setNome(editJogoAval);
+            System.out.println("JOGO : "+j.getNome());
+            System.out.println("USU : "+u.getEmail());
+            ArrayList novaLista = new ArrayList();
+            novaLista.add(parseDouble(editNotaC));
+            novaLista.add(editAval);
+            novaLista.add(u);
+            novaLista.add(j);
+
+            if (controlAval.criarAval(novaLista)) {
+                JOptionPane.showMessageDialog(this, "Avaliação salva com sucesso!");
+                CardLayout card = (CardLayout) PanelRoot.getLayout();
+                card.show(PanelRoot, "editarJogo");
+            } 
+        } catch (HeadlessException error) {
+            System.err.println("Erro: " + error);
+        }
+    }//GEN-LAST:event_salvarAvalActionPerformed
+
+    private void labelNomeAvalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_labelNomeAvalKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelNomeAvalKeyTyped
+
+    private void avaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliarActionPerformed
+        CardLayout card = (CardLayout) PanelRoot.getLayout();
+        card.show(PanelRoot, "avaliacaoJogo");
+        labelGen.setVisible(true);
+        labelDev.setVisible(true);
+        labelNomeAval.setVisible(true);
+        textNomeAval.setVisible(true);
+        textDevAval.setVisible(true);
+        comboGenAval.setVisible(true);
+        textNomeAval.setEditable(false);
+        textDevAval.setEditable(false);
+        comboGenAval.setEditable(false);
+        comboGenAval.setEnabled(false);
+        editarAvaliacao.setVisible(false);
+        salvarAval.setVisible(true);
+    }//GEN-LAST:event_avaliarActionPerformed
+
+    private void editarAvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAvalActionPerformed
+        try {
+            int selectedRowIndex = tabelaAval.getSelectedRow();
+            if (selectedRowIndex >= 0) {
+                String nome = tabelaAval.getModel().
+                        getValueAt(selectedRowIndex, 2).toString();
+                String jogo = tabelaAval.getModel().
+                        getValueAt(selectedRowIndex, 3).toString();
+                u.setEmail(nome);
+                j.setNome(jogo);
+                int confirm = JOptionPane.showConfirmDialog(this,
+                        "Deseja editar a avaliacao do jogo " + jogo + "?");
+                if (confirm == 0) {
+                    DefaultTableModel modelAval = (DefaultTableModel) tabelaAval.getModel();
+                    CardLayout card = (CardLayout) PanelRoot.getLayout();
+                    card.show(PanelRoot, "avaliacaoJogo");
+                    labelGen.setVisible(false);
+                    labelDev.setVisible(false);
+                    labelNomeAval.setVisible(false);
+                    textNomeAval.setVisible(false);
+                    textDevAval.setVisible(false);
+                    comboGenAval.setVisible(false);
+                    comboGenAval.setEnabled(false);
+                    editarAvaliacao.setVisible(true);
+                    salvarAval.setVisible(false);
+                    Connection connection = null;
+                    controlBD.ExecutaQuery("SELECT * FROM avaliacao WHERE usu_email_fk = '"+nome+"' AND jogo_nome_fk = '"+jogo+"' ;");
+                    ResultSet rs = controlBD.retornaConsulta();
+                    rs.next();
+                    textNota.setText(rs.getString("nota"));
+                    textAval.setText(rs.getString("comentario"));
+                    
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Nenhuma avaliacao selecionada");
+            }
+        } catch (HeadlessException error) {
+            String msgError = "Erro: " + error;
+            JOptionPane.showMessageDialog(this, error);
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_editarAvalActionPerformed
+
+    private void minhasAval1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minhasAval1ActionPerformed
+        excluirAval.setVisible(true);
+        editarAval.setVisible(true);
+        Connection connection = null;
+        StringBuilder campos = new StringBuilder();
+        u.setEmail(Login.TextFieldLogin.getText());
+        campos.append("*");
+        controlBD.ExecutaQuery(connection, "avaliacao", campos, u.getEmail());
+        ResultSet rs = controlBD.retornaConsulta();
+        
+        String[] colunasNomes = {"Nota", "Comentario", "Email", "Jogo"};
+        DefaultTableModel modelAval = (DefaultTableModel)tabelaAval.getModel();
+        modelAval.getDataVector().removeAllElements();
+        modelAval.setColumnIdentifiers(colunasNomes);
+        ResultSetMetaData rsmd;
+        try {
+            rsmd = rs.getMetaData();
+            int colNum = rsmd.getColumnCount();
+        while(rs.next()){
+            Object[] objects = new Object[colNum];
+            for(int i = 0; i < colNum; i++){
+                objects[i] = rs.getObject(i+1);
+            }
+            modelAval.addRow(objects);
+        }
+        
+        tabelaAval.setModel(modelAval);
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_minhasAval1ActionPerformed
+
+    private void excluirAvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirAvalActionPerformed
+        try {
+            int selectedRowIndex = tabelaAval.getSelectedRow();
+            if (selectedRowIndex >= 0) {
+                String nome = tabelaAval.getModel().
+                        getValueAt(selectedRowIndex, 2).toString();
+                String jogo = tabelaAval.getModel().
+                        getValueAt(selectedRowIndex, 3).toString();
+                u.setEmail(nome);
+                j.setNome(jogo);
+                int confirm = JOptionPane.showConfirmDialog(this,
+                        "Deseja realmente excluir a avaliacao do jogo " + jogo + "?");
+                if (confirm == 0) {
+                    DefaultTableModel modelAval = (DefaultTableModel) tabelaAval.getModel();
+                    controlAval.excluirAval(u,j);
+                    modelAval.removeRow(selectedRowIndex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Nenhuma avaliacao selecionada");
+            }
+        } catch (HeadlessException error) {
+            String msgError = "Erro: " + error;
+            JOptionPane.showMessageDialog(this, error);
+        }
+    }//GEN-LAST:event_excluirAvalActionPerformed
+
+    private void editarAvaliacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAvaliacaoActionPerformed
+        
+        try{
+         String editNota = textNota.getText();
+         String editAval = textAval.getText();
+         String editNotaCert = editNota.replace(',','.');
+         
+         ArrayList novaLista = new ArrayList();
+            novaLista.add(parseDouble(editNotaCert));
+            novaLista.add(editAval);
+            novaLista.add(u);
+            novaLista.add(j);
+
+            if (controlAval.editarAval(novaLista)) {
+                JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!");
+                CardLayout card = (CardLayout) PanelRoot.getLayout();
+                card.show(PanelRoot, "PanelInicial");
+            } 
+        } catch (HeadlessException error) {
+            System.err.println("Erro: " + error);
+        }
+         
+    }//GEN-LAST:event_editarAvaliacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -980,12 +1327,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelCadAval;
     private javax.swing.JLabel LabelCadUsu1;
     private javax.swing.JLabel LabelEditJogo;
     private javax.swing.JLabel LabelEditUsu;
     private javax.swing.JLabel LabelListGame;
     private javax.swing.JLabel LabelListGame1;
     private javax.swing.JLabel Logo;
+    private javax.swing.JPanel PanelCadAval;
     private javax.swing.JPanel PanelCadJogo;
     private javax.swing.JPanel PanelCadJogo1;
     private javax.swing.JPanel PanelEditUsu;
@@ -994,52 +1343,59 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelListAva;
     private javax.swing.JPanel PanelListGame;
     private javax.swing.JPanel PanelRoot;
+    private javax.swing.JButton avaliar;
     private javax.swing.JButton buttonAvancarEditJogo;
     private javax.swing.JButton buttonCadastrarUsuario2;
     private javax.swing.JButton buttonDeleteUser;
     private javax.swing.JButton buttonEditUser;
+    private javax.swing.JComboBox<String> comboGenAval;
     private javax.swing.JComboBox<String> comboGeneroJogo;
     private javax.swing.JButton deleteJogo;
     private javax.swing.JTextField editDesenvolvedora;
     private javax.swing.JComboBox<String> editGenero;
     private javax.swing.JTextField editNomeJogo;
+    private javax.swing.JButton editarAval;
+    private javax.swing.JButton editarAvaliacao;
+    private javax.swing.JButton excluirAval;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCadJogo;
     private javax.swing.JButton jButtonEditUsu;
     private javax.swing.JButton jButtonListAva;
     private javax.swing.JButton jButtonListGames;
     private javax.swing.JButton jButtonLogoff;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextField jTextFieldSearch;
+    private javax.swing.JLabel labelAval;
+    private javax.swing.JLabel labelDev;
+    private javax.swing.JLabel labelGen;
+    private javax.swing.JLabel labelNomeAval;
+    private javax.swing.JLabel labelNota;
+    private javax.swing.JButton minhasAval1;
+    private javax.swing.JButton salvarAval;
     private javax.swing.JTable tabela;
-    private javax.swing.JTextArea textAvaJogo;
+    private javax.swing.JTable tabelaAval;
+    private javax.swing.JTextArea textAval;
     private javax.swing.JTextField textDesenvolvedora;
-    private javax.swing.JTextArea textEditAvaJogo;
+    private javax.swing.JTextField textDevAval;
     private javax.swing.JPasswordField textEditCSenha;
     private javax.swing.JTextField textEditEmail;
     private javax.swing.JTextField textEditNomeUsu;
-    private javax.swing.JFormattedTextField textEditNotaJogo;
     private javax.swing.JPasswordField textEditSenha;
+    private javax.swing.JTextField textNomeAval;
     private javax.swing.JTextField textNomeJogo;
-    private javax.swing.JFormattedTextField textNotaJogo;
+    private javax.swing.JFormattedTextField textNota;
     // End of variables declaration//GEN-END:variables
 }
