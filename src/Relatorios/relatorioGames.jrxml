@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7956abce-eeee-491d-8156-b9c2b8e6b4a6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     jogo."jogo_nome" AS jogo_jogo_nome,
+     jogo."jogo_dev" AS jogo_jogo_dev,
+     jogo."jogo_gen" AS jogo_jogo_gen
+FROM
+     "public"."jogo" jogo]]>
+	</queryString>
+	<field name="jogo_jogo_nome" class="java.lang.String"/>
+	<field name="jogo_jogo_dev" class="java.lang.String"/>
+	<field name="jogo_jogo_gen" class="java.lang.String"/>
+	<group name="jogo_jogo_nome">
+		<groupExpression><![CDATA[$F{jogo_jogo_nome}]]></groupExpression>
+	</group>
+	<group name="jogo_jogo_dev">
+		<groupExpression><![CDATA[$F{jogo_jogo_dev}]]></groupExpression>
+	</group>
+	<group name="jogo_jogo_gen">
+		<groupExpression><![CDATA[$F{jogo_jogo_gen}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="148" y="17" width="282" height="51" uuid="880078e8-407b-4e5f-a7d7-74a385bb98c6"/>
+				<textElement>
+					<font size="32"/>
+				</textElement>
+				<text><![CDATA[Avaliação de jogos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="211" y="0" width="159" height="23" uuid="6495826e-ee4d-40d1-a672-46b77afb84c0"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jogos cadastrados]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="21" width="100" height="20" uuid="4f1f8e84-cf88-48bb-be0d-641ab8664827"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="23" width="121" height="20" uuid="82a14b6a-2cca-43dd-8ef4-088aff145a12"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desenvolvedora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="23" width="100" height="20" uuid="01a87d1d-d127-43c4-a707-b1c409c40f17"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Genero]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="12" y="15" width="100" height="20" uuid="4617015e-cf41-402d-86de-cf0e5aadafe0"/>
+				<textFieldExpression><![CDATA[$F{jogo_jogo_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="224" y="15" width="100" height="20" uuid="51f0c793-c5ed-4d68-b2f3-1886dbf48c68"/>
+				<textFieldExpression><![CDATA[$F{jogo_jogo_dev}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="15" width="100" height="20" uuid="b9d237c7-95df-4cce-bdbe-ad9934f7dbf7"/>
+				<textFieldExpression><![CDATA[$F{jogo_jogo_gen}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="59" splitType="Stretch">
+			<textField>
+				<reportElement x="474" y="39" width="58" height="20" uuid="b99994c2-fb52-4361-bfa1-b7751b6df051"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="532" y="39" width="40" height="20" uuid="26b1525c-4cfa-498b-9810-bd71ebfa47e6"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
