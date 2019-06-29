@@ -20,6 +20,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -27,6 +29,11 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Avaliacao;
 import modelo.Jogo;
 import modelo.Usuario;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 /**
@@ -54,6 +61,22 @@ public class Principal extends javax.swing.JFrame {
     JogoRecursoController controlJogo = new JogoRecursoController();
     AvaliacaoRecursoController controlAval = new AvaliacaoRecursoController();
     int i = -1;
+    
+    public static final String pdf = 
+            System.getProperty("user.dir")+"/src/Relatorios/relatorioCompleto.pdf";
+    public static final String relatorio = 
+            System.getProperty("user.dir")+"/src/Relatorios/RelatorioCompleto.jasper";
+    
+    public static final String pdf1 = 
+            System.getProperty("user.dir")+"/src/Relatorios/relatorioGenero.pdf";
+    public static final String relatorio1 = 
+            System.getProperty("user.dir")+"/src/Relatorios/RelatorioGroupJogo.jasper";
+    
+    public static final String pdf2 = 
+            System.getProperty("user.dir")+"/src/Relatorios/relatorioParam.pdf";
+    public static final String relatorio2 = 
+            System.getProperty("user.dir")+"/src/Relatorios/RelatorioParametro.jasper";
+    
 
 
     public Principal() {
@@ -111,6 +134,9 @@ public class Principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         PanelListAva = new javax.swing.JPanel();
         LabelListGame1 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -525,6 +551,27 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(tabela);
 
+        jButton2.setText("Gerar relatório completo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Gerar relatório por gênero");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Gerar relatório desenvolvedora");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelListGameLayout = new javax.swing.GroupLayout(PanelListGame);
         PanelListGame.setLayout(PanelListGameLayout);
         PanelListGameLayout.setHorizontalGroup(
@@ -532,33 +579,42 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(PanelListGameLayout.createSequentialGroup()
                 .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelListGameLayout.createSequentialGroup()
-                        .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelListGameLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(LabelListGame))
-                            .addGroup(PanelListGameLayout.createSequentialGroup()
-                                .addGap(116, 116, 116)
-                                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 161, Short.MAX_VALUE))
+                        .addGap(116, 116, 116)
+                        .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PanelListGameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane5)))
+                        .addGap(42, 42, 42)
+                        .addComponent(LabelListGame)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addGap(20, 20, 20))
+            .addGroup(PanelListGameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5)
                 .addContainerGap())
         );
         PanelListGameLayout.setVerticalGroup(
             PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelListGameLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(LabelListGame)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelListGame)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         PanelRoot.add(PanelListGame, "PanelListGame");
@@ -857,7 +913,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelRoot, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(PanelRoot, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             .addComponent(PanelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
         );
 
@@ -1290,6 +1346,70 @@ public class Principal extends javax.swing.JFrame {
          
     }//GEN-LAST:event_editarAvaliacaoActionPerformed
 
+    private Map constroiParametros() {
+        Map params = new HashMap();
+        params.put("DEV_JOGO", new String());
+        return params;
+    }
+    
+    private Map constroiParametros1(String x) {
+        Map params = new HashMap();
+        params.put("DEV_JOGO", new String(x));
+        return params;
+    }
+    
+    
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JasperPrint impressao;
+        try {
+            impressao = JasperFillManager.fillReport(
+                    relatorio,
+                    constroiParametros(),
+                    controlBD.AcessaBD());
+            JasperExportManager.exportReportToPdfFile(impressao, pdf);
+            JasperViewer.viewReport(impressao, false);
+            JOptionPane.showMessageDialog(this, "Arquivo gerado com sucesso!");
+        } catch (JRException ex) {
+            System.err.println("Não foi possível exportar o relatório.\n\n");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        JasperPrint impressao;
+        try {
+            impressao = JasperFillManager.fillReport(
+                    relatorio1,
+                    constroiParametros(),
+                    controlBD.AcessaBD());
+            JasperExportManager.exportReportToPdfFile(impressao, pdf1);
+            JasperViewer.viewReport(impressao, false);
+            JOptionPane.showMessageDialog(this, "Arquivo gerado com sucesso!");
+        } catch (JRException ex) {
+            System.err.println("Não foi possível exportar o relatório.\n\n");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+        JasperPrint impressao;
+        try {
+            impressao = JasperFillManager.fillReport(
+                    relatorio2,
+                    constroiParametros1(JOptionPane.showInputDialog(null, "Digite a desenvolvedora desejada : ")),
+                    controlBD.AcessaBD());
+            JasperExportManager.exportReportToPdfFile(impressao, pdf2);
+            JasperViewer.viewReport(impressao, false);
+            JOptionPane.showMessageDialog(this, "Arquivo gerado com sucesso!");
+            
+        } catch (JRException ex) {
+            System.err.println("Não foi possível exportar o relatório.\n\n");
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1358,6 +1478,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton editarAvaliacao;
     private javax.swing.JButton excluirAval;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonCadJogo;
     private javax.swing.JButton jButtonEditUsu;
     private javax.swing.JButton jButtonListAva;

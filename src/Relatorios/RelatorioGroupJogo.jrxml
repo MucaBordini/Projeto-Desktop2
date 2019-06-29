@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="374b3465-d25e-4f6f-8050-35bb6fa8cf19">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     jogo."jogo_nome" AS jogo_jogo_nome,
+     jogo."jogo_dev" AS jogo_jogo_dev,
+     jogo."jogo_gen" AS jogo_jogo_gen
+FROM
+     "public"."jogo" jogo
+GROUP BY
+     jogo_jogo_gen,
+     jogo_jogo_nome]]>
+	</queryString>
+	<field name="jogo_jogo_nome" class="java.lang.String"/>
+	<field name="jogo_jogo_dev" class="java.lang.String"/>
+	<field name="jogo_jogo_gen" class="java.lang.String"/>
+	<variable name="TOTAL_POR_GENERO" class="java.lang.Integer" resetType="Group" resetGroup="Group Header" calculation="Count">
+		<variableExpression><![CDATA[$F{jogo_jogo_nome}]]></variableExpression>
+	</variable>
+	<group name="Group Header">
+		<groupExpression><![CDATA[$F{jogo_jogo_gen}]]></groupExpression>
+		<groupHeader>
+			<band height="44">
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="12" width="185" height="20" uuid="48a7f061-e74d-4a00-a79e-148b8590e275"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{jogo_jogo_gen}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="37">
+				<textField>
+					<reportElement x="402" y="0" width="124" height="20" uuid="d8e620df-d8a7-48e3-b2ac-72eb81c34c24"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTAL_POR_GENERO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="277" y="0" width="125" height="20" uuid="0fff6474-9fbe-43a3-9641-8b4717abbac0"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total do gênero:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="22e88fc8-287a-4cc1-9c78-c59131395201"/>
+				<staticText>
+					<reportElement x="20" y="20" width="352" height="43" forecolor="#FFFFFF" uuid="2cfecc61-2f1a-449c-914d-ef5b8831bf3f"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório por gênero]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="c418653f-61c7-4273-a84f-2c5c29aaaa61"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="91a6b851-fbb6-44bb-90ef-3615c758b1b7"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="185" height="20" uuid="ea7af79c-e832-4b92-9939-ebc72c492c08"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jogo_jogo_nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="241" y="0" width="185" height="20" uuid="8d1967ae-f400-4070-a1fd-5a5350f6255d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jogo_jogo_dev}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="29">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="90d085b4-d6a7-4eaf-9abc-c3742bc27dff"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="a19de568-cfd6-4c66-9984-31d79bf2b673"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="d272ca1f-a3ff-4941-979e-bdc7bba74654"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
