@@ -119,7 +119,7 @@ public class UsuarioDAO {
     public Usuario select(Usuario u){
         try {
             bd.AcessaBD();
-            bd.ExecutaQuery("SELECT * FROM usuario WHERE usu_email like '%"+u.getEmail()+"%'");
+            bd.ExecutaQuery("SELECT * FROM usuario WHERE usu_email like '"+u.getEmail()+"'");
             bd.rsdados.first();
             u.setNome(bd.rsdados.getString("usu_nome"));
             u.setEmail(bd.rsdados.getString("usu_email"));

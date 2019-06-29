@@ -5,10 +5,12 @@
  */
 package interfaces;
 
+import DAO.AvaliacaoDAO;
 import DAO.UsuarioDAO;
 import controle.AvaliacaoRecursoController;
 import controle.ValidarCampos;
 import controle.ControleBD;
+import controle.GerarRelatorios;
 import controle.JogoRecursoController;
 import java.awt.CardLayout;
 import java.awt.FontFormatException;
@@ -20,8 +22,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,11 +29,6 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Avaliacao;
 import modelo.Jogo;
 import modelo.Usuario;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;
 
 
 /**
@@ -58,6 +53,8 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<String> aval = new ArrayList();
     ArrayList<String> usu = new ArrayList();
     
+    GerarRelatorios rep = new GerarRelatorios();
+    
     JogoRecursoController controlJogo = new JogoRecursoController();
     AvaliacaoRecursoController controlAval = new AvaliacaoRecursoController();
     int i = -1;
@@ -77,7 +74,7 @@ public class Principal extends javax.swing.JFrame {
     public static final String relatorio2 = 
             System.getProperty("user.dir")+"/src/Relatorios/RelatorioParametro.jasper";
     
-
+    AvaliacaoDAO avaDAO = new AvaliacaoDAO();
 
     public Principal() {
         setResizable(false);
@@ -579,42 +576,45 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(PanelListGameLayout.createSequentialGroup()
                 .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelListGameLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelListGameLayout.createSequentialGroup()
+                                .addGap(116, 116, 116)
+                                .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelListGameLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(LabelListGame)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(PanelListGameLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(LabelListGame)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(20, 20, 20))
-            .addGroup(PanelListGameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane5)
+                        .addContainerGap()
+                        .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane5)
+                            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, PanelListGameLayout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(44, 44, 44)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                .addComponent(jButton4)))))
                 .addContainerGap())
         );
         PanelListGameLayout.setVerticalGroup(
             PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelListGameLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelListGame)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                .addComponent(LabelListGame)
+                .addGap(8, 8, 8)
+                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                .addGroup(PanelListGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         PanelRoot.add(PanelListGame, "PanelListGame");
@@ -913,7 +913,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelRoot, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(PanelRoot, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(PanelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
         );
 
@@ -934,7 +934,7 @@ public class Principal extends javax.swing.JFrame {
             
             //Mandando para o Contoller
             if (controlJogo.criarJogo(novaLista)) {
-                JOptionPane.showMessageDialog(this, "O jogo foi salva com sucesso!");
+                JOptionPane.showMessageDialog(this, "O jogo foi salvo com sucesso!");
                 CardLayout card = (CardLayout) PanelRoot.getLayout();
                 card.show(PanelRoot, "PanelInicial");
             }
@@ -1142,10 +1142,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void deleteJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteJogoActionPerformed
         if(JOptionPane.showConfirmDialog(null, "Deseja excluir o jogo?") == 0){
+            AvaliacaoDAO.delete(editNomeJogo.getText());
             controlJogo.excluirJogo(editNomeJogo.getText());
             JOptionPane.showMessageDialog(null, "Deletado com sucesso");
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar");
         }
         
         CardLayout card = (CardLayout) PanelRoot.getLayout();
@@ -1345,69 +1344,17 @@ public class Principal extends javax.swing.JFrame {
         }
          
     }//GEN-LAST:event_editarAvaliacaoActionPerformed
-
-    private Map constroiParametros() {
-        Map params = new HashMap();
-        params.put("DEV_JOGO", new String());
-        return params;
-    }
-    
-    private Map constroiParametros1(String x) {
-        Map params = new HashMap();
-        params.put("DEV_JOGO", new String(x));
-        return params;
-    }
-    
-    
-    
+      
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JasperPrint impressao;
-        try {
-            impressao = JasperFillManager.fillReport(
-                    relatorio,
-                    constroiParametros(),
-                    controlBD.AcessaBD());
-            JasperExportManager.exportReportToPdfFile(impressao, pdf);
-            JasperViewer.viewReport(impressao, false);
-            JOptionPane.showMessageDialog(this, "Arquivo gerado com sucesso!");
-        } catch (JRException ex) {
-            System.err.println("Não foi possível exportar o relatório.\n\n");
-            ex.printStackTrace();
-        }
+        rep.Relatorio(pdf, relatorio, null);        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JasperPrint impressao;
-        try {
-            impressao = JasperFillManager.fillReport(
-                    relatorio1,
-                    constroiParametros(),
-                    controlBD.AcessaBD());
-            JasperExportManager.exportReportToPdfFile(impressao, pdf1);
-            JasperViewer.viewReport(impressao, false);
-            JOptionPane.showMessageDialog(this, "Arquivo gerado com sucesso!");
-        } catch (JRException ex) {
-            System.err.println("Não foi possível exportar o relatório.\n\n");
-            ex.printStackTrace();
-        }
+        rep.Relatorio(pdf1, relatorio1, null);        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-        JasperPrint impressao;
-        try {
-            impressao = JasperFillManager.fillReport(
-                    relatorio2,
-                    constroiParametros1(JOptionPane.showInputDialog(null, "Digite a desenvolvedora desejada : ")),
-                    controlBD.AcessaBD());
-            JasperExportManager.exportReportToPdfFile(impressao, pdf2);
-            JasperViewer.viewReport(impressao, false);
-            JOptionPane.showMessageDialog(this, "Arquivo gerado com sucesso!");
-            
-        } catch (JRException ex) {
-            System.err.println("Não foi possível exportar o relatório.\n\n");
-            ex.printStackTrace();
-        }
+        rep.Relatorio(pdf2, relatorio2, JOptionPane.showInputDialog(null, "Digite a desenvolvedora desejada : "));
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

@@ -1,4 +1,4 @@
-
+CREATE DATABASE avaliacao_jogos;
 
 CREATE TABLE public.jogo (
     jogo_nome varchar(100) PRIMARY KEY NOT NULL,
