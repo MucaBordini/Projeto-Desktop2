@@ -1193,6 +1193,8 @@ public class Principal extends javax.swing.JFrame {
         } catch (HeadlessException error) {
             System.err.println("Erro: " + error);
         }
+        CardLayout card = (CardLayout) PanelRoot.getLayout();
+        card.show(PanelRoot, "PanelListGame");
     }//GEN-LAST:event_salvarAvalActionPerformed
 
     private void labelNomeAvalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_labelNomeAvalKeyTyped
