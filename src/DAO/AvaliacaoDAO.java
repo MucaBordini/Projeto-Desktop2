@@ -41,7 +41,7 @@ public class AvaliacaoDAO {
             connection = bd.commitNoBanco();
             retorno = true;
         } catch (SQLException error){
-            JOptionPane.showMessageDialog(null, "ERRO NO BANCO DE DADOS! "+ error);
+            JOptionPane.showMessageDialog(null, "Você já cadastrou uma avaliação para este jogo!");
             connection = bd.rollbackBanco();
         } finally {
             connection = bd.Sair(connection, pstdados);

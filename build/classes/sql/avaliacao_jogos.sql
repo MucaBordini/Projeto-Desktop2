@@ -17,8 +17,8 @@ CREATE TABLE public.usuario (
 CREATE TABLE public.avaliacao (
     nota double precision,
     comentario varchar(300),
-    usu_email_fk varchar(50) REFERENCES usuario (usu_email),
-    jogo_nome_fk varchar(100) REFERENCES jogo (jogo_nome),
+    usu_email_fk varchar(50) REFERENCES usuario (usu_email) ON DELETE CASCADE ON UPDATE CASCADE,
+    jogo_nome_fk varchar(100) REFERENCES jogo (jogo_nome) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (usu_email_fk, jogo_nome_fk)
 );
 
