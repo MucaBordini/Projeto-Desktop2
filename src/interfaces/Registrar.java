@@ -49,6 +49,7 @@ public class Registrar extends javax.swing.JFrame {
         textCSenha = new javax.swing.JPasswordField();
         textSenha = new javax.swing.JPasswordField();
         buttonCadastrarUsuario1 = new javax.swing.JButton();
+        BotaoCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +100,13 @@ public class Registrar extends javax.swing.JFrame {
             }
         });
 
+        BotaoCancelar.setText("Cancelar");
+        BotaoCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelCadUsuLayout = new javax.swing.GroupLayout(PanelCadUsu);
         PanelCadUsu.setLayout(PanelCadUsuLayout);
         PanelCadUsuLayout.setHorizontalGroup(
@@ -124,8 +132,11 @@ public class Registrar extends javax.swing.JFrame {
                                     .addGap(161, 161, 161)
                                     .addComponent(textNome1)))))
                     .addGroup(PanelCadUsuLayout.createSequentialGroup()
-                        .addGap(297, 297, 297)
-                        .addComponent(buttonCadastrarUsuario1)))
+                        .addGap(215, 215, 215)
+                        .addComponent(BotaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(105, 105, 105)
+                        .addComponent(buttonCadastrarUsuario1)
+                        .addGap(0, 92, Short.MAX_VALUE)))
                 .addContainerGap(138, Short.MAX_VALUE))
         );
         PanelCadUsuLayout.setVerticalGroup(
@@ -150,9 +161,13 @@ public class Registrar extends javax.swing.JFrame {
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textCSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(165, 165, 165)
-                .addComponent(buttonCadastrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelCadUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonCadastrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
+
+        BotaoCancelar.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,6 +220,11 @@ public class Registrar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNome1ActionPerformed
 
+    private void BotaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarActionPerformed
+        dispose();
+        new Login().setVisible(true);
+    }//GEN-LAST:event_BotaoCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,6 +263,7 @@ public class Registrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoCancelar;
     private javax.swing.JLabel LabelCadUsu;
     private javax.swing.JPanel PanelCadUsu;
     private javax.swing.JButton buttonCadastrarUsuario1;

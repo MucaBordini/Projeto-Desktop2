@@ -73,8 +73,11 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="297" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
+                          <Component id="BotaoCancelar" min="-2" pref="82" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                           <Component id="buttonCadastrarUsuario1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="92" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="138" max="32767" attributes="0"/>
@@ -107,7 +110,10 @@
                       <Component id="textCSenha" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
-                  <Component id="buttonCadastrarUsuario1" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="buttonCadastrarUsuario1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="BotaoCancelar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="108" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -189,6 +195,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCadastrarUsuario1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="BotaoCancelar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
+          </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+          </AccessibilityProperties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotaoCancelarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
