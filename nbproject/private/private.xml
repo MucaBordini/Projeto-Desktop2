@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/julio/Documents/NetBeansProjects/Projeto-Desktop2/src/interfaces/Principal.java</file>
-            <file>file:/C:/Users/julio/Documents/NetBeansProjects/Projeto-Desktop2/src/Relatorios/RelatorioGroupJogo.jrxml</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2-manutenção/src/interfaces/Principal.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2-manutenção/test/testeC1.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2-manutenção/src/DAO/AvaliacaoDAO.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2-manutenção/src/controle/JogoRecursoController.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2-manutenção/src/interfaces/Registrar.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2-manutenção/src/controle/AvaliacaoRecursoController.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2-manutenção/src/DAO/JogoDAO.java</file>
+            <file>file:/C:/Users/samue/OneDrive/Documentos/NetBeansProjects/Projeto-Desktop2-manutenção/src/controle/ControleBD.java</file>
         </group>
     </open-files>
 </project-private>

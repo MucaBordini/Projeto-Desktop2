@@ -344,9 +344,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        comboGeneroJogo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FPS", "Terror", "Ação/Aventura", "RPG", "Plataforma", "Luta", "Corrida", "Esportes" }));
-        comboGeneroJogo.setSelectedIndex(-1);
+        comboGeneroJogo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ação/Aventura", "Beat Em up", "Cartas", "Construção/gerenciamento", "Corrida", "Educativo", "Esportes", "Estratégia", "FPS", "Hack'n Slash", "Infantil", "Luta", "MMO", "MOBA", "Música/ritmo", "Plataforma", "Puzzle", "RPG", "Simulador", "Stealth", "Survivor Horror", "Terror", "Turn Based" }));
         comboGeneroJogo.setPreferredSize(new java.awt.Dimension(98, 25));
+        comboGeneroJogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboGeneroJogoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelCadJogoLayout = new javax.swing.GroupLayout(PanelCadJogo);
         PanelCadJogo.setLayout(PanelCadJogoLayout);
@@ -913,7 +917,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelRoot, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(PanelRoot, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             .addComponent(PanelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
         );
 
@@ -942,6 +946,11 @@ public class Principal extends javax.swing.JFrame {
             String msgErro = "Erro: " + error;
             JOptionPane.showMessageDialog(this, msgErro);
         }
+        textNomeJogo.setText("");
+        textDesenvolvedora.setText("");
+        comboGeneroJogo.setSelectedIndex(0);
+        CardLayout card = (CardLayout) PanelRoot.getLayout();
+        card.show(PanelRoot, "PanelInicial");
     
     }//GEN-LAST:event_buttonCadastrarUsuario2ActionPerformed
 
@@ -1358,6 +1367,10 @@ public class Principal extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         rep.Relatorio(pdf2, relatorio2, JOptionPane.showInputDialog(null, "Digite a desenvolvedora desejada : "));
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void comboGeneroJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGeneroJogoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboGeneroJogoActionPerformed
 
     /**
      * @param args the command line arguments

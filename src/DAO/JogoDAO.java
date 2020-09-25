@@ -40,7 +40,7 @@ public class JogoDAO {
             connection = bd.commitNoBanco();
             retorno = true;
         } catch (SQLException error){
-            JOptionPane.showMessageDialog(null, "ERRO NO BANCO DE DADOS! "+ error);
+            JOptionPane.showMessageDialog(null, "JOGO JÁ CADASTRADO EM NOSSO SISTEMA!");
             connection = bd.rollbackBanco();
         } finally {
             connection = bd.Sair(connection, pstdados);
