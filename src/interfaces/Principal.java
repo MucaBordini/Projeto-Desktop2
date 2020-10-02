@@ -453,7 +453,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        avaliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/b8013d3077f62d29bce2664db69424.png"))); // NOI18N
+        avaliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Honeyview_rating.png"))); // NOI18N
         avaliar.setText("Avaliar");
         avaliar.setAutoscrolls(true);
         avaliar.addActionListener(new java.awt.event.ActionListener() {
@@ -917,7 +917,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelRoot, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(PanelRoot, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(PanelLateral, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
         );
 
