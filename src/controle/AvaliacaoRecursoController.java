@@ -40,8 +40,8 @@ public class AvaliacaoRecursoController {
             JOptionPane.showMessageDialog(null, "Erro na exclusão.\n");
             return false;
         }
-        System.out.println("NOME "+usuario.getEmail());
-        System.out.println("JOGO "+jogo.getNome());
+        //System.out.println("NOME "+usuario.getEmail());
+        //System.out.println("JOGO "+jogo.getNome());
         
         Avaliacao excluiAval = new Avaliacao(usuario, jogo);
         return excluiAval.delete();

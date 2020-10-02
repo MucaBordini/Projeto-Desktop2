@@ -43,9 +43,9 @@ public class JogoRecursoController {
                     (String) iterator.next(),
                     (String) iterator.next()
             );
-            System.out.println("Um : "+ alteracaoJogo.getNome());
-            System.out.println("dois : "+ alteracaoJogo.getDesenvolvedora());
-            System.out.println("tres : "+ alteracaoJogo.getGenero());
+            //System.out.println("Um : "+ alteracaoJogo.getNome());
+            //System.out.println("dois : "+ alteracaoJogo.getDesenvolvedora());
+            //System.out.println("tres : "+ alteracaoJogo.getGenero());
             retorno = alteracaoJogo.update();
         }
         return retorno;

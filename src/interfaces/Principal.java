@@ -1020,7 +1020,7 @@ public class Principal extends javax.swing.JFrame {
             String editDev = editDesenvolvedora.getText();
             String editGeneroJogo = editGenero.getModel().getSelectedItem().toString();
             
-            System.out.println("ESSE " + editDev);
+            //System.out.println("ESSE " + editDev);
             
             ArrayList novaLista = new ArrayList();
             novaLista.add(editNome);
@@ -1186,8 +1186,8 @@ public class Principal extends javax.swing.JFrame {
             String editNotaC = editNota.replace(',','.');
             
             j.setNome(editJogoAval);
-            System.out.println("JOGO : "+j.getNome());
-            System.out.println("USU : "+u.getEmail());
+            //System.out.println("JOGO : "+j.getNome());
+            //System.out.println("USU : "+u.getEmail());
             ArrayList novaLista = new ArrayList();
             novaLista.add(parseDouble(editNotaC));
             novaLista.add(editAval);

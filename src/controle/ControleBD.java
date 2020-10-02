@@ -141,7 +141,7 @@ public class ControleBD {
         try {
             connection.commit();
         } catch (SQLException erro) {
-            System.out.println("Erro commit = " + erro);
+            //System.out.println("Erro commit = " + erro);
             return null;
         }
         return connection;
