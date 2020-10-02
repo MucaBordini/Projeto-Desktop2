@@ -10,6 +10,8 @@ import controle.ValidarCampos;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 import modelo.Usuario;
 
 /**
@@ -17,6 +19,17 @@ import modelo.Usuario;
  * @author julio
  */
 public class Registrar extends javax.swing.JFrame {
+    
+    private static final String EMAIL_PATTERN = 
+        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+    private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+    
+    public static boolean validarEmail(String email){
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
 
     /**
      * Creates new form Principal
@@ -187,8 +200,12 @@ public class Registrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCadastrarUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCadastrarUsuario1ActionPerformed
-
-        if(vc.camposVazios(textNome1.getText(),textEmail.getText(),textSenha.getText(),textCSenha.getText())){
+        if(!validarEmail(textEmail.getText())){
+            JOptionPane.showMessageDialog(null, "Email mal formatado!");
+            textEmail.setText("");
+        }
+        
+        else if(vc.camposVazios(textNome1.getText(),textEmail.getText(),textSenha.getText(),textCSenha.getText())){
             if(!textSenha.getText().equals(textCSenha.getText())){
                 JOptionPane.showMessageDialog(null, "As senhas não conferem");
                 textSenha.setText("");
