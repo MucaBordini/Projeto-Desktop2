@@ -939,6 +939,9 @@ public class Principal extends javax.swing.JFrame {
             //Mandando para o Contoller
             if (controlJogo.criarJogo(novaLista)) {
                 JOptionPane.showMessageDialog(this, "O jogo foi salvo com sucesso!");
+                textNomeJogo.setText("");
+                textDesenvolvedora.setText("");
+                comboGeneroJogo.setSelectedIndex(0);
                 CardLayout card = (CardLayout) PanelRoot.getLayout();
                 card.show(PanelRoot, "PanelInicial");
             }
@@ -946,9 +949,6 @@ public class Principal extends javax.swing.JFrame {
             String msgErro = "Erro: " + error;
             JOptionPane.showMessageDialog(this, msgErro);
         }
-        textNomeJogo.setText("");
-        textDesenvolvedora.setText("");
-        comboGeneroJogo.setSelectedIndex(0);
         CardLayout card = (CardLayout) PanelRoot.getLayout();
         card.show(PanelRoot, "PanelInicial");
     
@@ -1030,7 +1030,7 @@ public class Principal extends javax.swing.JFrame {
             if (controlJogo.editarJogo(novaLista)) {
                 JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!");
                 CardLayout card = (CardLayout) PanelRoot.getLayout();
-                card.show(PanelRoot, "editarJogo");
+                card.show(PanelRoot, "PanelInicial");
             } 
         } catch (HeadlessException error) {
             System.err.println("Erro: " + error);
@@ -1099,6 +1099,7 @@ public class Principal extends javax.swing.JFrame {
         }
         editNomeJogo.setEditable(false);
         
+        jTextFieldSearch.setText("");
         CardLayout card = (CardLayout) PanelRoot.getLayout();
         card.show(PanelRoot, "editGame");
             
@@ -1196,6 +1197,8 @@ public class Principal extends javax.swing.JFrame {
 
             if (controlAval.criarAval(novaLista)) {
                 JOptionPane.showMessageDialog(this, "Avaliação salva com sucesso!");
+                textNota.setText("");
+                textAval.setText("");
                 CardLayout card = (CardLayout) PanelRoot.getLayout();
                 card.show(PanelRoot, "editarJogo");
             } 
